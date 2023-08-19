@@ -3,13 +3,13 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>Arslan.Vms.PlannerService</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.AutoMapper" Version="6.0.1" />
-    <PackageReference Include="Volo.Abp.Ddd.Application" Version="6.0.1" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="7.3.2" />
+    <PackageReference Include="Volo.Abp.Ddd.Application" Version="7.3.2" />
     <ProjectReference Include="..\Arslan.Vms.PlannerService.Application.Contracts\Arslan.Vms.PlannerService.Application.Contracts.csproj" />
     <ProjectReference Include="..\Arslan.Vms.PlannerService.Domain\Arslan.Vms.PlannerService.Domain.csproj" />
   </ItemGroup>

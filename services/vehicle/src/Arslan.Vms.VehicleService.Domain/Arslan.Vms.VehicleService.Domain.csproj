@@ -1,43 +1,42 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\..\common.props" />
+	<Import Project="..\..\..\..\common.props" />
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<RootNamespace>Arslan.Vms.VehicleService</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Addresses\**" />
-	  <Compile Remove="Companies\**" />
-	  <Compile Remove="Customers\**" />
-	  <EmbeddedResource Remove="Addresses\**" />
-	  <EmbeddedResource Remove="Companies\**" />
-	  <EmbeddedResource Remove="Customers\**" />
-	  <None Remove="Addresses\**" />
-	  <None Remove="Companies\**" />
-	  <None Remove="Customers\**" />
+		<Compile Remove="Addresses\**" />
+		<Compile Remove="Companies\**" />
+		<Compile Remove="Customers\**" />
+		<EmbeddedResource Remove="Addresses\**" />
+		<EmbeddedResource Remove="Companies\**" />
+		<EmbeddedResource Remove="Customers\**" />
+		<None Remove="Addresses\**" />
+		<None Remove="Companies\**" />
+		<None Remove="Customers\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Users\IRoleRepository.cs" />
-	  <Compile Remove="Users\IUserManager.cs" />
-	  <Compile Remove="Users\IUserRepository.cs" />
-	  <Compile Remove="Users\Role.cs" />
-	  <Compile Remove="Users\User.cs" />
-	  <Compile Remove="Users\UserAddress.cs" />
-	  <Compile Remove="Users\UserDataSeedContributor.cs" />
-	  <Compile Remove="Users\UserManager.cs" />
-	  <Compile Remove="Users\UserRole.cs" />
+		<Compile Remove="Users\IRoleRepository.cs" />
+		<Compile Remove="Users\IUserManager.cs" />
+		<Compile Remove="Users\IUserRepository.cs" />
+		<Compile Remove="Users\Role.cs" />
+		<Compile Remove="Users\User.cs" />
+		<Compile Remove="Users\UserAddress.cs" />
+		<Compile Remove="Users\UserDataSeedContributor.cs" />
+		<Compile Remove="Users\UserManager.cs" />
+		<Compile Remove="Users\UserRole.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Volo.Abp.Ddd.Domain" Version="6.0.1" />
-		<PackageReference Include="Volo.Abp.BlobStoring" Version="6.0.1" />
-		<PackageReference Include="Volo.Abp.BlobStoring.Database.Domain" Version="6.0.1" />
-		<PackageReference Include="Volo.Abp.BlobStoring.FileSystem" Version="6.0.1" />
-		<PackageReference Include="Volo.Abp.Users.Domain" Version="6.0.1" />
-		<ProjectReference Include="..\..\..\administration\src\Arslan.Vms.AdministrationService.Domain\Arslan.Vms.AdministrationService.Domain.csproj" />
+		<PackageReference Include="Volo.Abp.Ddd.Domain" Version="7.3.2" />
+		<PackageReference Include="Volo.Abp.BlobStoring" Version="7.3.2" />
+		<PackageReference Include="Volo.Abp.BlobStoring.Database.Domain" Version="7.3.2" />
+		<PackageReference Include="Volo.Abp.BlobStoring.FileSystem" Version="7.3.2" />
+		<PackageReference Include="Volo.Abp.Users.Domain" Version="7.3.2" />
 		<ProjectReference Include="..\Arslan.Vms.VehicleService.Domain.Shared\Arslan.Vms.VehicleService.Domain.Shared.csproj" />
 	</ItemGroup>
 
