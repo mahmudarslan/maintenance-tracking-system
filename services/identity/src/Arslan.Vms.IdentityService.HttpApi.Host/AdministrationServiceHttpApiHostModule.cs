@@ -25,15 +25,15 @@ using Volo.Abp.VirtualFileSystem;
 namespace Arslan.Vms.IdentityService;
 
 [DependsOn(
-    typeof(AdministrationServiceHttpApiModule),
-    typeof(AdministrationServiceApplicationModule),
-    typeof(AdministrationServiceEntityFrameworkCoreModule),
+    typeof(IdentityServiceHttpApiModule),
+    typeof(IdentityServiceApplicationModule),
+    typeof(IdentityServiceEntityFrameworkCoreModule),
     typeof(ArslanVmsSharedHostingMicroservicesModule),
     typeof(AbpHttpClientIdentityModelWebModule),
     typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
     typeof(AbpIdentityHttpApiClientModule)
     )]
-public class AdministrationServiceHttpApiHostModule : AbpModule
+public class IdentityServiceHttpApiHostModule : AbpModule
 {
 
     public override void ConfigureServices(ServiceConfigurationContext context)
@@ -41,7 +41,7 @@ public class AdministrationServiceHttpApiHostModule : AbpModule
         var hostingEnvironment = context.Services.GetHostingEnvironment();
         var configuration = context.Services.GetConfiguration();
 
-        JwtBearerConfigurationHelper.Configure(context, "AdministrationService");
+        JwtBearerConfigurationHelper.Configure(context, "IdentityService");
 
         SwaggerConfigurationHelper.ConfigureWithAuth(
             context: context,
@@ -49,7 +49,7 @@ public class AdministrationServiceHttpApiHostModule : AbpModule
             scopes: new
                 Dictionary<string, string> /* Requested scopes for authorization code request and descriptions for swagger UI only */
                 {
-                    {"AdministrationService", "Administration Service API"}
+                    {"IdentityService", "Administration Service API"}
             },
             apiTitle: "Administration Service API"
         );
@@ -58,19 +58,19 @@ public class AdministrationServiceHttpApiHostModule : AbpModule
         {
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceDomainSharedModule>(
+                options.FileSets.ReplaceEmbeddedByPhysical<IdentityServiceDomainSharedModule>(
                     Path.Combine(hostingEnvironment.ContentRootPath,
-                        string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Domain.Shared", Path.DirectorySeparatorChar)));
-                options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceDomainModule>(
+                        string.Format("..{0}..{0}src{0}Arslan.Vms.IdentityService.Domain.Shared", Path.DirectorySeparatorChar)));
+                options.FileSets.ReplaceEmbeddedByPhysical<IdentityServiceDomainModule>(
                     Path.Combine(hostingEnvironment.ContentRootPath,
-                        string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Domain", Path.DirectorySeparatorChar)));
-                options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceApplicationContractsModule>(
+                        string.Format("..{0}..{0}src{0}Arslan.Vms.IdentityService.Domain", Path.DirectorySeparatorChar)));
+                options.FileSets.ReplaceEmbeddedByPhysical<IdentityServiceApplicationContractsModule>(
                     Path.Combine(hostingEnvironment.ContentRootPath,
-                        string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Application.Contracts",
+                        string.Format("..{0}..{0}src{0}Arslan.Vms.IdentityService.Application.Contracts",
                             Path.DirectorySeparatorChar)));
-                options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceApplicationModule>(
+                options.FileSets.ReplaceEmbeddedByPhysical<IdentityServiceApplicationModule>(
                     Path.Combine(hostingEnvironment.ContentRootPath,
-                        string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Application", Path.DirectorySeparatorChar)));
+                        string.Format("..{0}..{0}src{0}Arslan.Vms.IdentityService.Application", Path.DirectorySeparatorChar)));
             });
         }
 
@@ -137,7 +137,7 @@ public class AdministrationServiceHttpApiHostModule : AbpModule
     public override async Task OnPostApplicationInitializationAsync(ApplicationInitializationContext context)
     {
         await context.ServiceProvider
-            .GetRequiredService<AdministrationServiceDatabaseMigrationChecker>()
+            .GetRequiredService<IdentityServiceDatabaseMigrationChecker>()
             .CheckAndApplyDatabaseMigrationsAsync();
     }
 }

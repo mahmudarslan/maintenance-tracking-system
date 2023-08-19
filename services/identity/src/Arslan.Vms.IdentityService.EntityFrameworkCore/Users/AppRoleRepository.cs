@@ -5,9 +5,9 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Arslan.Vms.IdentityService.Users
 {
-    public class AppRoleRepository : EfCoreRepository<AdministrationServiceDbContext, Role, Guid>, IRoleRepository
+    public class AppRoleRepository : EfCoreRepository<IdentityServiceDbContext, Role, Guid>, IRoleRepository
     {
-        public AppRoleRepository(IDbContextProvider<AdministrationServiceDbContext> dbContextProvider) : base(dbContextProvider)
+        public AppRoleRepository(IDbContextProvider<IdentityServiceDbContext> dbContextProvider) : base(dbContextProvider)
         {
         }
     }

@@ -12,7 +12,7 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Arslan.Vms.IdentityService.Migrations
 {
-    [DbContext(typeof(AdministrationServiceDbContext))]
+    [DbContext(typeof(IdentityServiceDbContext))]
     [Migration("20230408133724_Initial")]
     partial class Initial
     {
@@ -26,7 +26,7 @@ namespace Arslan.Vms.IdentityService.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Addresses.Address", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Addresses.Address", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -115,10 +115,10 @@ namespace Arslan.Vms.IdentityService.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdministrationServiceAddress", (string)null);
+                    b.ToTable("IdentityServiceAddress", (string)null);
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Addresses.AddressTypes.AddressType", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Addresses.AddressTypes.AddressType", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -145,10 +145,10 @@ namespace Arslan.Vms.IdentityService.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdministrationServiceAddressTypes", (string)null);
+                    b.ToTable("IdentityServiceAddressTypes", (string)null);
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Addresses.Version.AddressVersion", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Addresses.Version.AddressVersion", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -250,10 +250,10 @@ namespace Arslan.Vms.IdentityService.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdministrationServiceAddressVersions", (string)null);
+                    b.ToTable("IdentityServiceAddressVersions", (string)null);
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Companies.Company", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Companies.Company", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -326,10 +326,10 @@ namespace Arslan.Vms.IdentityService.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdministrationServiceCompanies", (string)null);
+                    b.ToTable("IdentityServiceCompanies", (string)null);
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Companies.CompanyAddress", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Companies.CompanyAddress", b =>
                 {
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
@@ -343,10 +343,10 @@ namespace Arslan.Vms.IdentityService.Migrations
 
                     b.HasKey("CompanyId", "AddressId");
 
-                    b.ToTable("AdministrationServiceCompanyAddress", (string)null);
+                    b.ToTable("IdentityServiceCompanyAddress", (string)null);
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Companies.CompanyAttachment", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Companies.CompanyAttachment", b =>
                 {
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
@@ -362,10 +362,10 @@ namespace Arslan.Vms.IdentityService.Migrations
 
                     b.HasIndex("FileAttachmentId");
 
-                    b.ToTable("AdministrationServiceCompanyAttachments", (string)null);
+                    b.ToTable("IdentityServiceCompanyAttachments", (string)null);
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Files.FileAttachment", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Files.FileAttachment", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -446,7 +446,7 @@ namespace Arslan.Vms.IdentityService.Migrations
                     b.ToTable("FileAttachment");
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Users.Role", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Users.Role", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -482,10 +482,10 @@ namespace Arslan.Vms.IdentityService.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdministrationServiceRoles", (string)null);
+                    b.ToTable("IdentityServiceRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Users.User", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Users.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -613,10 +613,10 @@ namespace Arslan.Vms.IdentityService.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdministrationServiceUsers", (string)null);
+                    b.ToTable("IdentityServiceUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Users.UserAddress", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Users.UserAddress", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -630,10 +630,10 @@ namespace Arslan.Vms.IdentityService.Migrations
 
                     b.HasKey("UserId", "AddressId");
 
-                    b.ToTable("AdministrationServiceUserAddresses", (string)null);
+                    b.ToTable("IdentityServiceUserAddresses", (string)null);
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Users.UserRole", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Users.UserRole", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -647,7 +647,7 @@ namespace Arslan.Vms.IdentityService.Migrations
 
                     b.HasKey("UserId", "RoleId");
 
-                    b.ToTable("AdministrationServiceUserRoles", (string)null);
+                    b.ToTable("IdentityServiceUserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
@@ -1044,42 +1044,42 @@ namespace Arslan.Vms.IdentityService.Migrations
                     b.ToTable("AbpSettings", (string)null);
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Companies.CompanyAddress", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Companies.CompanyAddress", b =>
                 {
-                    b.HasOne("Arslan.Vms.AdministrationService.Companies.Company", null)
+                    b.HasOne("Arslan.Vms.IdentityService.Companies.Company", null)
                         .WithMany("Addresses")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Companies.CompanyAttachment", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Companies.CompanyAttachment", b =>
                 {
-                    b.HasOne("Arslan.Vms.AdministrationService.Companies.Company", null)
+                    b.HasOne("Arslan.Vms.IdentityService.Companies.Company", null)
                         .WithMany("Attachments")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Arslan.Vms.AdministrationService.Files.FileAttachment", null)
+                    b.HasOne("Arslan.Vms.IdentityService.Files.FileAttachment", null)
                         .WithMany()
                         .HasForeignKey("FileAttachmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Users.UserAddress", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Users.UserAddress", b =>
                 {
-                    b.HasOne("Arslan.Vms.AdministrationService.Users.User", null)
+                    b.HasOne("Arslan.Vms.IdentityService.Users.User", null)
                         .WithMany("Addresses")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Users.UserRole", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Users.UserRole", b =>
                 {
-                    b.HasOne("Arslan.Vms.AdministrationService.Users.User", null)
+                    b.HasOne("Arslan.Vms.IdentityService.Users.User", null)
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1122,14 +1122,14 @@ namespace Arslan.Vms.IdentityService.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Companies.Company", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Companies.Company", b =>
                 {
                     b.Navigation("Addresses");
 
                     b.Navigation("Attachments");
                 });
 
-            modelBuilder.Entity("Arslan.Vms.AdministrationService.Users.User", b =>
+            modelBuilder.Entity("Arslan.Vms.IdentityService.Users.User", b =>
                 {
                     b.Navigation("Addresses");
 

@@ -12,13 +12,13 @@ using Volo.Abp.Uow;
 
 namespace Arslan.Vms.IdentityService.DbMigrations;
 
-public class AdministrationServiceDatabaseMigrationChecker
-    : PendingEfCoreMigrationsChecker<AdministrationServiceDbContext>
+public class IdentityServiceDatabaseMigrationChecker
+    : PendingEfCoreMigrationsChecker<IdentityServiceDbContext>
 {
     private readonly IPermissionDefinitionManager _permissionDefinitionManager;
     private readonly IPermissionDataSeeder _permissionDataSeeder;
 
-    public AdministrationServiceDatabaseMigrationChecker(
+    public IdentityServiceDatabaseMigrationChecker(
         IUnitOfWorkManager unitOfWorkManager,
         IServiceProvider serviceProvider,
         ICurrentTenant currentTenant,
@@ -32,7 +32,7 @@ public class AdministrationServiceDatabaseMigrationChecker
             currentTenant,
             distributedEventBus,
             abpDistributedLock,
-            AdministrationServiceDbProperties.ConnectionStringName)
+            IdentityServiceDbProperties.ConnectionStringName)
     {
         _permissionDefinitionManager = permissionDefinitionManager;
         _permissionDataSeeder = permissionDataSeeder;

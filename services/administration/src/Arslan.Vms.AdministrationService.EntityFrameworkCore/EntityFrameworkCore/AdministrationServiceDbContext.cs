@@ -1,20 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.AuditLogging;
-using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
+using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BlobStoring.Database;
+using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.PermissionManagement;
+using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
-using Volo.Abp.PermissionManagement.EntityFrameworkCore;
-using Arslan.Vms.AdministrationService.Companies;
-using Arslan.Vms.AdministrationService.Users;
-using Arslan.Vms.AdministrationService.Files;
-using Arslan.Vms.AdministrationService.Addresses;
-using Arslan.Vms.AdministrationService.Addresses.AddressTypes;
-using Arslan.Vms.AdministrationService.Addresses.Version;
 
 namespace Arslan.Vms.AdministrationService.EntityFrameworkCore;
 
@@ -33,8 +27,7 @@ public class AdministrationServiceDbContext
     IPermissionManagementDbContext,
     ISettingManagementDbContext,
     IAuditLoggingDbContext,
-    IBlobStoringDbContext,
-    IAdministrationServiceDbContext
+    IBlobStoringDbContext
 {
     public AdministrationServiceDbContext(DbContextOptions<AdministrationServiceDbContext> options)
         : base(options)
@@ -43,40 +36,14 @@ public class AdministrationServiceDbContext
     }
 
     public DbSet<PermissionGrant> PermissionGrants { get; set; }
-    public DbSet<Setting> Settings { get; set; }
+	public DbSet<PermissionGroupDefinitionRecord> PermissionGroups { get; set; }
+	public DbSet<PermissionDefinitionRecord> Permissions { get; set; }
+	public DbSet<Setting> Settings { get; set; }
     public DbSet<AuditLog> AuditLogs { get; set; }
     public DbSet<DatabaseBlobContainer> BlobContainers { get; set; }
     public DbSet<DatabaseBlob> Blobs { get; set; }
 
-    #region Address
-    public DbSet<Address> Address { get; set; }
-    public DbSet<AddressType> AddressType { get; set; }
-    public DbSet<AddressVersion> AddressVersion { get; set; }
-    #endregion
-
-    #region Company
-    public DbSet<Company> Company { get; set; }
-    public DbSet<CompanyAddress> CompanyAddress { get; set; }
-    public DbSet<CompanyAttachment> CompanyAttachment { get; set; }
-    #endregion
-
-    #region Customer
-    //public DbSet<CustomerPayment> CustomerPayment { get; set; }
-    #endregion  
-
-    #region Users
-    public DbSet<User> Users { get; set; }
-    public DbSet<Role> Roles { get; set; }
-    public DbSet<UserRole> UserRole { get; set; }
-    public DbSet<UserAddress> UserAddress { get; set; }
-
-    #endregion
-
-    #region Attachment
-    public DbSet<FileAttachment> FileAttachment { get; set; }
-    #endregion
-
-    protected override void OnModelCreating(ModelBuilder builder)
+	protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
 

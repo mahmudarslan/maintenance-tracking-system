@@ -13,7 +13,7 @@ namespace Arslan.Vms.IdentityService.v1.AddressType
     [ControllerName("AddressType")]
     [Route("rest/api/latest/vms/base/address")]
     //[ApiVersion("1.0")]
-    public class AddressTypeController : AdministrationServiceController, IAddressTypeAppService
+    public class AddressTypeController : IdentityServiceController, IAddressTypeAppService
     {
         protected IAddressTypeAppService _addressTypeAppService { get; }
 

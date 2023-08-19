@@ -12,7 +12,7 @@ namespace Arslan.Vms.IdentityService.v1.Companies
     [ControllerName("Company")]
     [Route("rest/api/latest/vms/base/company")]
     //[ApiVersion("1.0")]
-    public class IdentityCompanyController : AdministrationServiceController, ICompanyAppService
+    public class IdentityCompanyController : IdentityServiceController, ICompanyAppService
     {
         protected ICompanyAppService _companyAppService { get; }
 

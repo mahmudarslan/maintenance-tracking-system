@@ -22,6 +22,8 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\shared\Arslan.Vms.Shared.Hosting.Microservices\Arslan.Vms.Shared.Hosting.Microservices.csproj" />
+		<ProjectReference Include="..\Arslan.Vms.AdministrationService.Application\Arslan.Vms.AdministrationService.Application.csproj" />
+		<ProjectReference Include="..\Arslan.Vms.AdministrationService.HttpApi\Arslan.Vms.AdministrationService.HttpApi.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -29,6 +31,13 @@
 		<Content Remove="Logs\**" />
 		<EmbeddedResource Remove="Logs\**" />
 		<None Remove="Logs\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.aspnetcore.mvc.ui.multitenancy\7.3.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.abppkg.analyze.json" />
+	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.aspnetcore.mvc.ui.multitenancy\7.3.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.abppkg.json" />
+	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.http.client.identitymodel.web\7.3.2\contentFiles\any\net7.0\Volo.Abp.Http.Client.IdentityModel.Web.abppkg.analyze.json" />
+	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.http.client.identitymodel.web\7.3.2\contentFiles\any\net7.0\Volo.Abp.Http.Client.IdentityModel.Web.abppkg.json" />
 	</ItemGroup>
 
 </Project>

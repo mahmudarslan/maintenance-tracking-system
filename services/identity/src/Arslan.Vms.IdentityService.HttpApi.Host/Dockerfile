@@ -5,7 +5,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
 WORKDIR /src
 COPY . .
-WORKDIR /src/templates/service/host/Arslan.Vms.AdministrationService.HttpApi.Host
+WORKDIR /src/templates/service/host/Arslan.Vms.IdentityService.HttpApi.Host
 RUN dotnet restore -nowarn:msb3202,nu1503
 RUN dotnet build --no-restore -c Release -o /app
 
@@ -15,4 +15,4 @@ RUN dotnet publish --no-restore -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Arslan.Vms.AdministrationService.HttpApi.Host.dll"]
+ENTRYPOINT ["dotnet", "Arslan.Vms.IdentityService.HttpApi.Host.dll"]

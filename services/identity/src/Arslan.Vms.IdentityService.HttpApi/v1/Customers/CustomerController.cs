@@ -13,7 +13,7 @@ namespace Arslan.Vms.IdentityService.v1.Customers
     [ControllerName("Customer")]
     [Route("rest/api/latest/vms/base/customer")]
     //[ApiVersion("1.0")]
-    public class IdentityCustomerController : AdministrationServiceController, ICustomerAppService
+    public class IdentityCustomerController : IdentityServiceController, ICustomerAppService
     {
         #region Fields
         protected ICustomerAppService _customerAppService { get; }

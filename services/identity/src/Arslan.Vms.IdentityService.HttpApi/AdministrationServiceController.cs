@@ -3,10 +3,10 @@ using Volo.Abp.AspNetCore.Mvc;
 
 namespace Arslan.Vms.IdentityService;
 
-public abstract class AdministrationServiceController : AbpControllerBase
+public abstract class IdentityServiceController : AbpControllerBase
 {
-    protected AdministrationServiceController()
+    protected IdentityServiceController()
     {
-        LocalizationResource = typeof(AdministrationServiceResource);
+        LocalizationResource = typeof(IdentityServiceResource);
     }
 }

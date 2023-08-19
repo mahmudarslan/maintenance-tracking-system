@@ -15,26 +15,26 @@ namespace Arslan.Vms.IdentityService;
     typeof(AbpSettingManagementDomainSharedModule),
     typeof(AbpAuditLoggingDomainSharedModule)
     )]
-public class AdministrationServiceDomainSharedModule : AbpModule
+public class IdentityServiceDomainSharedModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         Configure<AbpVirtualFileSystemOptions>(options =>
         {
-            options.FileSets.AddEmbedded<AdministrationServiceDomainSharedModule>();
+            options.FileSets.AddEmbedded<IdentityServiceDomainSharedModule>();
         });
 
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Resources
-                .Add<AdministrationServiceResource>("en")
+                .Add<IdentityServiceResource>("en")
                 .AddBaseTypes(typeof(AbpValidationResource))
-                .AddVirtualJson("/Localization/AdministrationService");
+                .AddVirtualJson("/Localization/IdentityService");
         });
 
         Configure<AbpExceptionLocalizationOptions>(options =>
         {
-            options.MapCodeNamespace("AdministrationService", typeof(AdministrationServiceResource));
+            options.MapCodeNamespace("IdentityService", typeof(IdentityServiceResource));
         });
     }
 }

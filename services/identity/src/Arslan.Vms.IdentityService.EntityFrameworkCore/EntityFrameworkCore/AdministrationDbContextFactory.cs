@@ -7,29 +7,29 @@ namespace Arslan.Vms.IdentityService.EntityFrameworkCore;
 
 /* This class is needed for EF Core console commands
  * (like Add-Migration and Update-Database commands) */
-public class AdministrationServiceDbContextFactory : IDesignTimeDbContextFactory<AdministrationServiceDbContext>
+public class IdentityServiceDbContextFactory : IDesignTimeDbContextFactory<IdentityServiceDbContext>
 {
-    public AdministrationServiceDbContext CreateDbContext(string[] args)
+    public IdentityServiceDbContext CreateDbContext(string[] args)
     {
-        AdministrationServiceEfCoreEntityExtensionMappings.Configure();
+        IdentityServiceEfCoreEntityExtensionMappings.Configure();
 
         var configuration = BuildConfiguration();
 
-        var builder = new DbContextOptionsBuilder<AdministrationServiceDbContext>()
+        var builder = new DbContextOptionsBuilder<IdentityServiceDbContext>()
             .UseSqlServer(
-            configuration.GetConnectionString(AdministrationServiceDbProperties.ConnectionStringName),
+            configuration.GetConnectionString(IdentityServiceDbProperties.ConnectionStringName),
             b =>
             {
-                b.MigrationsHistoryTable("__AdministrationService_Migrations");
+                b.MigrationsHistoryTable("__IdentityService_Migrations");
             });
 
-        return new AdministrationServiceDbContext(builder.Options);
+        return new IdentityServiceDbContext(builder.Options);
     } 
 
     private static IConfigurationRoot BuildConfiguration()
     {
         var builder = new ConfigurationBuilder()
-                   .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../Arslan.Vms.AdministrationService.HttpApi.Host/"))
+                   .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../Arslan.Vms.IdentityService.HttpApi.Host/"))
                    .AddJsonFile("appsettings.json", optional: false);
 
         return builder.Build();

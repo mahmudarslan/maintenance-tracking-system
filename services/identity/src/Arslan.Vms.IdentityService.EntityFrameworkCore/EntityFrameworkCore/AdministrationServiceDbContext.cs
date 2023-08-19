@@ -25,18 +25,18 @@ namespace Arslan.Vms.IdentityService.EntityFrameworkCore;
  * just create a structure like done for AppUser.
  *
  * Don't use this DbContext for database migrations since it does not contain tables of the
- * used modules (as explained above). See AdministrationServiceMigrationsDbContext for migrations.
+ * used modules (as explained above). See IdentityServiceMigrationsDbContext for migrations.
  */
-[ConnectionStringName(AdministrationServiceDbProperties.ConnectionStringName)]
-public class AdministrationServiceDbContext
-    : AbpDbContext<AdministrationServiceDbContext>,
+[ConnectionStringName(IdentityServiceDbProperties.ConnectionStringName)]
+public class IdentityServiceDbContext
+    : AbpDbContext<IdentityServiceDbContext>,
     IPermissionManagementDbContext,
     ISettingManagementDbContext,
     IAuditLoggingDbContext,
     IBlobStoringDbContext,
-    IAdministrationServiceDbContext
+    IIdentityServiceDbContext
 {
-    public AdministrationServiceDbContext(DbContextOptions<AdministrationServiceDbContext> options)
+    public IdentityServiceDbContext(DbContextOptions<IdentityServiceDbContext> options)
         : base(options)
     {
 
@@ -80,7 +80,7 @@ public class AdministrationServiceDbContext
     {
         base.OnModelCreating(builder);
 
-        builder.ConfigureAdministrationService();
+        builder.ConfigureIdentityService();
 
         builder.ConfigurePermissionManagement();
         builder.ConfigureSettingManagement();

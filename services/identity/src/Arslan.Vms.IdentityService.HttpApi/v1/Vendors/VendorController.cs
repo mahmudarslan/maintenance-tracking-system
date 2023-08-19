@@ -14,7 +14,7 @@ namespace Arslan.Vms.IdentityService.v1.Vendors
     [ControllerName("Vendor")]
     [Route("rest/api/latest/vms/base/vendor")]
     //[ApiVersion("1.0")]
-    public class VendorController : AdministrationServiceController, IVendorAppService
+    public class VendorController : IdentityServiceController, IVendorAppService
     {
         protected IVendorAppService _vendorAppService { get; }
 

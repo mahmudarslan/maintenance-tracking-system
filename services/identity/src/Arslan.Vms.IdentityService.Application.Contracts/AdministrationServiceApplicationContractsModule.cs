@@ -4,11 +4,11 @@ using Volo.Abp.SettingManagement;
 
 namespace Arslan.Vms.IdentityService;
 [DependsOn(
-    typeof(AdministrationServiceDomainSharedModule),
+    typeof(IdentityServiceDomainSharedModule),
     typeof(AbpPermissionManagementApplicationContractsModule),
     typeof(AbpSettingManagementApplicationContractsModule)
     )]
-public class AdministrationServiceApplicationContractsModule : AbpModule
+public class IdentityServiceApplicationContractsModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {

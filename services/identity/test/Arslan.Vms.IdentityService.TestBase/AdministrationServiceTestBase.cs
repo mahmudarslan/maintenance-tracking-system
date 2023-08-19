@@ -9,7 +9,7 @@ using Volo.Abp.Testing;
 namespace Arslan.Vms.IdentityService;
 
 /* All test classes are derived from this class, directly or indirectly. */
-public abstract class AdministrationServiceTestBase<TStartupModule> : AbpIntegratedTest<TStartupModule>
+public abstract class IdentityServiceTestBase<TStartupModule> : AbpIntegratedTest<TStartupModule>
     where TStartupModule : IAbpModule
 {
     protected override void SetAbpApplicationCreationOptions(AbpApplicationCreationOptions options)

@@ -1,8 +1,8 @@
 ﻿namespace Arslan.Vms.IdentityService.Settings;
 
-public static class AdministrationServiceSettings
+public static class IdentityServiceSettings
 {
-    public const string GroupName = "AdministrationService";
+    public const string GroupName = "IdentityService";
 
     /* Add constants for setting names. Example:
      * public const string MySettingName = GroupName + ".MySettingName";

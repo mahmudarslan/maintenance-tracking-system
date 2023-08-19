@@ -21,6 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\services\administration\src\Arslan.Vms.AdministrationService.EntityFrameworkCore\Arslan.Vms.AdministrationService.EntityFrameworkCore.csproj" />
 	  <ProjectReference Include="..\Arslan.Vms.Shared.Hosting.AspNetCore\Arslan.Vms.Shared.Hosting.AspNetCore.csproj" />
 	</ItemGroup>
 

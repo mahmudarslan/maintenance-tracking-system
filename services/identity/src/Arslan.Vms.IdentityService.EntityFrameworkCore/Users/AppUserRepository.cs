@@ -11,12 +11,12 @@ using Volo.Abp.ObjectMapping;
 
 namespace Arslan.Vms.IdentityService.Users
 {
-    public class AppUserRepository : EfCoreRepository<AdministrationServiceDbContext, User, Guid>, IUserRepository
+    public class AppUserRepository : EfCoreRepository<IdentityServiceDbContext, User, Guid>, IUserRepository
     {
         private readonly IObjectMapper _objectMapper;
-        IDbContextProvider<AdministrationServiceDbContext> _dbContextProvider;
+        IDbContextProvider<IdentityServiceDbContext> _dbContextProvider;
 
-        public AppUserRepository(IDbContextProvider<AdministrationServiceDbContext> dbContextProvider,
+        public AppUserRepository(IDbContextProvider<IdentityServiceDbContext> dbContextProvider,
             IObjectMapper objectMapper) : base(dbContextProvider)
         {
             _dbContextProvider = dbContextProvider;

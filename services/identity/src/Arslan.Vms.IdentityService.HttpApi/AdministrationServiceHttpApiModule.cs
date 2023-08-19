@@ -9,9 +9,9 @@ using Volo.Abp.SettingManagement;
 
 namespace Arslan.Vms.IdentityService;
 [DependsOn(
-    typeof(AdministrationServiceApplicationContractsModule),
+    typeof(IdentityServiceApplicationContractsModule),
     typeof(AbpPermissionManagementHttpApiModule),
     typeof(AbpSettingManagementHttpApiModule))]
-public class AdministrationServiceHttpApiModule : AbpModule
+public class IdentityServiceHttpApiModule : AbpModule
 {
 }

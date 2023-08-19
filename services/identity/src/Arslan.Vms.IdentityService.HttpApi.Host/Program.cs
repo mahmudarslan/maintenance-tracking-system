@@ -18,7 +18,7 @@ public class Program
         {
             Log.Information($"Starting {assemblyName}.");
             var app = await ApplicationBuilderHelper
-                .BuildApplicationAsync<AdministrationServiceHttpApiHostModule>(args);
+                .BuildApplicationAsync<IdentityServiceHttpApiHostModule>(args);
             await app.InitializeApplicationAsync();
             await app.RunAsync();
 

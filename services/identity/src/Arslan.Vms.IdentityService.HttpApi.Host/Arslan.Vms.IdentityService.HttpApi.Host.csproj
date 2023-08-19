@@ -21,9 +21,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\Arslan.Vms.AdministrationService.HttpApi\Arslan.Vms.AdministrationService.HttpApi.csproj" />
-		<ProjectReference Include="..\..\src\Arslan.Vms.AdministrationService.Application\Arslan.Vms.AdministrationService.Application.csproj" />
-		<ProjectReference Include="..\..\src\Arslan.Vms.AdministrationService.EntityFrameworkCore\Arslan.Vms.AdministrationService.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\..\src\Arslan.Vms.IdentityService.HttpApi\Arslan.Vms.IdentityService.HttpApi.csproj" />
+		<ProjectReference Include="..\..\src\Arslan.Vms.IdentityService.Application\Arslan.Vms.IdentityService.Application.csproj" />
+		<ProjectReference Include="..\..\src\Arslan.Vms.IdentityService.EntityFrameworkCore\Arslan.Vms.IdentityService.EntityFrameworkCore.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

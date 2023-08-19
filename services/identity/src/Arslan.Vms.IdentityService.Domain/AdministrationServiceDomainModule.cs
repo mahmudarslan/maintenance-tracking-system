@@ -8,13 +8,13 @@ using Volo.Abp.SettingManagement;
 namespace Arslan.Vms.IdentityService;
 [DependsOn(
 typeof(AbpDddDomainModule),
-    typeof(AdministrationServiceDomainSharedModule),
+    typeof(IdentityServiceDomainSharedModule),
         typeof(AbpSettingManagementDomainModule),
         typeof(AbpAuditLoggingDomainModule),
         typeof(AbpPermissionManagementDomainIdentityModule),
         typeof(AbpPermissionManagementDomainIdentityServerModule)
 )]
-public class AdministrationServiceDomainModule : AbpModule
+public class IdentityServiceDomainModule : AbpModule
 {
 
 }

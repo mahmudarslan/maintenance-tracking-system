@@ -9,11 +9,11 @@ using Volo.Abp.Modularity;
 namespace Arslan.Vms.IdentityService.EntityFrameworkCore;
 
 [DependsOn(
-    typeof(AdministrationServiceTestBaseModule),
-    typeof(AdministrationServiceEntityFrameworkCoreModule),
+    typeof(IdentityServiceTestBaseModule),
+    typeof(IdentityServiceEntityFrameworkCoreModule),
     typeof(AbpEntityFrameworkCoreSqliteModule)
     )]
-public class AdministrationServiceEntityFrameworkCoreTestModule : AbpModule
+public class IdentityServiceEntityFrameworkCoreTestModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
@@ -33,8 +33,8 @@ public class AdministrationServiceEntityFrameworkCoreTestModule : AbpModule
         var connection = new SqliteConnection("Data Source=:memory:");
         connection.Open();
 
-        new AdministrationServiceDbContext(
-            new DbContextOptionsBuilder<AdministrationServiceDbContext>().UseSqlite(connection).Options
+        new IdentityServiceDbContext(
+            new DbContextOptionsBuilder<IdentityServiceDbContext>().UseSqlite(connection).Options
         ).GetService<IRelationalDatabaseCreator>().CreateTables();
 
         return connection;

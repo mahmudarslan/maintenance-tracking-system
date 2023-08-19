@@ -2,12 +2,12 @@
 
 namespace Arslan.Vms.IdentityService.Settings;
 
-public class AdministrationServiceSettingDefinitionProvider : SettingDefinitionProvider
+public class IdentityServiceSettingDefinitionProvider : SettingDefinitionProvider
 {
     public override void Define(ISettingDefinitionContext context)
     {
         /* Define module settings here.
-         * Use names from AdministrationServiceSettings class.
+         * Use names from IdentityServiceSettings class.
          */
     }
 }

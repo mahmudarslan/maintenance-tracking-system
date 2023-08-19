@@ -6,12 +6,12 @@ using Volo.Abp.MultiTenancy;
 
 namespace Arslan.Vms.IdentityService;
 
-public class AdministrationServiceDataSeedContributor : IDataSeedContributor, ITransientDependency
+public class IdentityServiceDataSeedContributor : IDataSeedContributor, ITransientDependency
 {
     private readonly IGuidGenerator _guidGenerator;
     private readonly ICurrentTenant _currentTenant;
 
-    public AdministrationServiceDataSeedContributor(
+    public IdentityServiceDataSeedContributor(
         IGuidGenerator guidGenerator, ICurrentTenant currentTenant)
     {
         _guidGenerator = guidGenerator;

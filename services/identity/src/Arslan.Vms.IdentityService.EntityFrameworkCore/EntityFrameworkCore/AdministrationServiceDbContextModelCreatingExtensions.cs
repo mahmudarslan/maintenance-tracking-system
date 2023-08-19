@@ -10,9 +10,9 @@ using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace Arslan.Vms.IdentityService.EntityFrameworkCore;
 
-public static class AdministrationServiceDbContextModelCreatingExtensions
+public static class IdentityServiceDbContextModelCreatingExtensions
 {
-    public static void ConfigureAdministrationService(
+    public static void ConfigureIdentityService(
         this ModelBuilder builder)
     {
         Check.NotNull(builder, nameof(builder));
@@ -22,7 +22,7 @@ public static class AdministrationServiceDbContextModelCreatingExtensions
         builder.Entity<Question>(b =>
         {
             //Configure table & schema name
-            b.ToTable(AdministrationServiceDbProperties.DbTablePrefix + "Questions", AdministrationServiceDbProperties.DbSchema);
+            b.ToTable(IdentityServiceDbProperties.DbTablePrefix + "Questions", IdentityServiceDbProperties.DbSchema);
 
             b.ConfigureByConvention();
 
@@ -40,13 +40,13 @@ public static class AdministrationServiceDbContextModelCreatingExtensions
         #region Address
         builder.Entity<Address>(b =>
         {
-            b.ToTable(AdministrationServiceDbProperties.DbTablePrefix + "Address", AdministrationServiceDbProperties.DbSchema);
+            b.ToTable(IdentityServiceDbProperties.DbTablePrefix + "Address", IdentityServiceDbProperties.DbSchema);
             b.ConfigureByConvention();
             b.ConfigureFullAuditedAggregateRoot();
         });
         builder.Entity<AddressVersion>(b =>
         {
-            b.ToTable(AdministrationServiceDbProperties.DbTablePrefix + "AddressVersions", AdministrationServiceDbProperties.DbSchema);
+            b.ToTable(IdentityServiceDbProperties.DbTablePrefix + "AddressVersions", IdentityServiceDbProperties.DbSchema);
             b.ConfigureByConvention();
             b.ConfigureFullAuditedAggregateRoot();
         });
@@ -55,7 +55,7 @@ public static class AdministrationServiceDbContextModelCreatingExtensions
         #region Address Type
         builder.Entity<AddressType>(b =>
         {
-            b.ToTable(AdministrationServiceDbProperties.DbTablePrefix + "AddressTypes", AdministrationServiceDbProperties.DbSchema);
+            b.ToTable(IdentityServiceDbProperties.DbTablePrefix + "AddressTypes", IdentityServiceDbProperties.DbSchema);
             b.ConfigureByConvention();
             b.ConfigureFullAuditedAggregateRoot();
             b.Property(x => x.Name).HasMaxLength(AddressTypeConsts.NameMaxLength);
@@ -65,7 +65,7 @@ public static class AdministrationServiceDbContextModelCreatingExtensions
         #region Company
         builder.Entity<Company>(b =>
         {
-            b.ToTable(AdministrationServiceDbProperties.DbTablePrefix + "Companies", AdministrationServiceDbProperties.DbSchema);
+            b.ToTable(IdentityServiceDbProperties.DbTablePrefix + "Companies", IdentityServiceDbProperties.DbSchema);
             b.ConfigureByConvention();
             b.ConfigureFullAuditedAggregateRoot();
             b.Property(x => x.Name).IsRequired();
@@ -77,14 +77,14 @@ public static class AdministrationServiceDbContextModelCreatingExtensions
         //});
         builder.Entity<CompanyAddress>(b =>
         {
-            b.ToTable(AdministrationServiceDbProperties.DbTablePrefix + "CompanyAddress", AdministrationServiceDbProperties.DbSchema);
+            b.ToTable(IdentityServiceDbProperties.DbTablePrefix + "CompanyAddress", IdentityServiceDbProperties.DbSchema);
             b.ConfigureByConvention();
             //b.HasOne<Address>().WithMany().HasForeignKey(h => h.AddressId);
             b.HasKey(h => new { h.CompanyId, h.AddressId });
         });
         builder.Entity<CompanyAttachment>(b =>
         {
-            b.ToTable(AdministrationServiceDbProperties.DbTablePrefix + "CompanyAttachments", AdministrationServiceDbProperties.DbSchema);
+            b.ToTable(IdentityServiceDbProperties.DbTablePrefix + "CompanyAttachments", IdentityServiceDbProperties.DbSchema);
             b.ConfigureByConvention();
             b.HasOne<FileAttachment>().WithMany().HasForeignKey(h => h.FileAttachmentId);
             b.HasKey(h => new { h.CompanyId, h.FileAttachmentId });
@@ -103,7 +103,7 @@ public static class AdministrationServiceDbContextModelCreatingExtensions
         #region User
         builder.Entity<User>(b =>
         {
-            b.ToTable(AdministrationServiceDbProperties.DbTablePrefix + "Users");
+            b.ToTable(IdentityServiceDbProperties.DbTablePrefix + "Users");
             b.ConfigureByConvention();
             //b.ConfigureAbpUser();
             b.Property(x => x.Discount).HasColumnType("decimal(5,2)");
@@ -113,18 +113,18 @@ public static class AdministrationServiceDbContextModelCreatingExtensions
         });
         builder.Entity<Role>(b =>
         {
-            b.ToTable(AdministrationServiceDbProperties.DbTablePrefix + "Roles");
+            b.ToTable(IdentityServiceDbProperties.DbTablePrefix + "Roles");
             b.ConfigureByConvention();
         });
         builder.Entity<UserRole>(b =>
         {
-            b.ToTable(AdministrationServiceDbProperties.DbTablePrefix + "UserRoles");
+            b.ToTable(IdentityServiceDbProperties.DbTablePrefix + "UserRoles");
             b.ConfigureByConvention();
             b.HasKey(h => new { h.UserId, h.RoleId });
         });
         builder.Entity<UserAddress>(b =>
         {
-            b.ToTable(AdministrationServiceDbProperties.DbTablePrefix + "UserAddresses", AdministrationServiceDbProperties.DbSchema);
+            b.ToTable(IdentityServiceDbProperties.DbTablePrefix + "UserAddresses", IdentityServiceDbProperties.DbSchema);
             b.ConfigureByConvention();
             b.HasKey(h => new { h.UserId, h.AddressId });
         });

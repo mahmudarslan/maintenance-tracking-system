@@ -15,9 +15,9 @@ using Volo.Abp.AutoMapper;
 
 namespace Arslan.Vms.IdentityService;
 
-public class AdministrationServiceApplicationAutoMapperProfile : Profile
+public class IdentityServiceApplicationAutoMapperProfile : Profile
 {
-    public AdministrationServiceApplicationAutoMapperProfile()
+    public IdentityServiceApplicationAutoMapperProfile()
     {
         /* You can configure your AutoMapper mapping configuration here.
          * Alternatively, you can split your mapping configurations

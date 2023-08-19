@@ -16,7 +16,7 @@ namespace Arslan.Vms.IdentityService.v1.Employees
     [ControllerName("Employee")]
     [Route("rest/api/latest/vms/base/employee")]
     //[ApiVersion("1.0")]
-    public class IdentityEmployeeController : AdministrationServiceController, IEmployeeAppService
+    public class IdentityEmployeeController : IdentityServiceController, IEmployeeAppService
     {
         protected IEmployeeAppService _employeeAppService { get; }
         IAuthorizationService _authorizationService { get; }

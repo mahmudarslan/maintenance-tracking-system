@@ -1,8 +1,8 @@
 ﻿namespace Arslan.Vms.IdentityService;
 
-public class AdministrationServiceRemoteServiceConsts
+public class IdentityServiceRemoteServiceConsts
 {
-    public const string RemoteServiceName = "AdministrationService";
+    public const string RemoteServiceName = "IdentityService";
 
     public const string ModuleName = "administrationService";
 }

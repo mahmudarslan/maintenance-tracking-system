@@ -2,7 +2,7 @@
 
 namespace Arslan.Vms.IdentityService.EntityFrameworkCore
 {
-    public static class AdministrationServiceEfCoreEntityExtensionMappings
+    public static class IdentityServiceEfCoreEntityExtensionMappings
     {
         private static readonly OneTimeRunner OneTimeRunner = new OneTimeRunner();
 

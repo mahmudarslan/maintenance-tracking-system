@@ -3,10 +3,10 @@
 namespace Arslan.Vms.IdentityService;
 
 [DependsOn(
-    typeof(AdministrationServiceApplicationModule),
-    typeof(AdministrationServiceDomainTestModule)
+    typeof(IdentityServiceApplicationModule),
+    typeof(IdentityServiceDomainTestModule)
     )]
-public class AdministrationServiceApplicationTestModule : AbpModule
+public class IdentityServiceApplicationTestModule : AbpModule
 {
 
 }

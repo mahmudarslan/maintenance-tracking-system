@@ -3,11 +3,11 @@ using Volo.Abp.Application.Services;
 
 namespace Arslan.Vms.IdentityService;
 
-public abstract class AdministrationServiceAppService : ApplicationService
+public abstract class IdentityServiceAppService : ApplicationService
 {
-    protected AdministrationServiceAppService()
+    protected IdentityServiceAppService()
     {
-        LocalizationResource = typeof(AdministrationServiceResource);
-        ObjectMapperContext = typeof(AdministrationServiceApplicationModule);
+        LocalizationResource = typeof(IdentityServiceResource);
+        ObjectMapperContext = typeof(IdentityServiceApplicationModule);
     }
 }

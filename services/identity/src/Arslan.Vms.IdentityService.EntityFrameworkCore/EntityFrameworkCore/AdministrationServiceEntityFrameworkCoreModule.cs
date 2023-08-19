@@ -9,18 +9,18 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 namespace Arslan.Vms.IdentityService.EntityFrameworkCore;
 
 [DependsOn(
-    typeof(AdministrationServiceDomainModule),
+    typeof(IdentityServiceDomainModule),
     typeof(AbpEntityFrameworkCoreModule),
     typeof(AbpPermissionManagementEntityFrameworkCoreModule),
     typeof(AbpSettingManagementEntityFrameworkCoreModule),
     typeof(AbpAuditLoggingEntityFrameworkCoreModule),
     typeof(BlobStoringDatabaseEntityFrameworkCoreModule)
 )]
-public class AdministrationServiceEntityFrameworkCoreModule : AbpModule
+public class IdentityServiceEntityFrameworkCoreModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        context.Services.AddAbpDbContext<AdministrationServiceDbContext>(options =>
+        context.Services.AddAbpDbContext<IdentityServiceDbContext>(options =>
         {
             options.ReplaceDbContext<IPermissionManagementDbContext>();
             options.ReplaceDbContext<ISettingManagementDbContext>();
@@ -33,7 +33,7 @@ public class AdministrationServiceEntityFrameworkCoreModule : AbpModule
 
         Configure<AbpDbContextOptions>(options =>
         {
-            options.Configure<AdministrationServiceDbContext>(c =>
+            options.Configure<IdentityServiceDbContext>(c =>
             {
                 c.UseSqlServer();
             });

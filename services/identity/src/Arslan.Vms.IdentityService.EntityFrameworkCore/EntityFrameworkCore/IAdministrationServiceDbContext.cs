@@ -10,8 +10,8 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Arslan.Vms.IdentityService.EntityFrameworkCore;
 
-[ConnectionStringName(AdministrationServiceDbProperties.ConnectionStringName)]
-public interface IAdministrationServiceDbContext : IEfCoreDbContext
+[ConnectionStringName(IdentityServiceDbProperties.ConnectionStringName)]
+public interface IIdentityServiceDbContext : IEfCoreDbContext
 {
     /* Add DbSet for each Aggregate Root here. Example:
      * DbSet<Question> Questions { get; }

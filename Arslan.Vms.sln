@@ -27,10 +27,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.Shared.Hosting.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.Keycloak.DbMigrator", "shared\Arslan.Vms.Keycloak.DbMigrator\Arslan.Vms.Keycloak.DbMigrator.csproj", "{DDBADBB7-7116-4BE0-8A95-021159F19987}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.WebGateway", "gateways\Arslan.Vms.WebGateway\Arslan.Vms.WebGateway.csproj", "{0E7D0394-762C-4C0B-8EE9-94E1FE7544CD}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.WebPublicGateway", "gateways\Arslan.Vms.WebPublicGateway\Arslan.Vms.WebPublicGateway.csproj", "{C1C4DEE8-2227-41C7-A5AC-2CB2DC7D29D4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.Shared.Hosting", "shared\Arslan.Vms.Shared.Hosting\Arslan.Vms.Shared.Hosting.csproj", "{B9C2B7A5-393F-47B1-A80F-C85BE7201558}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.AdministrationService.HttpApi.Host", "services\administration\src\Arslan.Vms.AdministrationService.HttpApi.Host\Arslan.Vms.AdministrationService.HttpApi.Host.csproj", "{E3474D80-BD96-4C92-8684-22EDDA7ECEA3}"
@@ -40,6 +36,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.VehicleService.HttpApi.Host", "services\vehicle\src\Arslan.Vms.VehicleService.HttpApi.Host\Arslan.Vms.VehicleService.HttpApi.Host.csproj", "{8F7BE9C4-BBE9-438E-B97D-514BD0231E19}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Omwo.Ftms.IdentityService.HttpApi.Host", "..\..\_bitbucket\omwo\ftms-api-v2\services\identity\src\Omwo.Ftms.IdentityService.HttpApi.Host\Omwo.Ftms.IdentityService.HttpApi.Host.csproj", "{C0ACFA5E-C053-46CF-90D4-2E33E123F671}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.WebGateway", "gateways\web\src\Arslan.Vms.WebGateway\Arslan.Vms.WebGateway.csproj", "{AEDFF604-3C7A-46CB-9152-933C98634FD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,14 +77,6 @@ Global
 		{DDBADBB7-7116-4BE0-8A95-021159F19987}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDBADBB7-7116-4BE0-8A95-021159F19987}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDBADBB7-7116-4BE0-8A95-021159F19987}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0E7D0394-762C-4C0B-8EE9-94E1FE7544CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E7D0394-762C-4C0B-8EE9-94E1FE7544CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E7D0394-762C-4C0B-8EE9-94E1FE7544CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E7D0394-762C-4C0B-8EE9-94E1FE7544CD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C1C4DEE8-2227-41C7-A5AC-2CB2DC7D29D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1C4DEE8-2227-41C7-A5AC-2CB2DC7D29D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1C4DEE8-2227-41C7-A5AC-2CB2DC7D29D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1C4DEE8-2227-41C7-A5AC-2CB2DC7D29D4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B9C2B7A5-393F-47B1-A80F-C85BE7201558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B9C2B7A5-393F-47B1-A80F-C85BE7201558}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9C2B7A5-393F-47B1-A80F-C85BE7201558}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -107,6 +97,10 @@ Global
 		{C0ACFA5E-C053-46CF-90D4-2E33E123F671}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0ACFA5E-C053-46CF-90D4-2E33E123F671}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0ACFA5E-C053-46CF-90D4-2E33E123F671}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEDFF604-3C7A-46CB-9152-933C98634FD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEDFF604-3C7A-46CB-9152-933C98634FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEDFF604-3C7A-46CB-9152-933C98634FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEDFF604-3C7A-46CB-9152-933C98634FD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,13 +114,12 @@ Global
 		{15D7C6D1-8695-4175-973E-51D2AE79029C} = {B8B59303-2178-459B-91A8-DF353044E090}
 		{A353C9DD-71A5-43F7-AB64-86BA50FDBA82} = {B8B59303-2178-459B-91A8-DF353044E090}
 		{DDBADBB7-7116-4BE0-8A95-021159F19987} = {B8B59303-2178-459B-91A8-DF353044E090}
-		{0E7D0394-762C-4C0B-8EE9-94E1FE7544CD} = {1484E912-DCF3-4568-A72C-4C7622104DB8}
-		{C1C4DEE8-2227-41C7-A5AC-2CB2DC7D29D4} = {1484E912-DCF3-4568-A72C-4C7622104DB8}
 		{B9C2B7A5-393F-47B1-A80F-C85BE7201558} = {B8B59303-2178-459B-91A8-DF353044E090}
 		{E3474D80-BD96-4C92-8684-22EDDA7ECEA3} = {F415FFFD-E52D-4EBE-98DC-067C1EFFFFE3}
 		{13593DD5-21EF-49AA-A411-0F95B4933066} = {F415FFFD-E52D-4EBE-98DC-067C1EFFFFE3}
 		{8F7BE9C4-BBE9-438E-B97D-514BD0231E19} = {F415FFFD-E52D-4EBE-98DC-067C1EFFFFE3}
 		{C0ACFA5E-C053-46CF-90D4-2E33E123F671} = {F415FFFD-E52D-4EBE-98DC-067C1EFFFFE3}
+		{AEDFF604-3C7A-46CB-9152-933C98634FD5} = {1484E912-DCF3-4568-A72C-4C7622104DB8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {26F82565-C6A4-439D-93A4-3251E3E7D5B0}

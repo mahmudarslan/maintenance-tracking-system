@@ -12,9 +12,9 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Arslan.Vms.IdentityService.Companies
 {
-    public class CompanyRepository : EfCoreRepository<IAdministrationServiceDbContext, Company, Guid>, ICompanyRepository
+    public class CompanyRepository : EfCoreRepository<IIdentityServiceDbContext, Company, Guid>, ICompanyRepository
     {
-        public CompanyRepository(IDbContextProvider<IAdministrationServiceDbContext> dbContextProvider) : base(dbContextProvider)
+        public CompanyRepository(IDbContextProvider<IIdentityServiceDbContext> dbContextProvider) : base(dbContextProvider)
         {
         }
 

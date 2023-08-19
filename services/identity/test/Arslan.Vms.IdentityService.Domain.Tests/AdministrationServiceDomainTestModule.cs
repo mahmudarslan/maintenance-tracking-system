@@ -8,9 +8,9 @@ namespace Arslan.Vms.IdentityService;
  * database independent anyway.
  */
 [DependsOn(
-    typeof(AdministrationServiceEntityFrameworkCoreTestModule)
+    typeof(IdentityServiceEntityFrameworkCoreTestModule)
     )]
-public class AdministrationServiceDomainTestModule : AbpModule
+public class IdentityServiceDomainTestModule : AbpModule
 {
 
 }

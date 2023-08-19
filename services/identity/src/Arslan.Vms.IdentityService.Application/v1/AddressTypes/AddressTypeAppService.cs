@@ -15,8 +15,8 @@ using Volo.Abp.MultiTenancy;
 
 namespace Arslan.Vms.IdentityService.v1.AddressTypes
 {
-    [Authorize(AdministrationServicePermissions.AddressType.Default)]
-    public class AddressTypeAppService : AdministrationServiceAppService, IAddressTypeAppService
+    [Authorize(IdentityServicePermissions.AddressType.Default)]
+    public class AddressTypeAppService : IdentityServiceAppService, IAddressTypeAppService
     {
         private readonly IAddressTypeRepository _addressTypeRepository;
         private readonly ICurrentTenant _currentTenant;
@@ -38,7 +38,7 @@ namespace Arslan.Vms.IdentityService.v1.AddressTypes
             _guidGenerator = guidGenerator;
         }
 
-        [Authorize(AdministrationServicePermissions.AddressType.Create)]
+        [Authorize(IdentityServicePermissions.AddressType.Create)]
         public async Task<AddressTypeDto> CreateAsync(CreateAddressTypeDto input)
         {
             //aynı isimden iki kayıt olamaz (pasif kayıtlar da dahil)
@@ -74,7 +74,7 @@ namespace Arslan.Vms.IdentityService.v1.AddressTypes
             }
         }
 
-        [Authorize(AdministrationServicePermissions.AddressType.Update)]
+        [Authorize(IdentityServicePermissions.AddressType.Update)]
         public async Task<AddressTypeDto> UpdateAsync(Guid id, UpdateAddressTypeDto input)
         {
             //aynı isimden iki kayıt olamaz (pasif kayıtlar da dahil)
@@ -114,7 +114,7 @@ namespace Arslan.Vms.IdentityService.v1.AddressTypes
             }
         }
 
-        [Authorize(AdministrationServicePermissions.AddressType.Delete)]
+        [Authorize(IdentityServicePermissions.AddressType.Delete)]
         public async Task DeleteAsync(Guid id)
         {
             //son kayıt silinemez
@@ -154,7 +154,7 @@ namespace Arslan.Vms.IdentityService.v1.AddressTypes
             }
         }
 
-        [Authorize(AdministrationServicePermissions.AddressType.Undo)]
+        [Authorize(IdentityServicePermissions.AddressType.Undo)]
         public async Task UndoAsync(Guid id)
         {
             using (_dataFilter.Disable<ISoftDelete>())
@@ -198,7 +198,7 @@ namespace Arslan.Vms.IdentityService.v1.AddressTypes
             }
         }
 
-        [Authorize(AdministrationServicePermissions.AddressType.List)]
+        [Authorize(IdentityServicePermissions.AddressType.List)]
         public async Task<List<AddressTypeDto>> GetListAsync(bool isDeleted = false)
         {
             using (isDeleted == true ? _dataFilter.Disable<ISoftDelete>() : _dataFilter.Enable<ISoftDelete>())

@@ -19,8 +19,8 @@ using Volo.Abp.MultiTenancy;
 
 namespace Arslan.Vms.IdentityService.v1.Company
 {
-    [Authorize(AdministrationServicePermissions.Company.Default)]
-    public class CompanyAppService : AdministrationServiceAppService, ICompanyAppService
+    [Authorize(IdentityServicePermissions.Company.Default)]
+    public class CompanyAppService : IdentityServiceAppService, ICompanyAppService
     {
         #region Fields
         private readonly ICompanyRepository _companyRepository;
@@ -53,7 +53,7 @@ namespace Arslan.Vms.IdentityService.v1.Company
         }
         #endregion
 
-        [Authorize(AdministrationServicePermissions.Company.Update)]
+        [Authorize(IdentityServicePermissions.Company.Update)]
         public async Task<CompanyDto> UpdateAsync(CreateUpdateCompanyDto input)
         {
             var companyRepository = await _companyRepository.GetQueryableAsync();

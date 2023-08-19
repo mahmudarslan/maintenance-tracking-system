@@ -1,10 +1,10 @@
 ﻿namespace Arslan.Vms.IdentityService;
 
-public static class AdministrationServiceDbProperties
+public static class IdentityServiceDbProperties
 {
-    public static string DbTablePrefix { get; set; } = "AdministrationService";
+    public static string DbTablePrefix { get; set; } = "IdentityService";
 
     public static string DbSchema { get; set; } = null;
 
-    public const string ConnectionStringName = "AdministrationService";
+    public const string ConnectionStringName = "IdentityService";
 }

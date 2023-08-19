@@ -6,20 +6,20 @@ using Volo.Abp.SettingManagement;
 
 namespace Arslan.Vms.IdentityService;
 [DependsOn(
-    typeof(AdministrationServiceDomainModule),
-    typeof(AdministrationServiceApplicationContractsModule),
+    typeof(IdentityServiceDomainModule),
+    typeof(IdentityServiceApplicationContractsModule),
     typeof(AbpAutoMapperModule),
     typeof(AbpPermissionManagementApplicationModule),
     typeof(AbpSettingManagementApplicationModule)
     )]
-public class AdministrationServiceApplicationModule : AbpModule
+public class IdentityServiceApplicationModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        context.Services.AddAutoMapperObjectMapper<AdministrationServiceApplicationModule>();
+        context.Services.AddAutoMapperObjectMapper<IdentityServiceApplicationModule>();
         Configure<AbpAutoMapperOptions>(options =>
         {
-            options.AddMaps<AdministrationServiceApplicationModule>(validate: true);
+            options.AddMaps<IdentityServiceApplicationModule>(validate: true);
         });
     }
 }

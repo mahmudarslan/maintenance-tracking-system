@@ -89,7 +89,7 @@ namespace Arslan.Vms.IdentityService.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AdministrationServiceAddress",
+                name: "IdentityServiceAddress",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -120,11 +120,11 @@ namespace Arslan.Vms.IdentityService.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdministrationServiceAddress", x => x.Id);
+                    table.PrimaryKey("PK_IdentityServiceAddress", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AdministrationServiceAddressTypes",
+                name: "IdentityServiceAddressTypes",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -136,11 +136,11 @@ namespace Arslan.Vms.IdentityService.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdministrationServiceAddressTypes", x => x.Id);
+                    table.PrimaryKey("PK_IdentityServiceAddressTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AdministrationServiceAddressVersions",
+                name: "IdentityServiceAddressVersions",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -174,11 +174,11 @@ namespace Arslan.Vms.IdentityService.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdministrationServiceAddressVersions", x => x.Id);
+                    table.PrimaryKey("PK_IdentityServiceAddressVersions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AdministrationServiceCompanies",
+                name: "IdentityServiceCompanies",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -202,11 +202,11 @@ namespace Arslan.Vms.IdentityService.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdministrationServiceCompanies", x => x.Id);
+                    table.PrimaryKey("PK_IdentityServiceCompanies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AdministrationServiceRoles",
+                name: "IdentityServiceRoles",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -221,11 +221,11 @@ namespace Arslan.Vms.IdentityService.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdministrationServiceRoles", x => x.Id);
+                    table.PrimaryKey("PK_IdentityServiceRoles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AdministrationServiceUsers",
+                name: "IdentityServiceUsers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -267,7 +267,7 @@ namespace Arslan.Vms.IdentityService.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdministrationServiceUsers", x => x.Id);
+                    table.PrimaryKey("PK_IdentityServiceUsers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -374,7 +374,7 @@ namespace Arslan.Vms.IdentityService.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AdministrationServiceCompanyAddress",
+                name: "IdentityServiceCompanyAddress",
                 columns: table => new
                 {
                     CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -383,17 +383,17 @@ namespace Arslan.Vms.IdentityService.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdministrationServiceCompanyAddress", x => new { x.CompanyId, x.AddressId });
+                    table.PrimaryKey("PK_IdentityServiceCompanyAddress", x => new { x.CompanyId, x.AddressId });
                     table.ForeignKey(
-                        name: "FK_AdministrationServiceCompanyAddress_AdministrationServiceCompanies_CompanyId",
+                        name: "FK_IdentityServiceCompanyAddress_IdentityServiceCompanies_CompanyId",
                         column: x => x.CompanyId,
-                        principalTable: "AdministrationServiceCompanies",
+                        principalTable: "IdentityServiceCompanies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AdministrationServiceUserAddresses",
+                name: "IdentityServiceUserAddresses",
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -402,17 +402,17 @@ namespace Arslan.Vms.IdentityService.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdministrationServiceUserAddresses", x => new { x.UserId, x.AddressId });
+                    table.PrimaryKey("PK_IdentityServiceUserAddresses", x => new { x.UserId, x.AddressId });
                     table.ForeignKey(
-                        name: "FK_AdministrationServiceUserAddresses_AdministrationServiceUsers_UserId",
+                        name: "FK_IdentityServiceUserAddresses_IdentityServiceUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "AdministrationServiceUsers",
+                        principalTable: "IdentityServiceUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AdministrationServiceUserRoles",
+                name: "IdentityServiceUserRoles",
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -421,17 +421,17 @@ namespace Arslan.Vms.IdentityService.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdministrationServiceUserRoles", x => new { x.UserId, x.RoleId });
+                    table.PrimaryKey("PK_IdentityServiceUserRoles", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_AdministrationServiceUserRoles_AdministrationServiceUsers_UserId",
+                        name: "FK_IdentityServiceUserRoles_IdentityServiceUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "AdministrationServiceUsers",
+                        principalTable: "IdentityServiceUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AdministrationServiceCompanyAttachments",
+                name: "IdentityServiceCompanyAttachments",
                 columns: table => new
                 {
                     CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -440,15 +440,15 @@ namespace Arslan.Vms.IdentityService.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdministrationServiceCompanyAttachments", x => new { x.CompanyId, x.FileAttachmentId });
+                    table.PrimaryKey("PK_IdentityServiceCompanyAttachments", x => new { x.CompanyId, x.FileAttachmentId });
                     table.ForeignKey(
-                        name: "FK_AdministrationServiceCompanyAttachments_AdministrationServiceCompanies_CompanyId",
+                        name: "FK_IdentityServiceCompanyAttachments_IdentityServiceCompanies_CompanyId",
                         column: x => x.CompanyId,
-                        principalTable: "AdministrationServiceCompanies",
+                        principalTable: "IdentityServiceCompanies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AdministrationServiceCompanyAttachments_FileAttachment_FileAttachmentId",
+                        name: "FK_IdentityServiceCompanyAttachments_FileAttachment_FileAttachmentId",
                         column: x => x.FileAttachmentId,
                         principalTable: "FileAttachment",
                         principalColumn: "Id",
@@ -543,8 +543,8 @@ namespace Arslan.Vms.IdentityService.Migrations
                 filter: "[ProviderName] IS NOT NULL AND [ProviderKey] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AdministrationServiceCompanyAttachments_FileAttachmentId",
-                table: "AdministrationServiceCompanyAttachments",
+                name: "IX_IdentityServiceCompanyAttachments_FileAttachmentId",
+                table: "IdentityServiceCompanyAttachments",
                 column: "FileAttachmentId");
         }
 
@@ -566,28 +566,28 @@ namespace Arslan.Vms.IdentityService.Migrations
                 name: "AbpSettings");
 
             migrationBuilder.DropTable(
-                name: "AdministrationServiceAddress");
+                name: "IdentityServiceAddress");
 
             migrationBuilder.DropTable(
-                name: "AdministrationServiceAddressTypes");
+                name: "IdentityServiceAddressTypes");
 
             migrationBuilder.DropTable(
-                name: "AdministrationServiceAddressVersions");
+                name: "IdentityServiceAddressVersions");
 
             migrationBuilder.DropTable(
-                name: "AdministrationServiceCompanyAddress");
+                name: "IdentityServiceCompanyAddress");
 
             migrationBuilder.DropTable(
-                name: "AdministrationServiceCompanyAttachments");
+                name: "IdentityServiceCompanyAttachments");
 
             migrationBuilder.DropTable(
-                name: "AdministrationServiceRoles");
+                name: "IdentityServiceRoles");
 
             migrationBuilder.DropTable(
-                name: "AdministrationServiceUserAddresses");
+                name: "IdentityServiceUserAddresses");
 
             migrationBuilder.DropTable(
-                name: "AdministrationServiceUserRoles");
+                name: "IdentityServiceUserRoles");
 
             migrationBuilder.DropTable(
                 name: "AbpBlobContainers");
@@ -596,13 +596,13 @@ namespace Arslan.Vms.IdentityService.Migrations
                 name: "AbpEntityChanges");
 
             migrationBuilder.DropTable(
-                name: "AdministrationServiceCompanies");
+                name: "IdentityServiceCompanies");
 
             migrationBuilder.DropTable(
                 name: "FileAttachment");
 
             migrationBuilder.DropTable(
-                name: "AdministrationServiceUsers");
+                name: "IdentityServiceUsers");
 
             migrationBuilder.DropTable(
                 name: "AbpAuditLogs");

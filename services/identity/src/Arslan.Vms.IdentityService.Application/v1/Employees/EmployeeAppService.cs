@@ -23,8 +23,8 @@ using Volo.Abp.MultiTenancy;
 
 namespace Arslan.Vms.IdentityService.v1.Employees
 {
-    [Authorize(AdministrationServicePermissions.Employee.Default)]
-    public class EmployeeAppService : AdministrationServiceAppService, IEmployeeAppService
+    [Authorize(IdentityServicePermissions.Employee.Default)]
+    public class EmployeeAppService : IdentityServiceAppService, IEmployeeAppService
     {
         #region Fields
         //private IIdentityUserAppService _identityUserAppService;
@@ -74,7 +74,7 @@ namespace Arslan.Vms.IdentityService.v1.Employees
         }
         #endregion
 
-        [Authorize(AdministrationServicePermissions.Employee.Create)]
+        [Authorize(IdentityServicePermissions.Employee.Create)]
         public async Task<EmployeeDto> CreateAsync(CreateEmployeeDto input)
         {
             var user = new User(GuidGenerator.Create(), CurrentTenant.Id, input.UserName, input.Name, input.Surname, input.Email)
@@ -122,7 +122,7 @@ namespace Arslan.Vms.IdentityService.v1.Employees
             return result;
         }
 
-        [Authorize(AdministrationServicePermissions.Employee.Update)]
+        [Authorize(IdentityServicePermissions.Employee.Update)]
         public async Task<EmployeeDto> UpdateAsync(Guid id, UpdateEmployeeDto input)
         {
             var identityUser = await _appUserRepository.GetAsync(id);
@@ -204,14 +204,14 @@ namespace Arslan.Vms.IdentityService.v1.Employees
             return result;
         }
 
-        [Authorize(AdministrationServicePermissions.Employee.Delete)]
+        [Authorize(IdentityServicePermissions.Employee.Delete)]
         public async Task DeleteAsync(string key)
         {
             var user = await _appUserRepository.GetAsync(Guid.Parse(key));
             await _appUserRepository.DeleteAsync(user, true);
         }
 
-        [Authorize(AdministrationServicePermissions.Employee.Undo)]
+        [Authorize(IdentityServicePermissions.Employee.Undo)]
         public async Task UndoAsync(Guid id)
         {
             using (_dataFilter.Disable<ISoftDelete>())
@@ -239,7 +239,7 @@ namespace Arslan.Vms.IdentityService.v1.Employees
             }
         }
 
-        [Authorize(AdministrationServicePermissions.Employee.List)]
+        [Authorize(IdentityServicePermissions.Employee.List)]
         public async Task<LoadResult> GetListAsync(DataSourceLoadOptions loadOptions)
         {
             using (_dataFilter.Disable<ISoftDelete>())

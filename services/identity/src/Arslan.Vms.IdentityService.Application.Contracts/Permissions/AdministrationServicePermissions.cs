@@ -2,13 +2,13 @@
 
 namespace Arslan.Vms.IdentityService.Permissions;
 
-public class AdministrationServicePermissions
+public class IdentityServicePermissions
 {
-    public const string GroupName = "AdministrationService";
+    public const string GroupName = "IdentityService";
 
     public static string[] GetAll()
     {
-        return ReflectionHelper.GetPublicConstantsRecursively(typeof(AdministrationServicePermissions));
+        return ReflectionHelper.GetPublicConstantsRecursively(typeof(IdentityServicePermissions));
     }
 
     public static class Vendor

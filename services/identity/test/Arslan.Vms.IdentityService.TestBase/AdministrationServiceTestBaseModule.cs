@@ -12,9 +12,9 @@ namespace Arslan.Vms.IdentityService;
     typeof(AbpAutofacModule),
     typeof(AbpTestBaseModule),
     typeof(AbpAuthorizationModule),
-    typeof(AdministrationServiceDomainModule)
+    typeof(IdentityServiceDomainModule)
     )]
-public class AdministrationServiceTestBaseModule : AbpModule
+public class IdentityServiceTestBaseModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

@@ -6,20 +6,20 @@ using Volo.Abp.VirtualFileSystem;
 namespace Arslan.Vms.IdentityService;
 
 [DependsOn(
-    typeof(AdministrationServiceApplicationContractsModule),
+    typeof(IdentityServiceApplicationContractsModule),
     typeof(AbpHttpClientModule))]
-public class AdministrationServiceHttpApiClientModule : AbpModule
+public class IdentityServiceHttpApiClientModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.AddHttpClientProxies(
-            typeof(AdministrationServiceApplicationContractsModule).Assembly,
-            AdministrationServiceRemoteServiceConsts.RemoteServiceName
+            typeof(IdentityServiceApplicationContractsModule).Assembly,
+            IdentityServiceRemoteServiceConsts.RemoteServiceName
         );
 
         Configure<AbpVirtualFileSystemOptions>(options =>
         {
-            options.FileSets.AddEmbedded<AdministrationServiceHttpApiClientModule>();
+            options.FileSets.AddEmbedded<IdentityServiceHttpApiClientModule>();
         });
 
     }

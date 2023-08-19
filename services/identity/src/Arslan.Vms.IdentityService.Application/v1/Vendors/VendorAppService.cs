@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Arslan.Vms.IdentityService.v1.Vendors
 {
-    [Authorize(AdministrationServicePermissions.Vendor.Default)]
-    public class VendorAppService : AdministrationServiceAppService //, IVendorAppService
+    [Authorize(IdentityServicePermissions.Vendor.Default)]
+    public class VendorAppService : IdentityServiceAppService //, IVendorAppService
     {
         //#region Fields
         //private IIdentityUserAppService _identityUserAppService;

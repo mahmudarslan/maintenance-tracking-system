@@ -19,8 +19,8 @@ using Volo.Abp.Domain.Repositories;
 
 namespace Arslan.Vms.IdentityService.v1.Customers
 {
-    [Authorize(AdministrationServicePermissions.Customer.Default)]
-    public class CustomerAppService : AdministrationServiceAppService//, ICustomerAppService
+    [Authorize(IdentityServicePermissions.Customer.Default)]
+    public class CustomerAppService : IdentityServiceAppService//, ICustomerAppService
     {
 
         #region Fields
@@ -57,7 +57,7 @@ namespace Arslan.Vms.IdentityService.v1.Customers
         }
         #endregion
 
-        [Authorize(AdministrationServicePermissions.Customer.Create)]
+        [Authorize(IdentityServicePermissions.Customer.Create)]
         public async Task<CustomerDto> CreateAsync(CreateCustomerDto input)
         {
             var user = new User(GuidGenerator.Create(), CurrentTenant.Id, input.UserName, input.Name, input.Surname, input.Email)
@@ -104,7 +104,7 @@ namespace Arslan.Vms.IdentityService.v1.Customers
             return result;
         }
 
-        [Authorize(AdministrationServicePermissions.Customer.Update)]
+        [Authorize(IdentityServicePermissions.Customer.Update)]
         public async Task<CustomerDto> UpdateAsync(Guid id, UpdateCustomerDto input)
         {
             var identityUser = (await _appUserRepository.WithDetailsAsync()).FirstOrDefault(f => f.Id == id);
@@ -216,14 +216,14 @@ namespace Arslan.Vms.IdentityService.v1.Customers
             return result;
         }
 
-        [Authorize(AdministrationServicePermissions.Customer.Delete)]
+        [Authorize(IdentityServicePermissions.Customer.Delete)]
         public async Task DeleteAsync(string key)
         {
             var user = await _appUserRepository.GetAsync(Guid.Parse(key));
             await _appUserRepository.DeleteAsync(user, true);
         }
 
-        [Authorize(AdministrationServicePermissions.Customer.Undo)]
+        [Authorize(IdentityServicePermissions.Customer.Undo)]
         public async Task UndoAsync(Guid id)
         {
             using (_dataFilter.Disable<ISoftDelete>())
@@ -234,7 +234,7 @@ namespace Arslan.Vms.IdentityService.v1.Customers
             }
         }
 
-        //[Authorize(AdministrationServicePermissions.Customer.Undo)]
+        //[Authorize(IdentityServicePermissions.Customer.Undo)]
         //public async Task UndoVehcileAsync(Guid userId, Guid vehicleId)
         //{
         //    using (_dataFilter.Disable<ISoftDelete>())
@@ -300,7 +300,7 @@ namespace Arslan.Vms.IdentityService.v1.Customers
             }
         }
 
-        [Authorize(AdministrationServicePermissions.Customer.List)]
+        [Authorize(IdentityServicePermissions.Customer.List)]
         public async Task<LoadResult> GetListAsync(DataSourceLoadOptions loadOptions)
         {
             using (_dataFilter.Disable<ISoftDelete>())

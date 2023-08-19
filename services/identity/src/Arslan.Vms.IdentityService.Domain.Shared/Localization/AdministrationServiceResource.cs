@@ -2,8 +2,8 @@
 
 namespace Arslan.Vms.IdentityService.Localization;
 
-[LocalizationResourceName("AdministrationService")]
-public class AdministrationServiceResource
+[LocalizationResourceName("IdentityService")]
+public class IdentityServiceResource
 {
 
 }

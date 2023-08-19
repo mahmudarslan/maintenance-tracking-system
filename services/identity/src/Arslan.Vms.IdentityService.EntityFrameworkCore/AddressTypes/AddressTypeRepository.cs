@@ -10,12 +10,12 @@ using Volo.Abp.ObjectMapping;
 
 namespace Arslan.Vms.IdentityService.AddressTypes
 {
-    public class AddressTypeRepository : EfCoreRepository<AdministrationServiceDbContext, AddressType, Guid>, IAddressTypeRepository
+    public class AddressTypeRepository : EfCoreRepository<IdentityServiceDbContext, AddressType, Guid>, IAddressTypeRepository
     {
         private readonly IObjectMapper _objectMapper;
-        IDbContextProvider<AdministrationServiceDbContext> _dbContextProvider;
+        IDbContextProvider<IdentityServiceDbContext> _dbContextProvider;
 
-        public AddressTypeRepository(IDbContextProvider<AdministrationServiceDbContext> dbContextProvider,
+        public AddressTypeRepository(IDbContextProvider<IdentityServiceDbContext> dbContextProvider,
             IObjectMapper objectMapper) : base(dbContextProvider)
         {
             _dbContextProvider = dbContextProvider;
