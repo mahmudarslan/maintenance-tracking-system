@@ -8,12 +8,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Arslan.Vms.IdentityService.Application.Contracts\Arslan.Vms.IdentityService.Application.Contracts.csproj" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="7.3.2" />
+		<PackageReference Include="Volo.Abp.Caching" Version="7.3.2" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="7.3.2" />
-		<PackageReference Include="Volo.Abp.SettingManagement.HttpApi" Version="7.3.2" />
+		<ProjectReference Include="..\Arslan.Vms.IdentityService.Application.Contracts\Arslan.Vms.IdentityService.Application.Contracts.csproj" />
 	</ItemGroup>
 
 </Project>

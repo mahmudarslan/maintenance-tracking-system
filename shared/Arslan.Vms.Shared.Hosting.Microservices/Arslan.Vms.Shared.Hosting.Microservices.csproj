@@ -1,28 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="7.0.10" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.10" />
-		<PackageReference Include="Volo.Abp.MongoDB" Version="7.3.2" />
+		<PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="7.0.8" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.8" />
+		<PackageReference Include="DistributedLock.Redis" Version="1.0.2" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Volo.Abp.MongoDB" Version="7.3.2" />
 		<PackageReference Include="Volo.Abp.AspNetCore.MultiTenancy" Version="7.3.2" />
 		<PackageReference Include="Volo.Abp.EventBus.RabbitMQ" Version="7.3.2" />
 		<PackageReference Include="Volo.Abp.BackgroundJobs.RabbitMQ" Version="7.3.2" />
 		<PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="7.3.2" />
 		<PackageReference Include="Volo.Abp.DistributedLocking" Version="7.3.2" />
-		<PackageReference Include="DistributedLock.Redis" Version="1.0.1" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+		<PackageReference Include="Volo.Abp.Http.Client.IdentityModel.Web" Version="7.3.2" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="7.3.2" />
+		<PackageReference Include="Volo.Abp.Authorization" Version="7.3.2" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\services\administration\src\Arslan.Vms.AdministrationService.EntityFrameworkCore\Arslan.Vms.AdministrationService.EntityFrameworkCore.csproj" />
-	  <ProjectReference Include="..\Arslan.Vms.Shared.Hosting.AspNetCore\Arslan.Vms.Shared.Hosting.AspNetCore.csproj" />
+		<ProjectReference Include="..\Arslan.Vms.Shared.Hosting.AspNetCore\Arslan.Vms.Shared.Hosting.AspNetCore.csproj" />
 	</ItemGroup>
 
 </Project>

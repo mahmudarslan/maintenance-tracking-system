@@ -8,15 +8,19 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Arslan.Vms.IdentityService.Domain.Shared\Arslan.Vms.IdentityService.Domain.Shared.csproj" />
+
+		<PackageReference Include="Volo.Abp.BlobStoring" Version="7.3.2" />
+		<PackageReference Include="Volo.Abp.Emailing" Version="7.3.2" />
+		<PackageReference Include="Volo.Abp.BackgroundJobs.Domain" Version="7.3.2" />
+		<PackageReference Include="Volo.Abp.AuditLogging.Domain" Version="7.3.2" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Volo.Abp.PermissionManagement.Domain" Version="7.3.2" />
-		<PackageReference Include="Volo.Abp.PermissionManagement.Domain.Identity" Version="7.3.2" />
-		<PackageReference Include="Volo.Abp.PermissionManagement.Domain.IdentityServer" Version="7.3.2" />
-		<PackageReference Include="Volo.Abp.SettingManagement.Domain" Version="7.3.2" />
-		<PackageReference Include="Volo.Abp.AuditLogging.Domain" Version="7.3.2" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include="..\Arslan.Vms.IdentityService.Domain.Shared\Arslan.Vms.IdentityService.Domain.Shared.csproj" />
 	</ItemGroup>
 
 </Project>

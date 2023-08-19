@@ -1,18 +1,13 @@
-﻿using Volo.Abp.Modularity;
+﻿using Arslan.Vms.IdentityService.Localization;
+using Volo.Abp.AuditLogging;
 using Volo.Abp.Localization;
-using Arslan.Vms.IdentityService.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
-using Volo.Abp.Validation;
+using Volo.Abp.Modularity;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
-using Volo.Abp.PermissionManagement;
-using Volo.Abp.SettingManagement;
-using Volo.Abp.AuditLogging;
 
 namespace Arslan.Vms.IdentityService;
 [DependsOn(
-    typeof(AbpPermissionManagementDomainSharedModule),
-    typeof(AbpSettingManagementDomainSharedModule),
     typeof(AbpAuditLoggingDomainSharedModule)
     )]
 public class IdentityServiceDomainSharedModule : AbpModule

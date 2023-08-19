@@ -9,14 +9,19 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Arslan.Vms.IdentityService.Domain\Arslan.Vms.IdentityService.Domain.csproj" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.10" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.10" />
-		<PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="7.3.2" />
-		<PackageReference Include="Volo.Abp.EntityFrameworkCore.SqlServer" Version="7.3.2" />
-		<PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="7.3.2" />
-		<PackageReference Include="Volo.Abp.SettingManagement.EntityFrameworkCore" Version="7.3.2" />
-		<PackageReference Include="Volo.Abp.AuditLogging.EntityFrameworkCore" Version="7.3.2" />
-		<PackageReference Include="Volo.Abp.BlobStoring.Database.EntityFrameworkCore" Version="7.3.2" />
 	</ItemGroup>
+
+	<ItemGroup> 
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.10" />
+		<PackageReference Include="Volo.Abp.EntityFrameworkCore.SqlServer" Version="7.3.2" />
+		<PackageReference Include="Volo.Abp.BackgroundJobs.EntityFrameworkCore" Version="7.3.2" />
+	  </ItemGroup>
+	
+	  <ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.10">
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		  <PrivateAssets>compile; build; native; contentfiles; analyzers; buildtransitive</PrivateAssets>
+		</PackageReference>
+	  </ItemGroup>
 
 </Project>

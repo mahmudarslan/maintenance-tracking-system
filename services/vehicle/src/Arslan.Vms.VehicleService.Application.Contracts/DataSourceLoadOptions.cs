@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http.ModelBinding;
 
 namespace Arslan.Vms.VehicleService
 {

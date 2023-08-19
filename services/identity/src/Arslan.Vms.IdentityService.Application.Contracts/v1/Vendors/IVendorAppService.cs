@@ -1,13 +1,12 @@
 ﻿using Arslan.Vms.IdentityService.v1.Vendors.Dtos;
 using DevExtreme.AspNet.Data.ResponseModel;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Arslan.Vms.IdentityService.v1.Vendors
 {
-    public interface IVendorAppService
+	public interface IVendorAppService
     {
         Task<VendorDto> CreateAsync(CreateVendorDto input);
         Task<VendorDto> UpdateAsync(Guid id, UpdateVendorDto input);

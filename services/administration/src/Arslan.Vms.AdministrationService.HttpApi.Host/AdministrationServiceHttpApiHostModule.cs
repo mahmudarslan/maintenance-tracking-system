@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.IdentityModel.Logging;
 using System;
 using System.Collections.Generic;
@@ -17,7 +16,6 @@ using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.Http.Client.IdentityModel.Web;
-using Volo.Abp.Identity;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
@@ -30,8 +28,7 @@ namespace Arslan.Vms.AdministrationService;
     typeof(AdministrationServiceEntityFrameworkCoreModule),
     typeof(ArslanVmsSharedHostingMicroservicesModule),
     typeof(AbpHttpClientIdentityModelWebModule),
-    typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
-    typeof(AbpIdentityHttpApiClientModule)
+    typeof(AbpAspNetCoreMvcUiMultiTenancyModule)
     )]
 public class AdministrationServiceHttpApiHostModule : AbpModule
 {
