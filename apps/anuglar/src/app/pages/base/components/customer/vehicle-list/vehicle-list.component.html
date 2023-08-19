@@ -1,0 +1,71 @@
+<dx-data-grid #vehicleGrid [dataSource]="vehicleDataStore" [remoteOperations]="true" height="100%"
+    [allowColumnReordering]="true" [rowAlternationEnabled]="true" [hoverStateEnabled]="true" [showBorders]="true"
+    [showColumnLines]="true" [showRowLines]="true" [columnAutoWidth]="true" [allowColumnResizing]="true"
+    [wordWrapEnabled]="true" [filterSyncEnabled]="true" (onToolbarPreparing)="onToolbarPreparing($event)"
+    (onInitialized)="onInitializedGrid($event)" (onExporting)="onExporting($event,exportName)"
+    (onRowRemoving)="onRowRemoved($event)" (onRowUpdating)="onRowUpdating($event)">
+    <dxo-selection mode="single"></dxo-selection>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="false"></dxo-header-filter>
+    <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" aria-placeholder="ara"></dxo-search-panel>
+    <dxo-group-panel [visible]="false"></dxo-group-panel>
+    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 50]" [showInfo]="true" [visible]="true">
+    </dxo-pager>
+    <dxo-editing mode="form" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true">
+    </dxo-editing>
+    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-state-storing [enabled]="true" type="localStorage" storageKey="Storage_VehicleList"></dxo-state-storing>
+
+    <dxi-column caption="{{'Base::Label:CustomerName'|abpLocalization}}" dataField="customerId"
+        dataType="string">
+        <dxo-lookup [dataSource]="customerDataSource" valueExpr="id" displayExpr="name">
+        </dxo-lookup>
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column caption="{{'Base::Label:VehicleBrand'|abpLocalization}}" dataField="brandId"
+        [setCellValue]="setModelValue" dataType="string">
+        <dxo-lookup [dataSource]="brandDataSource" valueExpr="id" displayExpr="name">
+        </dxo-lookup>
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column caption="{{'Base::Label:VehicleModel'|abpLocalization}}" dataField="modelId" dataType="string">
+        <dxo-lookup [dataSource]="getFilteredVehicleModels" valueExpr="id" displayExpr="name">
+        </dxo-lookup>
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column caption="{{'Base::Label:VehiclePlateNo'|abpLocalization}}" dataField="plate" dataType="string">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column caption="{{'Base::Label:VehicleEngine'|abpLocalization}}" dataField="motor" dataType="string">
+    </dxi-column>
+    <dxi-column caption="{{'Base::Label:VehicleChassisNo'|abpLocalization}}" dataField="chassis"
+        dataType="string"></dxi-column>
+    <dxi-column caption="{{'Base::Label:VehicleColor'|abpLocalization}}" dataField="color" dataType="string">
+    </dxi-column>
+    <dxi-column caption="{{'Base::Deleted'|abpLocalization}}" dataField="isDeleted" dataType="boolean"
+        [visible]="false" [filterValue]="filterValueIsDeleted" [allowEditing]="false">
+    </dxi-column>
+
+    <dxi-column type="buttons" [width]="120" [fixed]="true">
+        <dxi-button name="edit" hint="{{'Base::Button:Update'|abpLocalization}}" icon="edit"
+            [visible]="isDeleteIconVisible">
+        </dxi-button>
+        <dxi-button name="delete" hint="{{'Base::Button:Delete'|abpLocalization}}" icon="trash"
+            [visible]="isDeleteIconVisible">
+        </dxi-button>
+        <dxi-button name="Undo" hint="{{'Base::Button:Undo'|abpLocalization}}" icon="undo" [onClick]="undoClick"
+            [visible]="isUndoIconVisible">
+        </dxi-button>
+    </dxi-column>
+
+    <dxo-export [enabled]="true"></dxo-export>
+</dx-data-grid>
+
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.01)" [position]="{ of: '#customerGrid' }"
+    [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true"
+    [closeOnOutsideClick]="false">
+</dx-load-panel>

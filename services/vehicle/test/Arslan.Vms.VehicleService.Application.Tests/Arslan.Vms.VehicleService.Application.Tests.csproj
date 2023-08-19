@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Arslan.Vms.VehicleService</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Arslan.Vms.VehicleService.Application\Arslan.Vms.VehicleService.Application.csproj" />
+    <ProjectReference Include="..\Arslan.Vms.VehicleService.Domain.Tests\Arslan.Vms.VehicleService.Domain.Tests.csproj" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+  </ItemGroup>
+
+</Project>

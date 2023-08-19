@@ -1,0 +1,29 @@
+<dx-form #form id="customerForm" [formData]="customer" labelLocation="left" style="height: 100%;">
+    <dxi-item itemType="tabbed" [tabPanelOptions]="{ deferRendering: false}" style="height: 100%;">
+        <dxi-tab title="{{'Base::Tab:Customer'|abpLocalization}}">
+            <dxi-item>
+                <div *dxTemplate>
+                    <app-user [(user)]="this.user"> </app-user>
+                </div>
+            </dxi-item>
+        </dxi-tab>
+        <dxi-tab title="{{'Base::Tab:Address'|abpLocalization}}">
+            <dxi-item>
+                <div *dxTemplate>
+                    <app-address [(address)]="address"> </app-address>
+                </div>
+            </dxi-item>
+        </dxi-tab>
+        <dxi-tab title="{{'Base::Tab:Vehicles'|abpLocalization}}" style="height: 100%;">
+            <dxi-item style="height: 100%;">
+                <div *dxTemplate style="height: 100%;">
+                    <app-vehicle [(vehicleSourceArray)]="vehicleSourceArray"></app-vehicle>
+                </div>
+            </dxi-item>
+        </dxi-tab>
+    </dxi-item>
+</dx-form>
+
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.01)" [position]="{ of: '#form' }" [(visible)]="loadingVisible"
+    [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">
+</dx-load-panel>

@@ -1,0 +1,83 @@
+<dx-form [formData]="company" labelLocation="left">
+    <dxi-item itemType="tabbed" [tabPanelOptions]="{ deferRendering: false}">
+        <dxi-tab title="{{'Base::Menu:Company'|abpLocalization}}" [colCount]="2">
+            <dxi-item itemType="group">
+                <dxi-item>
+                    <dxo-label text=" {{'Base::Label:Name'|abpLocalization}}"></dxo-label>
+                    <div *dxTemplate>
+                        <dx-text-box placeholder="{{'Base::Placeholder:Name'|abpLocalization}}"
+                            [(value)]="company.name" [showClearButton]="true" validationMessageMode="always">
+                            <dx-validator>
+                                <dxi-validation-rule type="required"
+                                    message="{{'Base::Validation:Name'|abpLocalization}}">
+                                </dxi-validation-rule>
+                            </dx-validator>
+                        </dx-text-box>
+                    </div>
+                </dxi-item>
+                <dxi-item>
+                    <dxo-label text="{{'Base::Label:Email'|abpLocalization}} "></dxo-label>
+                    <div *dxTemplate>
+                        <dx-text-box placeholder="{{'Base::Placeholder:Email'|abpLocalization}}"
+                            [(value)]="company.email" [showClearButton]="true" validationMessageMode="always">
+                            <dx-validator>
+                                <dxi-validation-rule type="required"
+                                    message="{{'Base::Validation:Email'|abpLocalization}}">
+                                </dxi-validation-rule>
+                                <dxi-validation-rule type="email"
+                                    message="{{'Base::Validation:EmailCheck'|abpLocalization}}">
+                                </dxi-validation-rule>
+                            </dx-validator>
+                        </dx-text-box>
+                    </div>
+                </dxi-item>
+                <dxi-item>
+                    <dxo-label text="{{'Base::Label:MobileNo'|abpLocalization}} "></dxo-label>
+                    <div *dxTemplate>
+                        <dx-text-box placeholder="{{'Base::Placeholder:MobileNo'|abpLocalization}}"
+                            mask="(000) 000-0000" [(value)]="company.phoneNumber" [showClearButton]="true"
+                            validationMessageMode="always">
+                            <dx-validator>
+                                <dxi-validation-rule type="required"
+                                    message="{{'Base::Validation:MobileNo'|abpLocalization}}">
+                                </dxi-validation-rule>
+                            </dx-validator>
+                        </dx-text-box>
+                    </div>
+                </dxi-item>
+                <dxi-item>
+                    <dxo-label text="{{'Base::Label:Fax'|abpLocalization}}"></dxo-label>
+                    <div *dxTemplate>
+                        <dx-text-box placeholder="{{'Base::Placeholder:Fax'|abpLocalization}}"
+                            mask="(000) 000-0000" [(value)]="company.faxNumber" [showClearButton]="true">
+                        </dx-text-box>
+                    </div>
+                </dxi-item>
+            </dxi-item>
+            <dxi-item itemType="group" caption="{{'Base::Logo'|abpLocalization}}">
+                <div *dxTemplate>
+                    <img id="dropzone-image" [src]="(imageSource ? imageSource : (downloadUrl | secure | async) )"
+                        alt="" style="text-align:center; vertical-align:middle; max-width:400px;  max-height:400px;" />
+                    <dx-file-uploader #fileUploader dialogTrigger="#dropzone-external" dropZone="#dropzone-external"
+                        [multiple]="false" [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png']" [visible]="true"
+                        [(value)]="value" uploadMode="instantly" uploadMethod="POST" [uploadHeaders]="uploadHeaders"
+                        selectButtonText="{{'Orders::Button:Upload'|abpLocalization}}" labelText=""
+                        (onValueChanged)="addIdParameter($event)">
+                    </dx-file-uploader>
+                </div>
+            </dxi-item>
+        </dxi-tab>
+
+        <dxi-tab title="{{'Base::Tab:Address'|abpLocalization}}">
+            <dxi-item>
+                <div *dxTemplate>
+                    <app-address [(address)]="address"> </app-address>
+                </div>
+            </dxi-item>
+        </dxi-tab>
+    </dxi-item>
+</dx-form>
+
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.01)" [position]="{ of: '#form' }" [(visible)]="loadingVisible"
+    [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">
+</dx-load-panel>

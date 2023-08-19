@@ -1,0 +1,28 @@
+config:
+  selfUrl: # https://vms-st-authserver
+  corsOrigins: # https://vms-st-identity,https://vms-st-administration
+  allowedRedirectUrls: https://vms-st-web
+  connectionStrings:
+    administrationService: #
+    identityService: #
+  authServer:
+    authority: http://vms-st-authserver
+    requireHttpsMetadata: "false"
+    swaggerClientId: WebGateway_Swagger
+    swaggerClientSecret: "1q2w3e*"  
+  dotnetEnv: # 
+  redisHost: #
+  rabbitmqHost: #
+  elasticsearchHost: #
+  stringEncryptionDefaultPassPhrase: gsKnGZ041HLL4IM8
+
+ingress:
+  host: vms-st-authserver
+  tlsSecret: vms-wildcard-tls
+
+image:
+  repository: Arslan.Vms/app-authserver
+  tag: latest
+  pullPolicy: IfNotPresent
+
+env: {}

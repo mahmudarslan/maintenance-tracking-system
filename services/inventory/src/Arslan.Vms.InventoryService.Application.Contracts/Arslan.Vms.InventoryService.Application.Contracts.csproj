@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<RootNamespace>Arslan.Vms.InventoryService</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="6.0.0" />
+		<PackageReference Include="Volo.Abp.Authorization" Version="6.0.0" />
+		<ProjectReference Include="..\Arslan.Vms.InventoryService.Domain.Shared\Arslan.Vms.InventoryService.Domain.Shared.csproj" />
+		<PackageReference Include="DevExtreme.AspNet.Data" Version="2.9.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="ConfigureAwait.Fody" Version="3.3.2" />
+	  <PackageReference Update="Fody" Version="6.6.4">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+	  </PackageReference>
+	</ItemGroup>
+
+</Project>

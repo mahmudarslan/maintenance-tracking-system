@@ -1,0 +1,18 @@
+<dx-form #form labelLocation="left">
+    <dxi-item itemType="tabbed" [tabPanelOptions]="{ deferRendering: false}">
+        <dxi-tab title="{{'Base::Tab:Vendor'|abpLocalization}}" [colCount]="2">
+            <div *dxTemplate>
+                <app-user [(user)]="this.user"> </app-user>
+            </div>
+        </dxi-tab>
+        <dxi-tab title="{{'Base::Tab:Address'|abpLocalization}}" [colCount]="2">
+            <div *dxTemplate>
+                <app-address [(address)]="address"> </app-address>
+            </div>
+        </dxi-tab>
+    </dxi-item>
+</dx-form>
+
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.01)" [position]="{ of: '#form' }" [(visible)]="loadingVisible"
+    [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">
+</dx-load-panel>

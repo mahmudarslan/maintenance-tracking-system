@@ -1,0 +1,22 @@
+<dx-tree-list #addressTreeList [dataSource]="addressDataSource" height="100%" width="400" [rootValue]="null"
+    keyExpr="id" parentIdExpr="parentId" [showRowLines]="true" [showBorders]="true" [columnAutoWidth]="true"
+    [wordWrapEnabled]="true" (onCellPrepared)="onCellPrepared($event)" (onRowUpdated)="onRowUpdated($event)"
+    (onRowRemoved)="onRowRemoved($event)">
+    <dxo-sorting mode="multiple"></dxo-sorting>
+    <dxo-search-panel [visible]="true"></dxo-search-panel>
+    <dxo-filter-panel [visible]="false"></dxo-filter-panel>
+    <dxo-filter-row [visible]="false"></dxo-filter-row>
+    <dxo-header-filter [visible]="false"></dxo-header-filter>
+    <dxo-selection mode="single"></dxo-selection>
+    <!-- <dxo-selection mode="multiple" [allowSelectAll]="true" [recursive]="true">
+    </dxo-selection>-->
+    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+    </dxo-editing>
+    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+
+    <dxi-column caption="{{'Base::Address'|abpLocalization}}" dataField="name" dataType="string"
+        [editorOptions]="{ maxLength: 50, showClearButton: true }">
+    </dxi-column>
+    <dxi-column caption="{{'Base::IsHidded'|abpLocalization}}" dataField="isDeleted" dataType="boolean">
+    </dxi-column>
+</dx-tree-list>

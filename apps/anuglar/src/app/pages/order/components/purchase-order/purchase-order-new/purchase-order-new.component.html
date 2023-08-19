@@ -1,0 +1,273 @@
+<dx-form #form [colCount]="2" labelLocation="left">
+
+    <dxi-item [colSpan]="1">
+        <dxo-label text=" {{'Orders::Label:VendorName'|abpLocalization}}"></dxo-label>
+        <div *dxTemplate>
+            <dx-autocomplete placeholder="{{'Orders::Label:VendorName'|abpLocalization}}"
+                [(value)]="selectedVendorField" valueExpr="selectionField" [dataSource]="vendorDataSource"
+                (onSelectionChanged)="setVendor($event)" width="100%" [readOnly]="vendorFieldReadOnly"
+                validationMessageMode="always">
+                <div *dxTemplate="let item of 'item'">
+                    <span>
+                        <strong>{{item.name}} {{item.surname}}</strong>
+                        <strong>{{'Orders::Phone'|abpLocalization}}:</strong>{{item.phoneNumber}}
+                    </span>
+                </div>
+                <dx-validator>
+                    <dxi-validation-rule type="custom" [validationCallback]="validateVendorSelection"
+                        message="{{'Orders::Validation:VendorName'|abpLocalization}}" [reevaluate]="true">
+                    </dxi-validation-rule>
+                </dx-validator>
+            </dx-autocomplete>
+        </div>
+    </dxi-item>
+    <dxi-item [visible]="purchaseOrderVisible">
+        <dxo-label text="{{'Orders::Label:PurchaseOrderNumber'|abpLocalization}}"></dxo-label>
+        <div *dxTemplate>
+            <dx-text-box [value]="this.purchaseOrder.orderNumber" [readOnly]="true">
+            </dx-text-box>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <dxo-label text="{{'Orders::Label:OrderDate'|abpLocalization}}"></dxo-label>
+        <div *dxTemplate>
+            <dx-date-box placeholder="{{'Orders::Placeholder:OrderDate'|abpLocalization}}" type="date"
+                displayFormat="shortdate" dateSerializationFormat="yyyy-MM-dd" useMaskBehavior="true"
+                [(value)]="this.purchaseOrder.orderDate" [max]="now" [min]="minDate" validationMessageMode="always">
+                <dx-validator>
+                    <dxi-validation-rule type="required" message="{{'Orders::Validation:OrderDate'|abpLocalization}}">
+                    </dxi-validation-rule>
+                </dx-validator>
+            </dx-date-box>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <dxo-label text="{{'Orders::Label:InventoryStatus'|abpLocalization}}"></dxo-label>
+        <div *dxTemplate>
+            <dx-select-box placeholder="{{'Orders::Placeholder:InventoryStatus'|abpLocalization}}"
+                [dataSource]="purchaseOrderInventoryStatusData" displayExpr="name" valueExpr="id"
+                [(value)]="this.purchaseOrder.inventoryStatus" validationMessageMode="always" searchMode="contains"
+                [searchEnabled]="true">
+                <dx-validator>
+                    <dxi-validation-rule type="required"
+                        message="{{'Orders::Validation:InventoryStatus'|abpLocalization}}">
+                    </dxi-validation-rule>
+                </dx-validator>
+            </dx-select-box>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <dxo-label text="{{'Orders::Label:PaymentStatus'|abpLocalization}}"></dxo-label>
+        <div *dxTemplate>
+            <dx-select-box placeholder="{{'Orders::Placeholder:PaymentStatus'|abpLocalization}}"
+                [dataSource]="purchaseOrderPaymentStatusData" displayExpr="name" valueExpr="id"
+                [(value)]="this.purchaseOrder.paymentStatus" validationMessageMode="always" searchMode="contains"
+                [searchEnabled]="true">
+                <dx-validator>
+                    <dxi-validation-rule type="required"
+                        message="{{'Orders::Validation:PaymentStatus'|abpLocalization}}">
+                    </dxi-validation-rule>
+                </dx-validator>
+            </dx-select-box>
+        </div>
+    </dxi-item>
+
+    <dxi-item [visible]="!purchaseOrderVisible">
+        <dxo-label></dxo-label>
+        <div *dxTemplate>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <dxo-label></dxo-label>
+        <div *dxTemplate>
+        </div>
+    </dxi-item>
+
+    <dxi-item [colSpan]="2">
+        <dxo-label text="{{'Orders::Label:Notes'|abpLocalization}}"></dxo-label>
+        <div *dxTemplate>
+            <dx-text-area placeholder="{{'Orders::Placeholder:Notes'|abpLocalization}}"
+                [(value)]="this.purchaseOrder.orderRemarks" [maxLength]="500" [height]="70">
+            </dx-text-area>
+        </div>
+    </dxi-item>
+
+
+    <dxi-item itemType="group" caption="{{'Orders::ProductAdd'|abpLocalization}}" [colSpan]="2">
+        <dxo-label></dxo-label>
+        <div *dxTemplate>
+            <dx-data-grid #productGrid id="productGrid" [remoteOperations]="false" height="500"
+                [dataSource]="productDataSource" [allowColumnReordering]="true" [rowAlternationEnabled]="true"
+                [hoverStateEnabled]="true" [showBorders]="true" [showColumnLines]="true" [showRowLines]="true"
+                [columnAutoWidth]="false" [allowColumnResizing]="true" [wordWrapEnabled]="true"
+                (onToolbarPreparing)="onToolbarPreparing($event)" (onRowValidating)="onRowValidatingProduct($event)">
+                <dxo-selection mode="single"></dxo-selection>
+                <dxo-filter-row [visible]="false"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"></dxo-search-panel>
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager>
+                <dxo-editing mode="batch" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true"
+                    selectTextOnEditStart="true" startEditAction="click">
+                </dxo-editing>
+                <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+                <dxo-column-chooser [enabled]="false"></dxo-column-chooser>
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-state-storing [enabled]="true" type="localStorage" storageKey="Storage_ProductNew">
+                </dxo-state-storing>
+                <dxo-load-panel [enabled]="true">
+                </dxo-load-panel>
+                <dxo-sorting mode="none"></dxo-sorting>
+                <dxo-row-dragging [allowReordering]="true" [onReorder]="onReorder" [showDragIcons]="true">
+                </dxo-row-dragging>
+
+                <dxi-column caption="{{'Orders::ProductName'|abpLocalization}}" dataField="productId"
+                    [setCellValue]="setProductPriceCellValue" alignment="left" dataType="string">
+                    <dxo-lookup [dataSource]="productArrayData" valueExpr="id" displayExpr="name">
+                    </dxo-lookup>
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column caption="{{'Orders::Description'|abpLocalization}}" dataField="description" alignment="left"
+                    [editorOptions]="{ maxLength: 100, showClearButton: true }" dataType="string">
+                </dxi-column>
+                <dxi-column caption="{{'Inventory::Location'|abpLocalization}}" dataField="locationId" alignment="left"
+                    [width]="150" dataType="string">
+                    <dxo-lookup [dataSource]="locationArrayData" valueExpr="id" displayExpr="name">
+                    </dxo-lookup>
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column caption="{{'Orders::Quantity'|abpLocalization}}" dataField="quantity" dataType="number"
+                    alignment="left" [width]="120" format="#,##0"
+                    [editorOptions]="{ max:'9999999', format:'#,##0',   showClearButton: true }">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column caption="{{'Orders::Price'|abpLocalization}}" dataField="unitPrice" dataType="number"
+                    alignment="left" [width]="120" format="#,##0"
+                    [editorOptions]="{ max:'9999999',  format:'#,##0' , showClearButton: true }">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column caption="{{'Orders::Sum'|abpLocalization}}" [calculateCellValue]="calculateProductAmount"
+                    [width]="120" format="#,##0">
+                </dxi-column>
+                <dxi-column type="buttons" [width]="70" alignment="left" [fixed]="true">
+                    <dxi-button hint="{{'Orders::Button:Delete'|abpLocalization}}" icon="trash" name="delete">
+                    </dxi-button>
+                </dxi-column>
+
+                <dxo-summary [calculateCustomSummary]="calculateProductSummary" [recalculateWhileEditing]="true">
+                    <dxi-total-item name="SelectedRowsSummary" summaryType="custom" valueFormat="#,##0"
+                        displayFormat="{{'Orders::Sum'|abpLocalization}}: {0}"
+                        showInColumn="{{'Orders::Sum'|abpLocalization}}">
+                    </dxi-total-item>
+                </dxo-summary>
+
+                <dxo-export [enabled]="true"></dxo-export>
+            </dx-data-grid>
+        </div>
+    </dxi-item>
+    <dxi-item itemType="group" caption="{{'Orders::ServiceAdd'|abpLocalization}}" [colSpan]="2">
+        <div *dxTemplate>
+            <dx-data-grid #serviceGrid id="serviceGrid" [remoteOperations]="false" height="500"
+                [dataSource]="labourDataSource" [allowColumnReordering]="true" [rowAlternationEnabled]="true"
+                [hoverStateEnabled]="true" [showBorders]="true" [showColumnLines]="true" [showRowLines]="true"
+                [columnAutoWidth]="false" [allowColumnResizing]="true" [wordWrapEnabled]="true"
+                (onToolbarPreparing)="onToolbarPreparing($event)" (onRowValidating)="onRowValidatingService($event)">
+                <dxo-selection mode="single"></dxo-selection>
+                <dxo-filter-row [visible]="false"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"></dxo-search-panel>
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager>
+                <dxo-editing mode="batch" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true"
+                    selectTextOnEditStart="true" startEditAction="click">
+                </dxo-editing>
+                <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+
+                <dxi-column caption="{{'Orders::ServiceName'|abpLocalization}}" dataField="productId"
+                    [setCellValue]="setServicePriceCellValue" alignment="left" dataType="string">
+                    <dxo-lookup [dataSource]="serviceArrayData" valueExpr="id" displayExpr="name">
+                    </dxo-lookup>
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column caption="{{'Orders::Description'|abpLocalization}}" dataField="description" alignment="left"
+                    [editorOptions]="{ maxLength: 100, showClearButton: true }" dataType="string">
+                </dxi-column>
+                <dxi-column caption="{{'Orders::Price'|abpLocalization}}" dataField="unitPrice" dataType="number"
+                    [width]="120" format="#,##0"
+                    [editorOptions]="{ max:'9999999',  format:'#,##0' , showClearButton: true }">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+
+                <dxi-column type="buttons" [width]="70" [fixed]="true">
+                    <dxi-button hint="{{'Orders::Button:Delete'|abpLocalization}}" icon="trash" name="delete">
+                    </dxi-button>
+                </dxi-column>
+
+                <dxo-summary [calculateCustomSummary]="calculateServiceSummary" [recalculateWhileEditing]="true">
+                    <dxi-total-item name="SelectedRowsSummary" summaryType="custom" valueFormat="#,##0"
+                        displayFormat="{{'Orders::Sum'|abpLocalization}}: {0}" showInColumn="unitPrice">
+                    </dxi-total-item>
+                </dxo-summary>
+            </dx-data-grid>
+        </div>
+    </dxi-item>
+
+    <dxi-item itemType="group" caption="{{'Orders::Calculation'|abpLocalization}}" [colSpan]="2">
+        <dxi-item>
+            <dxo-label text="{{'Orders::Label:TotalProductPrice'|abpLocalization}}"></dxo-label>
+            <div *dxTemplate>
+                <dx-number-box placeholder="{{'Orders::Placeholder:TotalProductPrice'|abpLocalization}}"
+                    [(value)]="calculatedToolPrice" [min]="0" [readOnly]="true"
+                    (onValueChanged)="totalProductPrice_valueChanged($event)" format="#,##0.##" [rtlEnabled]="false">
+                </dx-number-box>
+            </div>
+        </dxi-item>
+        <dxi-item>
+            <dxo-label text="{{'Orders::Label:TotalServicePrice'|abpLocalization}}"></dxo-label>
+            <div *dxTemplate>
+                <dx-number-box [(value)]="calculatedLabourPrice" [min]="0" [readOnly]="true"
+                    (onValueChanged)="totalServicePrice_valueChanged($event)" format="#,##0.##" [rtlEnabled]="false">
+                </dx-number-box>
+            </div>
+        </dxi-item>
+        <dxi-item>
+            <dxo-label text="{{'Orders::Label:GeneralTotal'|abpLocalization}}"></dxo-label>
+            <div *dxTemplate>
+                <dx-number-box [(value)]="calculatedTotalPrice" [min]="0" [readOnly]="true" format="#,##0.##"
+                    [rtlEnabled]="false">
+                </dx-number-box>
+            </div>
+        </dxi-item>
+    </dxi-item>
+
+    <dxi-item>
+        <dxo-label></dxo-label>
+        <div *dxTemplate>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <dxo-label></dxo-label>
+        <div *dxTemplate>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <dxo-label></dxo-label>
+        <div *dxTemplate>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <dxo-label></dxo-label>
+        <div *dxTemplate>
+        </div>
+    </dxi-item>
+</dx-form>
+
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.01)" [position]="{ of: '#form' }" [(visible)]="loadingVisible"
+    [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">
+</dx-load-panel>

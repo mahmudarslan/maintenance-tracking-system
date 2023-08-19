@@ -1,0 +1,37 @@
+config:
+  selfUrl: # https://vms-st-cmskit
+  corsOrigins: # https://vms-st-gateway-web,https://vms-st-gateway-public-web
+  connectionStrings:
+    cmskitService: #
+    administrationService: #
+  authServer:
+    authority: http://vms-st-authserver
+    requireHttpsMetadata: "false"
+    swaggerClientId: WebGateway_Swagger
+    swaggerClientSecret: "1q2w3e*"
+  remoteServices:
+    abpIdentityBaseUrl: #
+  dotnetEnv: Staging
+  redisHost: vms-st-redis
+  rabbitmqHost: vms-st-rabbitmq
+  elasticsearchHost: vms-st-elasticsearch
+  stringEncryptionDefaultPassPhrase: gsKnGZ041HLL4IM8
+
+synchedCommunication:
+  grantType: # "client_credentials"
+  clientId: # 
+  clientSecret: #
+  authority: # "https://vms-st-authserver"
+  scope: # "IdentityService"
+
+ingress:
+  host: vms-st-cmskit
+  tlsSecret: vms-wildcard-tls
+
+image:
+  repository: Arslan.Vms/service-cmskit
+  tag: latest
+  pullPolicy: IfNotPresent
+
+env: {}
+    

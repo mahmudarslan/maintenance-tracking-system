@@ -1,0 +1,28 @@
+config:
+  selfUrl: # https://vms-st-ordering
+  corsOrigins: # https://vms-st-gateway-web,https://vms-st-gateway-public-web
+  connectionStrings:
+    orderingService: #
+    administrationService: #
+  authServer:
+    authority: http://vms-st-authserver
+    requireHttpsMetadata: "false"
+    swaggerClientId: WebGateway_Swagger
+    swaggerClientSecret: "1q2w3e*"
+  dotnetEnv: Staging
+  redisHost: vms-st-redis
+  rabbitmqHost: vms-st-rabbitmq
+  elasticsearchHost: vms-st-elasticsearch
+  stringEncryptionDefaultPassPhrase: gsKnGZ041HLL4IM8
+
+ingress:
+  host: vms-st-ordering
+  tlsSecret: vms-wildcard-tls
+
+image:
+  repository: Arslan.Vms/service-ordering
+  tag: latest
+  pullPolicy: IfNotPresent
+
+env: {}
+    
