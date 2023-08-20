@@ -46,18 +46,69 @@ namespace Arslan.Vms.AdministrationService.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AbpBlobContainers",
+                name: "AbpEventOutbox",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true)
+                    EventName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    EventData = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AbpBlobContainers", x => x.Id);
+                    table.PrimaryKey("PK_AbpEventOutbox", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AbpFeatureGroups",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    DisplayName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpFeatureGroups", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AbpFeatures",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    GroupName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ParentName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    DisplayName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    DefaultValue = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    IsVisibleToClients = table.Column<bool>(type: "bit", nullable: false),
+                    IsAvailableToHost = table.Column<bool>(type: "bit", nullable: false),
+                    AllowedProviders = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ValueType = table.Column<string>(type: "nvarchar(2048)", maxLength: 2048, nullable: true),
+                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpFeatures", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AbpFeatureValues",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
+                    ProviderKey = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpFeatureValues", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -125,6 +176,28 @@ namespace Arslan.Vms.AdministrationService.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AbpTenants",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    EntityVersion = table.Column<int>(type: "int", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AbpTenants", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AbpAuditLogActions",
                 columns: table => new
                 {
@@ -175,24 +248,20 @@ namespace Arslan.Vms.AdministrationService.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AbpBlobs",
+                name: "AbpTenantConnectionStrings",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ContainerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    Content = table.Column<byte[]>(type: "varbinary(max)", maxLength: 2147483647, nullable: true),
-                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true)
+                    TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AbpBlobs", x => x.Id);
+                    table.PrimaryKey("PK_AbpTenantConnectionStrings", x => new { x.TenantId, x.Name });
                     table.ForeignKey(
-                        name: "FK_AbpBlobs_AbpBlobContainers_ContainerId",
-                        column: x => x.ContainerId,
-                        principalTable: "AbpBlobContainers",
+                        name: "FK_AbpTenantConnectionStrings_AbpTenants_TenantId",
+                        column: x => x.TenantId,
+                        principalTable: "AbpTenants",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -241,21 +310,6 @@ namespace Arslan.Vms.AdministrationService.Migrations
                 columns: new[] { "TenantId", "UserId", "ExecutionTime" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AbpBlobContainers_TenantId_Name",
-                table: "AbpBlobContainers",
-                columns: new[] { "TenantId", "Name" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AbpBlobs_ContainerId",
-                table: "AbpBlobs",
-                column: "ContainerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AbpBlobs_TenantId_ContainerId_Name",
-                table: "AbpBlobs",
-                columns: new[] { "TenantId", "ContainerId", "Name" });
-
-            migrationBuilder.CreateIndex(
                 name: "IX_AbpEntityChanges_AuditLogId",
                 table: "AbpEntityChanges",
                 column: "AuditLogId");
@@ -269,6 +323,35 @@ namespace Arslan.Vms.AdministrationService.Migrations
                 name: "IX_AbpEntityPropertyChanges_EntityChangeId",
                 table: "AbpEntityPropertyChanges",
                 column: "EntityChangeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AbpEventOutbox_CreationTime",
+                table: "AbpEventOutbox",
+                column: "CreationTime");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AbpFeatureGroups_Name",
+                table: "AbpFeatureGroups",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AbpFeatures_GroupName",
+                table: "AbpFeatures",
+                column: "GroupName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AbpFeatures_Name",
+                table: "AbpFeatures",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AbpFeatureValues_Name_ProviderName_ProviderKey",
+                table: "AbpFeatureValues",
+                columns: new[] { "Name", "ProviderName", "ProviderKey" },
+                unique: true,
+                filter: "[ProviderName] IS NOT NULL AND [ProviderKey] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpPermissionGrants_TenantId_Name_ProviderName_ProviderKey",
@@ -300,6 +383,11 @@ namespace Arslan.Vms.AdministrationService.Migrations
                 columns: new[] { "Name", "ProviderName", "ProviderKey" },
                 unique: true,
                 filter: "[ProviderName] IS NOT NULL AND [ProviderKey] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AbpTenants_Name",
+                table: "AbpTenants",
+                column: "Name");
         }
 
         /// <inheritdoc />
@@ -309,10 +397,19 @@ namespace Arslan.Vms.AdministrationService.Migrations
                 name: "AbpAuditLogActions");
 
             migrationBuilder.DropTable(
-                name: "AbpBlobs");
+                name: "AbpEntityPropertyChanges");
 
             migrationBuilder.DropTable(
-                name: "AbpEntityPropertyChanges");
+                name: "AbpEventOutbox");
+
+            migrationBuilder.DropTable(
+                name: "AbpFeatureGroups");
+
+            migrationBuilder.DropTable(
+                name: "AbpFeatures");
+
+            migrationBuilder.DropTable(
+                name: "AbpFeatureValues");
 
             migrationBuilder.DropTable(
                 name: "AbpPermissionGrants");
@@ -327,10 +424,13 @@ namespace Arslan.Vms.AdministrationService.Migrations
                 name: "AbpSettings");
 
             migrationBuilder.DropTable(
-                name: "AbpBlobContainers");
+                name: "AbpTenantConnectionStrings");
 
             migrationBuilder.DropTable(
                 name: "AbpEntityChanges");
+
+            migrationBuilder.DropTable(
+                name: "AbpTenants");
 
             migrationBuilder.DropTable(
                 name: "AbpAuditLogs");

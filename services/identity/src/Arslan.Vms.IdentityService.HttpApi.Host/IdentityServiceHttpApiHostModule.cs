@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.IdentityModel.Logging;
 using System;
 using System.Collections.Generic;
@@ -15,9 +14,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp;
-using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
-using Volo.Abp.Http.Client.IdentityModel.Web;
-using Volo.Abp.Identity;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
@@ -28,10 +24,7 @@ namespace Arslan.Vms.IdentityService;
     typeof(IdentityServiceHttpApiModule),
     typeof(IdentityServiceApplicationModule),
     typeof(IdentityServiceEntityFrameworkCoreModule),
-    typeof(ArslanVmsSharedHostingMicroservicesModule),
-    typeof(AbpHttpClientIdentityModelWebModule),
-    typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
-    typeof(AbpIdentityHttpApiClientModule)
+    typeof(ArslanVmsSharedHostingMicroservicesModule)
     )]
 public class IdentityServiceHttpApiHostModule : AbpModule
 {
@@ -49,30 +42,30 @@ public class IdentityServiceHttpApiHostModule : AbpModule
             scopes: new
                 Dictionary<string, string> /* Requested scopes for authorization code request and descriptions for swagger UI only */
                 {
-                    {"IdentityService", "Administration Service API"}
+                    {"IdentityService", "Identity Service API"}
             },
-            apiTitle: "Administration Service API"
-        );
+            apiTitle: "Identity Service API"
+		);
 
-        if (hostingEnvironment.IsDevelopment())
-        {
-            Configure<AbpVirtualFileSystemOptions>(options =>
-            {
-                options.FileSets.ReplaceEmbeddedByPhysical<IdentityServiceDomainSharedModule>(
-                    Path.Combine(hostingEnvironment.ContentRootPath,
-                        string.Format("..{0}..{0}src{0}Arslan.Vms.IdentityService.Domain.Shared", Path.DirectorySeparatorChar)));
-                options.FileSets.ReplaceEmbeddedByPhysical<IdentityServiceDomainModule>(
-                    Path.Combine(hostingEnvironment.ContentRootPath,
-                        string.Format("..{0}..{0}src{0}Arslan.Vms.IdentityService.Domain", Path.DirectorySeparatorChar)));
-                options.FileSets.ReplaceEmbeddedByPhysical<IdentityServiceApplicationContractsModule>(
-                    Path.Combine(hostingEnvironment.ContentRootPath,
-                        string.Format("..{0}..{0}src{0}Arslan.Vms.IdentityService.Application.Contracts",
-                            Path.DirectorySeparatorChar)));
-                options.FileSets.ReplaceEmbeddedByPhysical<IdentityServiceApplicationModule>(
-                    Path.Combine(hostingEnvironment.ContentRootPath,
-                        string.Format("..{0}..{0}src{0}Arslan.Vms.IdentityService.Application", Path.DirectorySeparatorChar)));
-            });
-        }
+        //if (hostingEnvironment.IsDevelopment())
+        //{
+        //    Configure<AbpVirtualFileSystemOptions>(options =>
+        //    {
+        //        options.FileSets.ReplaceEmbeddedByPhysical<IdentityServiceDomainSharedModule>(
+        //            Path.Combine(hostingEnvironment.ContentRootPath,
+        //                string.Format("..{0}..{0}src{0}Arslan.Vms.IdentityService.Domain.Shared", Path.DirectorySeparatorChar)));
+        //        options.FileSets.ReplaceEmbeddedByPhysical<IdentityServiceDomainModule>(
+        //            Path.Combine(hostingEnvironment.ContentRootPath,
+        //                string.Format("..{0}..{0}src{0}Arslan.Vms.IdentityService.Domain", Path.DirectorySeparatorChar)));
+        //        options.FileSets.ReplaceEmbeddedByPhysical<IdentityServiceApplicationContractsModule>(
+        //            Path.Combine(hostingEnvironment.ContentRootPath,
+        //                string.Format("..{0}..{0}src{0}Arslan.Vms.IdentityService.Application.Contracts",
+        //                    Path.DirectorySeparatorChar)));
+        //        options.FileSets.ReplaceEmbeddedByPhysical<IdentityServiceApplicationModule>(
+        //            Path.Combine(hostingEnvironment.ContentRootPath,
+        //                string.Format("..{0}..{0}src{0}Arslan.Vms.IdentityService.Application", Path.DirectorySeparatorChar)));
+        //    });
+        //}
 
         Configure<AbpLocalizationOptions>(options =>
         { 

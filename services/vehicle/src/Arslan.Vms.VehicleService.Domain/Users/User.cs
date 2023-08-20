@@ -9,7 +9,7 @@ using Volo.Abp.Users;
 
 namespace Arslan.Vms.VehicleService.Users
 {
-    public class User : FullAuditedAggregateRoot<Guid>, IUser
+    public class User : FullAuditedAggregateRoot<Guid>//, IUser
     {
         public virtual Guid? TenantId { get; set; }
         public virtual string UserName { get; set; }

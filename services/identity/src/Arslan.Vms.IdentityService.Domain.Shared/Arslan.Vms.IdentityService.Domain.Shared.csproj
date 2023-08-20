@@ -15,7 +15,6 @@
 
 	<ItemGroup>
 		<EmbeddedResource Include="Localization\IdentityService\*.json" />
-		<Content Remove="Localization\IdentityService\*.json" />
 	</ItemGroup>
 
 </Project>

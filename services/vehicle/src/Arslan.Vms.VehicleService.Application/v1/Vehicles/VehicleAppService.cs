@@ -1,5 +1,4 @@
-﻿using Arslan.Vms.AdministrationService.Users;
-using Arslan.Vms.VehicleService.Localization;
+﻿using Arslan.Vms.VehicleService.Localization;
 using Arslan.Vms.VehicleService.Permissions;
 using Arslan.Vms.VehicleService.Users;
 using Arslan.Vms.VehicleService.v1.Vehicles.Dtos;
@@ -20,7 +19,7 @@ using Volo.Abp.MultiTenancy;
 
 namespace Arslan.Vms.VehicleService.v1.Vehicles
 {
-    [Authorize(VehicleServicePermissions.Vehicle.Default)]
+	[Authorize(VehicleServicePermissions.Vehicle.Default)]
     public class VehicleAppService : VehicleServiceAppService, IVehicleAppService
     {
         private readonly IRepository<VehicleType, Guid> _vehicleTypeRepository;

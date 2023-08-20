@@ -23,4 +23,9 @@
     <None Remove="Logs\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="DbMigrations\AddressTypeDataSeedContributor.cs" />
+    <Compile Remove="DbMigrations\CompanyDataSeedContributor.cs" />
+  </ItemGroup>
+
 </Project>
