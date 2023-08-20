@@ -1,18 +1,17 @@
 ﻿using Arslan.Vms.InventoryService.v1.CurrentStocks.Dtos;
 using Arslan.Vms.InventoryService.v1.StockAdjustments.Dtos;
 using DevExtreme.AspNet.Data.ResponseModel;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Arslan.Vms.InventoryService.v1.StockAdjustments
 {
-    public interface IStockAdjustmentAppService
+	public interface IStockAdjustmentAppService
     {
         Task<StockAdjustmentDto> CreateAsync(CreateStockAdjustmentDto input);
         Task<StockAdjustmentDto> UpdateAsync(Guid id, UpdateStockAdjustmentDto input);
-        Task DeleteAsync([FromForm(Name = "key")] string key);
+        Task DeleteAsync(  string key);
         Task UndoAsync(Guid id);
         Task<StockAdjustmentDto> GetAsync(Guid id, bool isDeleted = false);
         Task<LoadResult> GetListAsync(DataSourceLoadOptions loadOptions);

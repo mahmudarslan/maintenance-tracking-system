@@ -1,17 +1,8 @@
-﻿using Localization.Resources.AbpUi;
-using Arslan.Vms.IdentityService.Localization;
-using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.Localization;
-using Volo.Abp.Modularity;
-using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.PermissionManagement.HttpApi;
-using Volo.Abp.SettingManagement;
+﻿using Volo.Abp.Modularity;
 
 namespace Arslan.Vms.IdentityService;
 [DependsOn(
-    typeof(IdentityServiceApplicationContractsModule),
-    typeof(AbpPermissionManagementHttpApiModule),
-    typeof(AbpSettingManagementHttpApiModule))]
+    typeof(IdentityServiceApplicationContractsModule))]
 public class IdentityServiceHttpApiModule : AbpModule
 {
 }

@@ -1,20 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.AuditLogging.EntityFrameworkCore;
-using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Modularity;
-using Volo.Abp.PermissionManagement.EntityFrameworkCore;
-using Volo.Abp.SettingManagement.EntityFrameworkCore;
 
 namespace Arslan.Vms.IdentityService.EntityFrameworkCore;
 
 [DependsOn(
     typeof(IdentityServiceDomainModule),
-    typeof(AbpEntityFrameworkCoreModule),
-    typeof(AbpPermissionManagementEntityFrameworkCoreModule),
-    typeof(AbpSettingManagementEntityFrameworkCoreModule),
-    typeof(AbpAuditLoggingEntityFrameworkCoreModule),
-    typeof(BlobStoringDatabaseEntityFrameworkCoreModule)
+    typeof(AbpEntityFrameworkCoreModule)
 )]
 public class IdentityServiceEntityFrameworkCoreModule : AbpModule
 {
@@ -22,11 +14,6 @@ public class IdentityServiceEntityFrameworkCoreModule : AbpModule
     {
         context.Services.AddAbpDbContext<IdentityServiceDbContext>(options =>
         {
-            options.ReplaceDbContext<IPermissionManagementDbContext>();
-            options.ReplaceDbContext<ISettingManagementDbContext>();
-            options.ReplaceDbContext<IAuditLoggingDbContext>();
-            options.ReplaceDbContext<IBlobStoringDbContext>();
-
             options.AddDefaultRepositories(includeAllEntities: true);
         });
 

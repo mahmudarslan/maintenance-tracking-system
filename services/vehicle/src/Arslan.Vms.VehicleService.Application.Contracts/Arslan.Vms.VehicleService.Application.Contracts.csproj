@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Permissions\UserDataSeedContributor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
 		<PackageReference Include="DevExtreme.AspNet.Data" Version="2.9.2" />
 		<PackageReference Include="Flurl" Version="3.0.7" />
 		<PackageReference Include="Flurl.Http" Version="3.2.4" />

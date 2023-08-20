@@ -9,7 +9,7 @@ public class ProductServicePermissionDefinitionProvider : PermissionDefinitionPr
 {
     public override void Define(IPermissionDefinitionContext context)
     {
-        var baseGroup = context.AddGroup(ProductServicePermissions.GroupName, L("Permission:Base"), MultiTenancySides.Both);
+        var baseGroup = context.AddGroup(ProductServicePermissions.GroupName, L("Permission:Base"));
 
         var vendorManagement = baseGroup.AddPermission(ProductServicePermissions.Vendor.Default, L("Permission:VendorManagement"), MultiTenancySides.Both, isEnabled: true);
         vendorManagement.AddChild(ProductServicePermissions.Vendor.Create, L("Permission:Create"), MultiTenancySides.Both, isEnabled: true);

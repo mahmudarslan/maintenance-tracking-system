@@ -48,7 +48,7 @@ dotnet build
 
 ### PRODUCT-SERVICE
 Write-Host "**************** BUILDING PRODUCT-SERVICE 7/$total ****************" -ForegroundColor Green
-Set-Location $procutServiceFolder
+Set-Location $productServiceFolder
 dotnet build
 
 ### VEHICLE-SERVICE

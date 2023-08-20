@@ -15,7 +15,7 @@
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
         },
-        "Arslan.Vms.PaymentService.DemoApp": {
+        "Arslan.Vms.PaymentService": {
             "commandName": "Project",
             "launchBrowser": true,
             "applicationUrl": "https://localhost:7004",

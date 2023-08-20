@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Arslan.Vms.VehicleService.Permissions;
+using Arslan.Vms.VehicleService.Roles;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.Data;
@@ -10,7 +12,7 @@ using Volo.Abp.Uow;
 
 namespace Arslan.Vms.VehicleService.Users
 {
-	public class UserDataSeedContributor : IDataSeedContributor, ITransientDependency
+    public class UserDataSeedContributor : IDataSeedContributor, ITransientDependency
     {
         private readonly IRepository<Role, Guid> _appRoleRepository;
         private readonly IGuidGenerator _guidGenerator;

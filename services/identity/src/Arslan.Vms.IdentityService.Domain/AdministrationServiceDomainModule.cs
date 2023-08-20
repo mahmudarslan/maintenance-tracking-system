@@ -6,7 +6,7 @@ namespace Arslan.Vms.IdentityService;
 [DependsOn(
 typeof(AbpDddDomainModule),
     typeof(IdentityServiceDomainSharedModule),
-        typeof(AbpAuditLoggingDomainModule
+        typeof(AbpAuditLoggingDomainModule)
 )]
 public class IdentityServiceDomainModule : AbpModule
 {

@@ -1,20 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Volo.Abp.AuditLogging.EntityFrameworkCore;
-using Volo.Abp.AuditLogging;
-using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
-using Volo.Abp.BlobStoring.Database;
-using Volo.Abp.Data;
-using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.PermissionManagement;
-using Volo.Abp.SettingManagement;
-using Volo.Abp.SettingManagement.EntityFrameworkCore;
-using Volo.Abp.PermissionManagement.EntityFrameworkCore;
-using Arslan.Vms.IdentityService.Companies;
-using Arslan.Vms.IdentityService.Users;
-using Arslan.Vms.IdentityService.Files;
-using Arslan.Vms.IdentityService.Addresses;
+﻿using Arslan.Vms.IdentityService.Addresses;
 using Arslan.Vms.IdentityService.Addresses.AddressTypes;
 using Arslan.Vms.IdentityService.Addresses.Version;
+using Arslan.Vms.IdentityService.Companies;
+using Arslan.Vms.IdentityService.Files;
+using Arslan.Vms.IdentityService.Users;
+using Microsoft.EntityFrameworkCore;
+using Volo.Abp.AuditLogging;
+using Volo.Abp.Data;
+using Volo.Abp.EntityFrameworkCore;
 
 namespace Arslan.Vms.IdentityService.EntityFrameworkCore;
 
@@ -30,10 +23,6 @@ namespace Arslan.Vms.IdentityService.EntityFrameworkCore;
 [ConnectionStringName(IdentityServiceDbProperties.ConnectionStringName)]
 public class IdentityServiceDbContext
     : AbpDbContext<IdentityServiceDbContext>,
-    IPermissionManagementDbContext,
-    ISettingManagementDbContext,
-    IAuditLoggingDbContext,
-    IBlobStoringDbContext,
     IIdentityServiceDbContext
 {
     public IdentityServiceDbContext(DbContextOptions<IdentityServiceDbContext> options)
@@ -42,11 +31,7 @@ public class IdentityServiceDbContext
 
     }
 
-    public DbSet<PermissionGrant> PermissionGrants { get; set; }
-    public DbSet<Setting> Settings { get; set; }
     public DbSet<AuditLog> AuditLogs { get; set; }
-    public DbSet<DatabaseBlobContainer> BlobContainers { get; set; }
-    public DbSet<DatabaseBlob> Blobs { get; set; }
 
     #region Address
     public DbSet<Address> Address { get; set; }
@@ -81,10 +66,5 @@ public class IdentityServiceDbContext
         base.OnModelCreating(builder);
 
         builder.ConfigureIdentityService();
-
-        builder.ConfigurePermissionManagement();
-        builder.ConfigureSettingManagement();
-        builder.ConfigureAuditLogging();
-        builder.ConfigureBlobStoring();
     }
 }

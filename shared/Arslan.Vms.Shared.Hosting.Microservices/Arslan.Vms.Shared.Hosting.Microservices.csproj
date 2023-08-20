@@ -5,6 +5,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.aspnetcore.multitenancy\7.3.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.MultiTenancy.abppkg.json" />
+	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.http.client.identitymodel.web\7.3.2\contentFiles\any\net7.0\Volo.Abp.Http.Client.IdentityModel.Web.abppkg.analyze.json" />
+	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.http.client.identitymodel.web\7.3.2\contentFiles\any\net7.0\Volo.Abp.Http.Client.IdentityModel.Web.abppkg.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="7.0.8" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.8" />
 		<PackageReference Include="DistributedLock.Redis" Version="1.0.2" />

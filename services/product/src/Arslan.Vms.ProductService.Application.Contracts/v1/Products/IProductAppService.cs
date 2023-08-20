@@ -1,13 +1,12 @@
-﻿using DevExtreme.AspNet.Data.ResponseModel;
-using Microsoft.AspNetCore.Mvc;
+﻿using Arslan.Vms.ProductService.v1.Products.Dtos;
+using DevExtreme.AspNet.Data.ResponseModel;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Arslan.Vms.ProductService.v1.Products.Dtos;
 
 namespace Arslan.Vms.ProductService.v1.Products
 {
-    public interface IProductAppService
+	public interface IProductAppService
     {
         Task<ProductDto> CreateAsync(CreateProductDto input);
         Task<ProductDto> UpdateAsync(Guid id, UpdateProductDto input);

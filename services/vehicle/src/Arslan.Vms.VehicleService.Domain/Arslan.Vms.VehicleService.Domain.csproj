@@ -8,6 +8,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Users\UserDataSeedContributor.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Volo.Abp.BlobStoring" Version="7.3.2" />
 		<PackageReference Include="Volo.Abp.Emailing" Version="7.3.2" />
 		<PackageReference Include="Volo.Abp.BackgroundJobs.Domain" Version="7.3.2" />

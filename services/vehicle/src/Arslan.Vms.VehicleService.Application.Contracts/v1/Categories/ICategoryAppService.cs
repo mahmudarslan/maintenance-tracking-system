@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Arslan.Vms.VehicleService.v1.Categories
 {
-    public interface ICategoryAppService
+	public interface ICategoryAppService
     {
         Task<CategoryDto> CreateAsync(CreateCategoryDto values);
         Task<CategoryDto> UpdateAsync(Guid id, UpdateCategoryDto input);

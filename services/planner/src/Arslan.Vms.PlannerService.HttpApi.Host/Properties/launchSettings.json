@@ -15,7 +15,7 @@
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
         },
-        "Arslan.Vms.PlannerService.DemoApp": {
+        "Arslan.Vms.PlannerService": {
             "commandName": "Project",
             "launchBrowser": true,
             "applicationUrl": "https://localhost:7003",

@@ -37,4 +37,11 @@
 		<None Remove="Logs\**" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.aspnetcore.mvc.ui.multitenancy\7.3.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.abppkg.analyze.json" />
+	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.aspnetcore.mvc.ui.multitenancy\7.3.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.abppkg.json" />
+	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.http.client.identitymodel.web\7.3.2\contentFiles\any\net7.0\Volo.Abp.Http.Client.IdentityModel.Web.abppkg.analyze.json" />
+	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.http.client.identitymodel.web\7.3.2\contentFiles\any\net7.0\Volo.Abp.Http.Client.IdentityModel.Web.abppkg.json" />
+	</ItemGroup>
+
 </Project>

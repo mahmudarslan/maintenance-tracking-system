@@ -9,7 +9,7 @@ public class VehicleServicePermissionDefinitionProvider : PermissionDefinitionPr
 {
     public override void Define(IPermissionDefinitionContext context)
     {
-        var baseGroup = context.AddGroup(VehicleServicePermissions.GroupName, L("Permission:Base"), MultiTenancySides.Both);
+        var baseGroup = context.AddGroup(VehicleServicePermissions.GroupName, L("Permission:Base"));
 
         var vehilceManagement = baseGroup.AddPermission(VehicleServicePermissions.Vehicle.Default, L("Permission:VehicleManagement"), MultiTenancySides.Both, isEnabled: true);
         vehilceManagement.AddChild(VehicleServicePermissions.Vehicle.Create, L("Permission:Create"), MultiTenancySides.Both, isEnabled: true);
