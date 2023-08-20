@@ -18,5 +18,13 @@ public class PaymentServiceEntityFrameworkCoreModule : AbpModule
                  * options.AddRepository<Question, EfCoreQuestionRepository>();
                  */
         });
-    }
+
+		Configure<AbpDbContextOptions>(options =>
+		{
+			options.Configure<PaymentServiceDbContext>(c =>
+			{
+				c.UseSqlServer();
+			});
+		});
+	}
 }

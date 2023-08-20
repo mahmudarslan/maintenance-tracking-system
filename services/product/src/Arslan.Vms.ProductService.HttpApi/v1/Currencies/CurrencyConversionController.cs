@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Arslan.Vms.ProductService.v1.Currencies
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsCore")]
     [Area("Base")]
     [ControllerName("Currency")]
-    [Route("rest/api/latest/vms/base/currencyConversion")]
-    //[ApiVersion("1.0")]
+    [Route("product/v{version:apiVersion}/currencyConversion")]
     public class CurrencyConversionController : ProductServiceController, ICurrencyConversionAppService
     {
         private readonly ICurrencyConversionAppService _currencyConversionAppService;

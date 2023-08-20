@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Arslan.Vms.ProductService.v1.Vendors
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsIdentity")]
     [Area("Base")]
     [ControllerName("Vendor")]
-    [Route("rest/api/latest/vms/base/vendor")]
-    //[ApiVersion("1.0")]
+    [Route("product/v{version:apiVersion}/vendor")]
     public class VendorController : ProductServiceController, IVendorAppService
     {
         protected IVendorAppService _vendorAppService { get; }

@@ -20,8 +20,8 @@ public class ArslanVmsWebGatewayModule : AbpModule
 
         SwaggerConfigurationHelper.ConfigureWithAuth(
             context: context,
-            authority: configuration["AuthServer:Authority"],
-            scopes: new
+			configuration: configuration,
+			scopes: new
                 Dictionary<string, string> /* Requested scopes for authorization code request and descriptions for swagger UI only */
                 {
                     {"AdministrationService", "Administration Service API"},
@@ -32,8 +32,7 @@ public class ArslanVmsWebGatewayModule : AbpModule
                     {"ProductService", "Product Service API"},
                     {"OrderingService", "Ordering Service API"},
                     {"VehicleService", "Vehicle Service API"},
-                },
-            apiTitle: "Web Gateway"
+                }
         );
 
         context.Services.AddCors(options =>

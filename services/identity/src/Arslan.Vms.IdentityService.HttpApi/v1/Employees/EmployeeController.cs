@@ -10,12 +10,11 @@ using System.Threading.Tasks;
 
 namespace Arslan.Vms.IdentityService.v1.Employees
 {
+	[ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsIdentity")]
     [Area("Base")]
     [ControllerName("Employee")]
-    [Route("rest/api/latest/vms/base/employee")]
-    //[ApiVersion("1.0")]
+    [Route("identity/v{version:apiVersion}/base/employee")]
     public class IdentityEmployeeController : IdentityServiceController, IEmployeeAppService
     {
         protected IEmployeeAppService _employeeAppService { get; }

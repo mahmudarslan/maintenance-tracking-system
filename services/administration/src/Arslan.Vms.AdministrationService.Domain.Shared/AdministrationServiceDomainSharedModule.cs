@@ -1,20 +1,24 @@
-﻿using Volo.Abp.Modularity;
+﻿using Arslan.Vms.AdministrationService.Localization;
+using Volo.Abp.AuditLogging;
+using Volo.Abp.FeatureManagement;
 using Volo.Abp.Localization;
-using Arslan.Vms.AdministrationService.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
-using Volo.Abp.Validation;
-using Volo.Abp.Validation.Localization;
-using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.SettingManagement;
-using Volo.Abp.AuditLogging;
+using Volo.Abp.TenantManagement;
+using Volo.Abp.Validation.Localization;
+using Volo.Abp.VirtualFileSystem;
 
 namespace Arslan.Vms.AdministrationService;
 [DependsOn(
-    typeof(AbpPermissionManagementDomainSharedModule),
-    typeof(AbpSettingManagementDomainSharedModule),
-    typeof(AbpAuditLoggingDomainSharedModule)
-    )]
+	typeof(AbpAuditLoggingDomainSharedModule),
+	typeof(AbpFeatureManagementDomainSharedModule),
+	typeof(AbpPermissionManagementDomainSharedModule),
+	typeof(AbpSettingManagementDomainSharedModule),
+	typeof(AbpTenantManagementDomainSharedModule)
+
+	)]
 public class AdministrationServiceDomainSharedModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)

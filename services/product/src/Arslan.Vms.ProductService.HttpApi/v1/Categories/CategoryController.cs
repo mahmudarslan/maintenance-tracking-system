@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 
 namespace Arslan.Vms.ProductService.v1.Categories
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsInventory")]
     [Area("Base")]
     [ControllerName("Category")]
-    [Route("rest/api/latest/vms/base/product/category")]
-    //[ApiVersion("1.0")]
+    [Route("product/v{version:apiVersion}/category")]
     public class CategoryController : ProductServiceController, ICategoryAppService
     {
         protected ICategoryAppService _productCategoryAppService { get; }

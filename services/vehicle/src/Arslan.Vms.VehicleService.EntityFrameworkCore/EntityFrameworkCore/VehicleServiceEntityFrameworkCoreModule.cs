@@ -12,11 +12,18 @@ public class VehicleServiceEntityFrameworkCoreModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        context.Services.AddAbpDbContext<VehicleServiceDbContext>(options =>
-        {
-                /* Add custom repositories here. Example:
-                 * options.AddRepository<Question, EfCoreQuestionRepository>();
-                 */
-        });
-    }
+		context.Services.AddAbpDbContext<VehicleServiceDbContext>(options =>
+		{
+			options.AddDefaultRepositories(includeAllEntities: false);
+		});
+
+
+		Configure<AbpDbContextOptions>(options =>
+		{
+			options.Configure<VehicleServiceDbContext>(c =>
+			{
+				c.UseSqlServer();
+			});
+		});
+	}
 }

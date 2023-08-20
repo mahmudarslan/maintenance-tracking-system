@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Arslan.Vms.ProductService.v1.DocumentNoFormats
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsCore")]
     [Area("Base")]
     [ControllerName("DocumentFormats")]
-    [Route("rest/api/latest/vms/base/documentNoFormats")]
-    //[ApiVersion("1.0")]
+    [Route("product/v{version:apiVersion}/documentNoFormats")]
     public class DocumentNoFormatController : ProductServiceController, IDocumentNoFormatAppService
     {
         private readonly IDocumentNoFormatAppService _documentNoFormatAppService;

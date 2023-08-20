@@ -315,3 +315,5 @@ commercial/aspnet-core/applications/src/Arslan.Vms.HttpApi.Host/wwwroot/uploads
  
 **/VmsUploads/** 
 anuglar-ngx-admin/.angular/*
+/apps/anuglar/.angular/cache/13.3.10/babel-webpack
+/apps/anuglar/.angular/cache/13.3.10/angular-webpack/ce3b0cc87806f70a2ea82e275dab6d8620f779ab

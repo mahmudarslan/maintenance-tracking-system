@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Arslan.Vms.ProductService.v1.Taxes
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsCore")]
     [Area("Base")]
     [ControllerName("TaxingScheme")]
-    [Route("rest/api/latest/vms/base/taxingScheme")]
-    //[ApiVersion("1.0")]
+    [Route("product/v{version:apiVersion}/taxingScheme")]
     public class TaxingSchemeController : ProductServiceController, ITaxingSchemeAppService
     {
         private readonly ITaxingSchemeAppService _taxSchemeAppService;

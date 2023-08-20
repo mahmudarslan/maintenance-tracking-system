@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Arslan.Vms.ProductService.v1.Locations
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsInventory")]
     [Area("Base")]
     [ControllerName("Location")]
-    [Route("rest/api/latest/vms/base/location")]
-    //[ApiVersion("1.0")]
+    [Route("product/v{version:apiVersion}/location")]
     public class LocationController : ProductServiceController, ILocationAppService
     {
         protected ILocationAppService _locationAppService { get; }

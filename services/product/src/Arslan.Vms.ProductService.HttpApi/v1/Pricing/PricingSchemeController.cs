@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Arslan.Vms.ProductService.v1.Pricing
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsCore")]
     [Area("Base")]
     [ControllerName("PricingScheme")]
-    [Route("rest/api/latest/vms/base/pricingScheme")]
-    //[ApiVersion("1.0")]
+    [Route("product/v{version:apiVersion}/pricingScheme")]
     public class PricingSchemeController : ProductServiceController, IPricingSchemeAppService
     {
         private readonly IPricingSchemeAppService _priceSchemeAppService;

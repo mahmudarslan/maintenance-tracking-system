@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Arslan.Vms.VehicleService.v1.VehicleTypes
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsIdentity")]
     [Area("Base")]
     [ControllerName("VehicleType")]
-    [Route("rest/api/latest/vms/base/vehicleType")]
-    //[ApiVersion("1.0")]
+    [Route("vehicle/v{version:apiVersion}/vehicleType")]
     public class VehicleTypeController : VehicleServiceController, IVehicleTypeAppService
     {
         protected IVehicleTypeAppService _vehicleAppService { get; }

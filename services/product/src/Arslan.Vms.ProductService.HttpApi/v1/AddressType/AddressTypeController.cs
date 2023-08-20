@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Arslan.Vms.ProductService.v1.AddressType
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsIdentity")]
     [Area("Base")]
     [ControllerName("AddressType")]
-    [Route("rest/api/latest/vms/base/address")]
-    //[ApiVersion("1.0")]
+    [Route("product/v{version:apiVersion}/address")]
     public class AddressTypeController : ProductServiceController, IAddressTypeAppService
     {
         protected IAddressTypeAppService _addressTypeAppService { get; }

@@ -7,12 +7,11 @@ using Volo.Abp;
 
 namespace Arslan.Vms.VehicleService.v1.DocumentNoFormats
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsCore")]
     [Area("Base")]
     [ControllerName("DocumentFormats")]
-    [Route("rest/api/latest/vms/base/documentNoFormats")]
-    //[ApiVersion("1.0")]
+    [Route("vehicle/v{version:apiVersion}/documentNoFormats")]
     public class DocumentNoFormatController : VehicleServiceController, IDocumentNoFormatAppService
     {
         private readonly IDocumentNoFormatAppService _documentNoFormatAppService;

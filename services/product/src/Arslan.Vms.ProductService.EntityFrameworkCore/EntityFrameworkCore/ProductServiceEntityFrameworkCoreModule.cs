@@ -27,5 +27,13 @@ public class ProductServiceEntityFrameworkCoreModule : AbpModule
             options.AddRepository<Checkpoint, CheckpointRepository>();
             options.AddRepository<Balances, BalanceRepository>();
         });
-    }
+
+		Configure<AbpDbContextOptions>(options =>
+		{
+			options.Configure<ProductServiceDbContext>(c =>
+			{
+				c.UseSqlServer();
+			});
+		});
+	}
 }

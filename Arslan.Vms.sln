@@ -35,9 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.ProductService.H
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.VehicleService.HttpApi.Host", "services\vehicle\src\Arslan.Vms.VehicleService.HttpApi.Host\Arslan.Vms.VehicleService.HttpApi.Host.csproj", "{8F7BE9C4-BBE9-438E-B97D-514BD0231E19}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Omwo.Ftms.IdentityService.HttpApi.Host", "..\..\_bitbucket\omwo\ftms-api-v2\services\identity\src\Omwo.Ftms.IdentityService.HttpApi.Host\Omwo.Ftms.IdentityService.HttpApi.Host.csproj", "{C0ACFA5E-C053-46CF-90D4-2E33E123F671}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.WebGateway", "gateways\web\src\Arslan.Vms.WebGateway\Arslan.Vms.WebGateway.csproj", "{AEDFF604-3C7A-46CB-9152-933C98634FD5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.IdentityService.HttpApi.Host", "services\identity\src\Arslan.Vms.IdentityService.HttpApi.Host\Arslan.Vms.IdentityService.HttpApi.Host.csproj", "{AB34DB23-ADF6-4191-8366-91D7047ECA71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,14 +93,14 @@ Global
 		{8F7BE9C4-BBE9-438E-B97D-514BD0231E19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F7BE9C4-BBE9-438E-B97D-514BD0231E19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F7BE9C4-BBE9-438E-B97D-514BD0231E19}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C0ACFA5E-C053-46CF-90D4-2E33E123F671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0ACFA5E-C053-46CF-90D4-2E33E123F671}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0ACFA5E-C053-46CF-90D4-2E33E123F671}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0ACFA5E-C053-46CF-90D4-2E33E123F671}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AEDFF604-3C7A-46CB-9152-933C98634FD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AEDFF604-3C7A-46CB-9152-933C98634FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEDFF604-3C7A-46CB-9152-933C98634FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEDFF604-3C7A-46CB-9152-933C98634FD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB34DB23-ADF6-4191-8366-91D7047ECA71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB34DB23-ADF6-4191-8366-91D7047ECA71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB34DB23-ADF6-4191-8366-91D7047ECA71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB34DB23-ADF6-4191-8366-91D7047ECA71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,8 +118,8 @@ Global
 		{E3474D80-BD96-4C92-8684-22EDDA7ECEA3} = {F415FFFD-E52D-4EBE-98DC-067C1EFFFFE3}
 		{13593DD5-21EF-49AA-A411-0F95B4933066} = {F415FFFD-E52D-4EBE-98DC-067C1EFFFFE3}
 		{8F7BE9C4-BBE9-438E-B97D-514BD0231E19} = {F415FFFD-E52D-4EBE-98DC-067C1EFFFFE3}
-		{C0ACFA5E-C053-46CF-90D4-2E33E123F671} = {F415FFFD-E52D-4EBE-98DC-067C1EFFFFE3}
 		{AEDFF604-3C7A-46CB-9152-933C98634FD5} = {1484E912-DCF3-4568-A72C-4C7622104DB8}
+		{AB34DB23-ADF6-4191-8366-91D7047ECA71} = {F415FFFD-E52D-4EBE-98DC-067C1EFFFFE3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {26F82565-C6A4-439D-93A4-3251E3E7D5B0}

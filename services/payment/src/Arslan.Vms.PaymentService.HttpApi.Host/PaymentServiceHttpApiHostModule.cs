@@ -1,9 +1,12 @@
 using Arslan.Vms.PaymentService.EntityFrameworkCore;
+using Arslan.Vms.Shared.Hosting.AspNetCore;
 using Arslan.Vms.Shared.Hosting.Microservices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
@@ -33,115 +36,56 @@ namespace Arslan.Vms.PaymentService;
 public class PaymentServiceHttpApiHostModule : AbpModule
 {
 
-    public override void ConfigureServices(ServiceConfigurationContext context)
-    {
-        var hostingEnvironment = context.Services.GetHostingEnvironment();
-        var configuration = context.Services.GetConfiguration();
+	public override void ConfigureServices(ServiceConfigurationContext context)
+	{
+		var hostingEnvironment = context.Services.GetHostingEnvironment();
+		var configuration = context.Services.GetConfiguration();
 
-        Configure<AbpDbContextOptions>(options =>
-        {
-            options.UseSqlServer();
-        });
+		JwtBearerConfigurationHelper.Configure(context, "PaymentService");
 
-        Configure<AbpMultiTenancyOptions>(options =>
-        {
-            options.IsEnabled = MultiTenancyConsts.IsEnabled;
-        });
+		SwaggerConfigurationHelper.ConfigureWithAuth(
+			context: context,
+			scopes: new
+				Dictionary<string, string> /* Requested scopes for authorization code request and descriptions for swagger UI only */
+                {
+					{"PaymentService", "Payment Service API"}
+			},
+			"Payment Service"
+		);
 
-        if (hostingEnvironment.IsDevelopment())
-        {
-            Configure<AbpVirtualFileSystemOptions>(options =>
-            {
-                options.FileSets.ReplaceEmbeddedByPhysical<PaymentServiceDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Arslan.Vms.PaymentService.Domain.Shared", Path.DirectorySeparatorChar)));
-                options.FileSets.ReplaceEmbeddedByPhysical<PaymentServiceDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Arslan.Vms.PaymentService.Domain", Path.DirectorySeparatorChar)));
-                options.FileSets.ReplaceEmbeddedByPhysical<PaymentServiceApplicationContractsModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Arslan.Vms.PaymentService.Application.Contracts", Path.DirectorySeparatorChar)));
-                options.FileSets.ReplaceEmbeddedByPhysical<PaymentServiceApplicationModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Arslan.Vms.PaymentService.Application", Path.DirectorySeparatorChar)));
-            });
-        }
+		Configure<AbpLocalizationOptions>(options =>
+		{
+			options.Languages.Add(new LanguageInfo("en", "en", "English"));
+			options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe"));
+		});
 
-        context.Services.AddAbpSwaggerGenWithOAuth(
-            configuration["AuthServer:Authority"],
-            new Dictionary<string, string>
-            {
-                {"PaymentService", "PaymentService API"}
-            },
-            options =>
-            {
-                options.SwaggerDoc("v1", new OpenApiInfo {Title = "PaymentService API", Version = "v1"});
-                options.DocInclusionPredicate((docName, description) => true);
-                options.CustomSchemaIds(type => type.FullName);
-            });
+		context.Services.AddCors(options =>
+		{
+			options.AddDefaultPolicy(builder =>
+			{
+				builder
+					.WithOrigins(
+						configuration["App:CorsOrigins"]
+							.Split(",", StringSplitOptions.RemoveEmptyEntries)
+							.Select(o => o.Trim().RemovePostFix("/"))
+							.ToArray()
+					)
+					.WithAbpExposedHeaders()
+					.SetIsOriginAllowedToAllowWildcardSubdomains()
+					.AllowAnyHeader()
+					.AllowAnyMethod()
+					.AllowCredentials();
+			});
+		});
+	}
 
-        Configure<AbpLocalizationOptions>(options =>
-        {
-            options.Languages.Add(new LanguageInfo("ar", "ar", "العربية"));
-            options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
-            options.Languages.Add(new LanguageInfo("en", "en", "English"));
-            options.Languages.Add(new LanguageInfo("en-GB", "en-GB", "English (UK)"));
-            options.Languages.Add(new LanguageInfo("fi", "fi", "Finnish"));
-            options.Languages.Add(new LanguageInfo("fr", "fr", "Français"));
-            options.Languages.Add(new LanguageInfo("hi", "hi", "Hindi", "in"));
-            options.Languages.Add(new LanguageInfo("is", "is", "Icelandic", "is"));
-            options.Languages.Add(new LanguageInfo("it", "it", "Italiano", "it"));
-            options.Languages.Add(new LanguageInfo("hu", "hu", "Magyar"));
-            options.Languages.Add(new LanguageInfo("pt-BR", "pt-BR", "Português"));
-            options.Languages.Add(new LanguageInfo("ro-RO", "ro-RO", "Română"));
-            options.Languages.Add(new LanguageInfo("ru", "ru", "Русский"));
-            options.Languages.Add(new LanguageInfo("sk", "sk", "Slovak"));
-            options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe"));
-            options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
-            options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
-            options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch"));
-            options.Languages.Add(new LanguageInfo("es", "es", "Español"));
-            options.Languages.Add(new LanguageInfo("el", "el", "Ελληνικά"));
-        });
-
-        context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                options.Authority = configuration["AuthServer:Authority"];
-                options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                options.Audience = "PaymentService";
-            });
-
-        Configure<AbpDistributedCacheOptions>(options =>
-        {
-            options.KeyPrefix = "PaymentService:";
-        });
-
-        var dataProtectionBuilder = context.Services.AddDataProtection().SetApplicationName("PaymentService");
-        if (!hostingEnvironment.IsDevelopment())
-        {
-            var redis = ConnectionMultiplexer.Connect(configuration["Redis:Configuration"]);
-            dataProtectionBuilder.PersistKeysToStackExchangeRedis(redis, "PaymentService-Protection-Keys");
-        }
-
-        context.Services.AddCors(options =>
-        {
-            options.AddDefaultPolicy(builder =>
-            {
-                builder
-                    .WithOrigins(
-                        configuration["App:CorsOrigins"]
-                            .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                            .Select(o => o.RemovePostFix("/"))
-                            .ToArray()
-                    )
-                    .WithAbpExposedHeaders()
-                    .SetIsOriginAllowedToAllowWildcardSubdomains()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowCredentials();
-            });
-        });
-    }
-
-    public override void OnApplicationInitialization(ApplicationInitializationContext context)
+	public override void OnApplicationInitialization(ApplicationInitializationContext context)
     {
         var app = context.GetApplicationBuilder();
         var env = context.GetEnvironment();
+		var configuration = context.ServiceProvider.GetRequiredService<IConfiguration>();
 
-        if (env.IsDevelopment())
+		if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
         }
@@ -163,15 +107,19 @@ public class PaymentServiceHttpApiHostModule : AbpModule
         app.UseAbpRequestLocalization();
         app.UseAuthorization();
         app.UseSwagger();
-        app.UseAbpSwaggerUI(options =>
-        {
-            options.SwaggerEndpoint("/swagger/v1/swagger.json", "Support APP API");
-
-            var configuration = context.GetConfiguration();
-            options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
-            options.OAuthScopes("PaymentService");
-        });
-        app.UseAuditing();
+		app.UseSwaggerUI(options =>
+		{
+			//options.SwaggerEndpoint(configuration["Swagger:Endpoint"], $"{env.EnvironmentName} - {version}");
+			options.OAuthClientId(configuration["Swagger:SwaggerClientId"]);
+			options.OAuthClientSecret(configuration["Swagger:SwaggerClientSecret"]);
+			var provider = app.ApplicationServices.GetRequiredService<IApiVersionDescriptionProvider>();
+			// build a swagger endpoint for each discovered API version
+			foreach (var description in provider.ApiVersionDescriptions)
+			{
+				options.SwaggerEndpoint($"{configuration["App:PathBase"]}/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+			}
+		});
+		app.UseAuditing();
         app.UseAbpSerilogEnrichers();
         app.UseConfiguredEndpoints();
     }

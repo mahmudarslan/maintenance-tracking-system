@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace Arslan.Vms.OrderService.v1.SalesOrders
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsOrders")]
     [Area("Orders")]
     [ControllerName("SalesOrder")]
-    [Route("rest/api/latest/vms/orders/sales")]
-    //[ApiVersion("1.0")]
+    [Route("order/v{version:apiVersion}/sales")]
+
     public class SalesOrderController : OrderServiceController, ISalesOrderAppService
     {
         protected ISalesOrderAppService _salesOrderAppService { get; }

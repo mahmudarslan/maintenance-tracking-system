@@ -17,7 +17,7 @@ public class Program
             var builder = WebApplication.CreateBuilder(args);
             builder.Host
                 .AddAppSettingsSecretsJson()
-                .AddYarpJson()
+                //.AddYarpJson()
                 .UseAutofac()
                 .UseSerilog();
 

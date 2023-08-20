@@ -14,12 +14,11 @@ using Volo.Abp.MultiTenancy;
 
 namespace Arslan.Vms.OrderService.v1.Files
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsCore")]
     [Area("Base")]
     [ControllerName("File")]
-    [Route("rest/api/latest/vms/base/file")]
-    //[ApiVersion("1.0")]
+    [Route("order/v{version:apiVersion}/base/file")]
     public class FileController : AbpController
     {
         private IWebHostEnvironment _hostingEnvironment;

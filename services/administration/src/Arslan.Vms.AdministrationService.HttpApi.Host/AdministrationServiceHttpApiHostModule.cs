@@ -4,21 +4,18 @@ using Arslan.Vms.Shared.Hosting.AspNetCore;
 using Arslan.Vms.Shared.Hosting.Microservices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Logging;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp;
-using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
-using Volo.Abp.Http.Client.IdentityModel.Web;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
-using Volo.Abp.VirtualFileSystem;
 
 namespace Arslan.Vms.AdministrationService;
 
@@ -26,9 +23,7 @@ namespace Arslan.Vms.AdministrationService;
     typeof(AdministrationServiceHttpApiModule),
     typeof(AdministrationServiceApplicationModule),
     typeof(AdministrationServiceEntityFrameworkCoreModule),
-    typeof(ArslanVmsSharedHostingMicroservicesModule),
-    typeof(AbpHttpClientIdentityModelWebModule),
-    typeof(AbpAspNetCoreMvcUiMultiTenancyModule)
+    typeof(ArslanVmsSharedHostingMicroservicesModule)
     )]
 public class AdministrationServiceHttpApiHostModule : AbpModule
 {
@@ -42,7 +37,6 @@ public class AdministrationServiceHttpApiHostModule : AbpModule
 
         SwaggerConfigurationHelper.ConfigureWithAuth(
             context: context,
-            authority: configuration["AuthServer:Authority"],
             scopes: new
                 Dictionary<string, string> /* Requested scopes for authorization code request and descriptions for swagger UI only */
                 {
@@ -51,25 +45,25 @@ public class AdministrationServiceHttpApiHostModule : AbpModule
             apiTitle: "Administration Service API"
         );
 
-        if (hostingEnvironment.IsDevelopment())
-        {
-            Configure<AbpVirtualFileSystemOptions>(options =>
-            {
-                options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceDomainSharedModule>(
-                    Path.Combine(hostingEnvironment.ContentRootPath,
-                        string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Domain.Shared", Path.DirectorySeparatorChar)));
-                options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceDomainModule>(
-                    Path.Combine(hostingEnvironment.ContentRootPath,
-                        string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Domain", Path.DirectorySeparatorChar)));
-                options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceApplicationContractsModule>(
-                    Path.Combine(hostingEnvironment.ContentRootPath,
-                        string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Application.Contracts",
-                            Path.DirectorySeparatorChar)));
-                options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceApplicationModule>(
-                    Path.Combine(hostingEnvironment.ContentRootPath,
-                        string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Application", Path.DirectorySeparatorChar)));
-            });
-        }
+        //if (hostingEnvironment.IsDevelopment())
+        //{
+        //    Configure<AbpVirtualFileSystemOptions>(options =>
+        //    {
+        //        options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceDomainSharedModule>(
+        //            Path.Combine(hostingEnvironment.ContentRootPath,
+        //                string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Domain.Shared", Path.DirectorySeparatorChar)));
+        //        options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceDomainModule>(
+        //            Path.Combine(hostingEnvironment.ContentRootPath,
+        //                string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Domain", Path.DirectorySeparatorChar)));
+        //        options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceApplicationContractsModule>(
+        //            Path.Combine(hostingEnvironment.ContentRootPath,
+        //                string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Application.Contracts",
+        //                    Path.DirectorySeparatorChar)));
+        //        options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceApplicationModule>(
+        //            Path.Combine(hostingEnvironment.ContentRootPath,
+        //                string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Application", Path.DirectorySeparatorChar)));
+        //    });
+        //}
 
         Configure<AbpLocalizationOptions>(options =>
         { 
@@ -101,8 +95,9 @@ public class AdministrationServiceHttpApiHostModule : AbpModule
     {
         var app = context.GetApplicationBuilder();
         var env = context.GetEnvironment();
+		var configuration = context.ServiceProvider.GetRequiredService<IConfiguration>();
 
-        if (env.IsDevelopment())
+		if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
 
@@ -118,14 +113,19 @@ public class AdministrationServiceHttpApiHostModule : AbpModule
         app.UseAbpClaimsMap();
         app.UseAuthorization();
         app.UseSwagger();
-        app.UseSwaggerUI(options =>
-        {
-            var configuration = context.ServiceProvider.GetRequiredService<IConfiguration>();
-            options.SwaggerEndpoint("/swagger/v1/swagger.json", "Administration Service API");
-            options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
-            // options.OAuthClientSecret(configuration["AuthServer:SwaggerClientSecret"]);
-        });
-        app.UseAbpSerilogEnrichers();
+		app.UseSwaggerUI(options =>
+		{
+			//options.SwaggerEndpoint(configuration["Swagger:Endpoint"], $"{env.EnvironmentName} - {version}");
+			options.OAuthClientId(configuration["Swagger:SwaggerClientId"]);
+			options.OAuthClientSecret(configuration["Swagger:SwaggerClientSecret"]);
+			var provider = app.ApplicationServices.GetRequiredService<IApiVersionDescriptionProvider>();
+			// build a swagger endpoint for each discovered API version
+			foreach (var description in provider.ApiVersionDescriptions)
+			{
+				options.SwaggerEndpoint($"{configuration["App:PathBase"]}/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+			}
+		});
+		app.UseAbpSerilogEnrichers();
         app.UseAuditing();
         app.UseUnitOfWork();
         app.UseConfiguredEndpoints();

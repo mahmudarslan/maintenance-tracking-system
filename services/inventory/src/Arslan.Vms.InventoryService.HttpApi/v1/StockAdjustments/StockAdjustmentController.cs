@@ -1,5 +1,4 @@
 ﻿using Arslan.Vms.Inventory;
-using Arslan.Vms.InventoryService.v1;
 using Arslan.Vms.InventoryService.v1.CurrentStocks.Dtos;
 using Arslan.Vms.InventoryService.v1.StockAdjustments.Dtos;
 using DevExtreme.AspNet.Data.ResponseModel;
@@ -7,16 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Volo.Abp;
 
 namespace Arslan.Vms.InventoryService.v1.StockAdjustments
 {
+	[ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsInventory")]
     [Area("Inventory")]
     [ControllerName("StockAdjustment")]
-    [Route("rest/api/latest/vms/inventory/stockadjustment")]
-    //[ApiVersion("1.0")]
+    [Route("inventory/v{version:apiVersion}/stockadjustment")]
+
     public class StockAdjustmentController : InventoryController, IStockAdjustmentAppService
     {
         protected IStockAdjustmentAppService _stockAdjustmentAppService { get; }

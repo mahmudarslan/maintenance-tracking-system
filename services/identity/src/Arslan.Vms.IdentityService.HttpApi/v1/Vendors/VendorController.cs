@@ -4,16 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Volo.Abp;
 
 namespace Arslan.Vms.IdentityService.v1.Vendors
 {
+	[ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsIdentity")]
     [Area("Base")]
     [ControllerName("Vendor")]
-    [Route("rest/api/latest/vms/base/vendor")]
-    //[ApiVersion("1.0")]
+    [Route("identity/v{version:apiVersion}/vms/base/vendor")]
     public class VendorController : IdentityServiceController, IVendorAppService
     {
         protected IVendorAppService _vendorAppService { get; }

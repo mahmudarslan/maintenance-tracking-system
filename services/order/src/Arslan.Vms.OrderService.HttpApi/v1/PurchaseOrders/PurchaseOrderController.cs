@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace Arslan.Vms.OrderService.v1.PurchaseOrders
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    //[RemoteService(Name = "ArslanVmsOrders")]
     [Area("Order")]
     [ControllerName("PurchaseOrder")]
-    [Route("rest/api/latest/vms/orders/purchase")]
-    //[ApiVersion("1.0")]
+    [Route("order/v{version:apiVersion}/purchase")]
     public class PurchaseOrderController : OrderServiceController, IPurchaseOrderAppService
     {
         protected IPurchaseOrderAppService _purchaseOrderAppService { get; }

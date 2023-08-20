@@ -6,32 +6,31 @@ using System.Threading.Tasks;
 
 namespace Arslan.Vms.IdentityService.v1.Companies
 {
-    [ApiController]
-    //[RemoteService(Name = "ArslanVmsIdentity")]
-    [Area("Base")]
-    [ControllerName("Company")]
-    [Route("rest/api/latest/vms/base/company")]
-    //[ApiVersion("1.0")]
-    public class IdentityCompanyController : IdentityServiceController, ICompanyAppService
-    {
-        protected ICompanyAppService _companyAppService { get; }
+	[ApiVersion("1.0")]
+	[ApiController]
+	[Area("Base")]
+	[ControllerName("Company")]
+	[Route("identity/v{version:apiVersion}/base/company")]
+	public class IdentityCompanyController : IdentityServiceController, ICompanyAppService
+	{
+		protected ICompanyAppService _companyAppService { get; }
 
-        public IdentityCompanyController(ICompanyAppService companyAppService)
-        {
-            _companyAppService = companyAppService;
-        }
+		public IdentityCompanyController(ICompanyAppService companyAppService)
+		{
+			_companyAppService = companyAppService;
+		}
 
 
-        [HttpPut]
-        public virtual Task<CompanyDto> UpdateAsync(CreateUpdateCompanyDto input)
-        {
-            return _companyAppService.UpdateAsync(input);
-        }
+		[HttpPut]
+		public virtual Task<CompanyDto> UpdateAsync(CreateUpdateCompanyDto input)
+		{
+			return _companyAppService.UpdateAsync(input);
+		}
 
-        [HttpGet]
-        public virtual Task<CompanyDto> GetAsync(Guid id)
-        {
-            return _companyAppService.GetAsync(id);
-        }
-    }
+		[HttpGet]
+		public virtual Task<CompanyDto> GetAsync(Guid id)
+		{
+			return _companyAppService.GetAsync(id);
+		}
+	}
 }

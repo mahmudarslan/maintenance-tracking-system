@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:45003",
-      "sslPort": 7006
+      "applicationUrl": "http://localhost:4306",
+      "sslPort": 4306
     }
   },
   "profiles": {
@@ -18,7 +18,7 @@
     "Arslan.Vms.InventoryService": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:45003",
+      "applicationUrl": "http://localhost:4306",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

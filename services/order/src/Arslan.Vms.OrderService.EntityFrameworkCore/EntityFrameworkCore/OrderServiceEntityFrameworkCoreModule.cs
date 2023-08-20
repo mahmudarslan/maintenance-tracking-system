@@ -25,5 +25,13 @@ public class OrderServiceEntityFrameworkCoreModule : AbpModule
             options.AddRepository<SalesOrder, SalesOrderRepository>();
             options.AddRepository<PurchaseOrder, PurchaseOrderRepository>();
         });
-    }
+
+		Configure<AbpDbContextOptions>(options =>
+		{
+			options.Configure<OrderServiceDbContext>(c =>
+			{
+				c.UseSqlServer();
+			});
+		});
+	}
 }
