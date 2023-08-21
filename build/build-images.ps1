@@ -8,15 +8,15 @@ $authserverFolder = Join-Path $slnFolder "apps/auth-server/src/Arslan.Vms.AuthSe
 $publicWebFolder = Join-Path $slnFolder "apps/public-web/src/Arslan.Vms.PublicWeb"
 # Gateways
 $webGatewayFolder = Join-Path $slnFolder "gateways/web/src/Arslan.Vms.WebGateway"
-$webPublicGatewayFolder = Join-Path $slnFolder "gateways/web-public/src/Arslan.Vms.WebPublicGateway"
 # Microservices
-$identityServiceFolder = Join-Path $slnFolder "services/identity/src/Arslan.Vms.IdentityService.HttpApi.Host"
 $administrationServiceFolder = Join-Path $slnFolder "services/administration/src/Arslan.Vms.AdministrationService.HttpApi.Host"
-$basketServiceFolder = Join-Path $slnFolder "services/basket/src/Arslan.Vms.BasketService"
-$catalogServiceFolder = Join-Path $slnFolder "services/catalog/src/Arslan.Vms.CatalogService.HttpApi.Host"
+$identityServiceFolder = Join-Path $slnFolder "services/identity/src/Arslan.Vms.IdentityService.HttpApi.Host"
+$inventoryServiceFolder = Join-Path $slnFolder "services/inventory/src/Arslan.Vms.InventoryService.HttpApi.Host"
+$orderServiceFolder = Join-Path $slnFolder "services/order/src/Arslan.Vms.OrderService.HttpApi.Host"
 $paymentServiceFolder = Join-Path $slnFolder "services/payment/src/Arslan.Vms.PaymentService.HttpApi.Host"
-$orderingServiceFolder = Join-Path $slnFolder "services/ordering/src/Arslan.Vms.OrderingService.HttpApi.Host"
-$cmskitServiceFolder = Join-Path $slnFolder "services/cmskit/src/Arslan.Vms.CmskitService.HttpApi.Host"
+$plannerServiceFolder = Join-Path $slnFolder "services/planner/src/Arslan.Vms.PlannerService.HttpApi.Host"
+$productServiceFolder = Join-Path $slnFolder "services/product/src/Arslan.Vms.ProductService.HttpApi.Host"
+$vehicleServiceFolder = Join-Path $slnFolder "services/vehicle/src/Arslan.Vms.VehicleService.HttpApi.Host"
 
 $total = 12
 

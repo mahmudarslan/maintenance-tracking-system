@@ -20,7 +20,6 @@ public class ArslanVmsWebGatewayModule : AbpModule
 
         SwaggerConfigurationHelper.ConfigureWithAuth(
             context: context,
-			configuration: configuration,
 			scopes: new
                 Dictionary<string, string> /* Requested scopes for authorization code request and descriptions for swagger UI only */
                 {
