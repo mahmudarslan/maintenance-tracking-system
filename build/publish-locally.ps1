@@ -2,95 +2,64 @@ param ($version='1.0.0')
 
 $currentFolder = $PSScriptRoot
 $slnFolder = Join-Path $currentFolder "../"
-# Apps
-$webAppFolder = Join-Path $slnFolder "apps/angular"
-$authserverFolder = Join-Path $slnFolder "apps/auth-server/src/Arslan.Vms.AuthServer"
-$publicWebFolder = Join-Path $slnFolder "apps/public-web/src/Arslan.Vms.PublicWeb"
 # Gateways
 $webGatewayFolder = Join-Path $slnFolder "gateways/web/src/Arslan.Vms.WebGateway"
-$webPublicGatewayFolder = Join-Path $slnFolder "gateways/web-public/src/Arslan.Vms.WebPublicGateway"
 # Microservices
-$identityServiceFolder = Join-Path $slnFolder "services/identity/src/Arslan.Vms.IdentityService.HttpApi.Host"
 $administrationServiceFolder = Join-Path $slnFolder "services/administration/src/Arslan.Vms.AdministrationService.HttpApi.Host"
-$basketServiceFolder = Join-Path $slnFolder "services/basket/src/Arslan.Vms.BasketService"
-$catalogServiceFolder = Join-Path $slnFolder "services/catalog/src/Arslan.Vms.CatalogService.HttpApi.Host"
+$identityServiceFolder = Join-Path $slnFolder "services/identity/src/Arslan.Vms.IdentityService.HttpApi.Host"
+$inventoryServiceFolder = Join-Path $slnFolder "services/inventory/src/Arslan.Vms.InventoryService.HttpApi.Host"
+$orderServiceFolder = Join-Path $slnFolder "services/order/src/Arslan.Vms.OrderService.HttpApi.Host"
 $paymentServiceFolder = Join-Path $slnFolder "services/payment/src/Arslan.Vms.PaymentService.HttpApi.Host"
-$orderingServiceFolder = Join-Path $slnFolder "services/ordering/src/Arslan.Vms.OrderingService.HttpApi.Host"
-$cmskitServiceFolder = Join-Path $slnFolder "services/cmskit/src/Arslan.Vms.CmskitService.HttpApi.Host"
+$plannerServiceFolder = Join-Path $slnFolder "services/planner/src/Arslan.Vms.PlannerService.HttpApi.Host"
+$productServiceFolder = Join-Path $slnFolder "services/product/src/Arslan.Vms.ProductService.HttpApi.Host"
+$vehicleServiceFolder = Join-Path $slnFolder "services/vehicle/src/Arslan.Vms.VehicleService.HttpApi.Host"
 
-$total = 12
-
-### Angular WEB App(WWW)
-Write-Host "*** BUILDING WEB (WWW) 1/$total ****************" -ForegroundColor Green
-Set-Location $webAppFolder
-yarn
-# ng build --prod
-npm run build:prod
-
-
-### AUTH-SERVER
-Write-Host "*** BUILDING AUTH-SERVER 2/$total ****************" -ForegroundColor Green
-Set-Location $authserverFolder
-dotnet publish -c Release
-
-
-### PUBLIC-WEB
-Write-Host "*** BUILDING WEB-PUBLIC 3/$total ****************" -ForegroundColor Green
-Set-Location $publicWebFolder
-dotnet publish -c Release
-
-### WEB-GATEWAY
-Write-Host "*** BUILDING WEB-GATEWAY 4/$total ****************" -ForegroundColor Green
-Set-Location $webGatewayFolder
-dotnet publish -c Release
-
-
-### PUBLICWEB-GATEWAY
-Write-Host "*** BUILDING WEB-PUBLIC-GATEWAY 5/$total ****************" -ForegroundColor Green
-Set-Location $webPublicGatewayFolder
-dotnet publish -c Release
-
-
-### IDENTITY-SERVICE
-Write-Host "*** BUILDING IDENTITY-SERVICE 6/$total ****************" -ForegroundColor Green
-Set-Location $identityServiceFolder
-dotnet publish -c Release
-
+$total = 9
 
 ### ADMINISTRATION-SERVICE
-Write-Host "*** BUILDING ADMINISTRATION-SERVICE 7/$total ****************" -ForegroundColor Green
+Write-Host "*** BUILDING ADMINISTRATION-SERVICE 1/$total ****************" -ForegroundColor Green
 Set-Location $administrationServiceFolder
 dotnet publish -c Release
 
-
-### BASKET-SERVICE
-Write-Host "**************** BUILDING BASKET-SERVICE 8/$total ****************" -ForegroundColor Green
-Set-Location $basketServiceFolder
+### IDENTITY-SERVICE
+Write-Host "*** BUILDING IDENTITY-SERVICE 2/$total ****************" -ForegroundColor Green
+Set-Location $identityServiceFolder
 dotnet publish -c Release
 
-
-### CATALOG-SERVICE
-Write-Host "**************** BUILDING CATALOG-SERVICE 9/$total ****************" -ForegroundColor Green
-Set-Location $catalogServiceFolder
+### INVENTORY-SERVICE
+Write-Host "**************** BUILDING INVENTORY-SERVICE 3/$total ****************" -ForegroundColor Green
+Set-Location $inventoryServiceFolder
 dotnet publish -c Release
 
+### ORDER-SERVICE
+Write-Host "**************** BUILDING ORDER-SERVICE 4/$total ****************" -ForegroundColor Green
+Set-Location $orderServiceFolder
+dotnet publish -c Release
 
 ### PAYMENT-SERVICE
-Write-Host "**************** BUILDING PAYMENT-SERVICE 10/$total ****************" -ForegroundColor Green
+Write-Host "**************** BUILDING PAYMENT-SERVICE 5/$total ****************" -ForegroundColor Green
 Set-Location $paymentServiceFolder
 dotnet publish -c Release
 
+### PLANNER-SERVICE
+Write-Host "**************** BUILDING PLANNER-SERVICE 6/$total ****************" -ForegroundColor Green
+Set-Location $plannerServiceFolder
+dotnet publish -c Release 
 
-### ORDERING-SERVICE
-Write-Host "**************** BUILDING ORDERING-SERVICE 11/$total ****************" -ForegroundColor Green
-Set-Location $orderingServiceFolder
+### PRODUCT-SERVICE
+Write-Host "**************** BUILDING PRODUCT-SERVICE 7/$total ****************" -ForegroundColor Green
+Set-Location $productServiceFolder
 dotnet publish -c Release
 
-### CMSKIT-SERVICE
-Write-Host "**************** BUILDING CMSKIT-SERVICE 12/$total ****************" -ForegroundColor Green
-Set-Location $cmskitServiceFolder
+### VEHICLE-SERVICE
+Write-Host "**************** BUILDING VEHICLE-SERVICE 8/$total ****************" -ForegroundColor Green
+Set-Location $vehicleServiceFolder
 dotnet publish -c Release
 
+### WEB-GATEWAY
+Write-Host "*** BUILDING WEB-GATEWAY 9/$total ****************" -ForegroundColor Green
+Set-Location $webGatewayFolder
+dotnet publish -c Release
 
 ### ALL COMPLETED
 Write-Host "ALL COMPLETED" -ForegroundColor Green

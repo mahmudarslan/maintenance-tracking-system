@@ -16,11 +16,21 @@
     <ProjectReference Include="..\Arslan.Vms.OrderService.HttpApi\Arslan.Vms.OrderService.HttpApi.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="DevExpress.AspNetCore.Reporting" Version="21.2.7" />
+	</ItemGroup>
+
   <ItemGroup>
     <Compile Remove="Logs\**" />
     <Content Remove="Logs\**" />
     <EmbeddedResource Remove="Logs\**" />
     <None Remove="Logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Reports\WorkorderXtraReport1.cs">
+      <SubType>XtraReport</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

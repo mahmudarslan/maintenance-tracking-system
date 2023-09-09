@@ -15,7 +15,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Arslan.Vms.OrderService.Application.Contracts\Arslan.Vms.OrderService.Application.Contracts.csproj" />
 		<ProjectReference Include="..\Arslan.Vms.OrderService.Domain\Arslan.Vms.OrderService.Domain.csproj" />
-		<PackageReference Include="DevExpress.AspNetCore.Reporting" Version="21.2.7" />
 	</ItemGroup>
 
 </Project>

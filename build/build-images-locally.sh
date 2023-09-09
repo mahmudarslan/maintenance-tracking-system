@@ -6,77 +6,49 @@ cd ../
 export currentFolder=`pwd`
 cd build/
 
-
-echo "*** BUILDING WEB (WWW) 1/${total} ****************"
-cd ${currentFolder}/apps/angular
-yarn
-# ng build --prod
-npm run build:prod
-docker build -f Dockerfile.local --force-rm -t "Arslan.Vms/app-web:${IMAGE_TAG}" .
-
-
-echo "*** BUILDING AUTH-SERVER 2/$total ****************"
-cd ${currentFolder}/apps/auth-server/src/Arslan.Vms.AuthServer
-dotnet publish -c Release
-docker build -f Dockerfile.local --force-rm -t "Arslan.Vms/app-authserver:${IMAGE_TAG}" .
-
-
-echo "*** BUILDING WEB-PUBLIC 3/$total ****************"
-cd ${currentFolder}/apps/public-web/src/Arslan.Vms.PublicWeb
-dotnet publish -c Release
-docker build -f Dockerfile.local --force-rm -t "Arslan.Vms/app-publicweb:${IMAGE_TAG}" .
-
-
-echo "*** BUILDING WEB-GATEWAY 4/$total ****************"
-cd ${currentFolder}/gateways/web/src/Arslan.Vms.WebGateway
-dotnet publish -c Release
-docker build -f Dockerfile.local --force-rm -t "Arslan.Vms/gateway-web:${IMAGE_TAG}" .
-
-
-echo "*** BUILDING WEB-PUBLIC-GATEWAY 5/$total ****************"
-cd ${currentFolder}/gateways/web-public/src/Arslan.Vms.WebPublicGateway
-dotnet publish -c Release
-docker build -f Dockerfile.local --force-rm -t "Arslan.Vms/gateway-web-public:${IMAGE_TAG}" .
-
-
-echo "*** BUILDING IDENTITY-SERVICE 6/$total ****************"
-cd ${currentFolder}/services/identity/src/Arslan.Vms.IdentityService.HttpApi.Host
-dotnet publish -c Release
-docker build -f Dockerfile.local --force-rm -t "Arslan.Vms/service-identity:${IMAGE_TAG}" .
-
-
-echo "*** BUILDING ADMINISTRATION-SERVICE 7/$total ****************"
+echo "*** BUILDING ADMINISTRATION-SERVICE 1/$total ****************"
 cd ${currentFolder}/services/administration/src/Arslan.Vms.AdministrationService.HttpApi.Host
 dotnet publish -c Release
-docker build -f Dockerfile.local --force-rm -t "Arslan.Vms/service-administration:${IMAGE_TAG}" .
+docker build -f Dockerfile.local  --force-rm -t "Arslan.Vms/service-administrator:${IMAGE_TAG}" .
 
-
-echo "**************** BUILDING BASKET-SERVICE 8/$total ****************"
-cd ${currentFolder}/services/basket/src/Arslan.Vms.BasketService
+echo "*** BUILDING IDENTITY-SERVICE 2/$total ****************"
+cd ${currentFolder}/services/identity/src/Arslan.Vms.IdentityService.HttpApi.Host
 dotnet publish -c Release
-docker build -f Dockerfile.local --force-rm -t "Arslan.Vms/service-basket:${IMAGE_TAG}" .
+docker build -f Dockerfile.local  --force-rm -t "Arslan.Vms/service-identity:${IMAGE_TAG}" .
 
-
-echo "**************** BUILDING CATALOG-SERVICE 9/$total ****************"
-cd ${currentFolder}/services/catalog/src/Arslan.Vms.CatalogService.HttpApi.Host
+echo "**************** BUILDING INVENTORY-SERVICE 3/$total ****************"
+cd ${currentFolder}/services/inventory/src/Arslan.Vms.InventoryService.HttpApi.Host
 dotnet publish -c Release
-docker build -f Dockerfile.local --force-rm -t "Arslan.Vms/service-catalog:${IMAGE_TAG}" .
+docker build -f Dockerfile.local  --force-rm -t "Arslan.Vms/service-inventory:${IMAGE_TAG}" .
 
+echo "**************** BUILDING ORDER-SERVICE 4/$total ****************"
+cd ${currentFolder}/services/order/src/Arslan.Vms.OrderService.HttpApi.Host
+dotnet publish -c Release
+docker build -f Dockerfile.local  --force-rm -t "Arslan.Vms/service-order:${IMAGE_TAG}" .
 
-echo "**************** BUILDING PAYMENT-SERVICE 10/$total ****************"
+echo "**************** BUILDING PAYMENT-SERVICE 5/$total ****************"
 cd ${currentFolder}/services/payment/src/Arslan.Vms.PaymentService.HttpApi.Host
 dotnet publish -c Release
-docker build -f Dockerfile.local --force-rm -t "Arslan.Vms/service-payment:${IMAGE_TAG}" .
+docker build -f Dockerfile.local  --force-rm -t "Arslan.Vms/service-payment:${IMAGE_TAG}" .
 
-
-echo "**************** BUILDING ORDERING-SERVICE 11/$total ****************"
-cd ${currentFolder}/services/ordering/src/Arslan.Vms.OrderingService.HttpApi.Host
+echo "**************** BUILDING PLANNER-SERVICE 6/$total ****************"
+cd ${currentFolder}/services/planner/src/Arslan.Vms.PlannerService.HttpApi.Host
 dotnet publish -c Release
-docker build -f Dockerfile.local --force-rm -t "Arslan.Vms/service-ordering:${IMAGE_TAG}" .
+docker build -f Dockerfile.local  --force-rm -t "Arslan.Vms/service-planner:${IMAGE_TAG}" .
 
-echo "**************** BUILDING CMSKIT-SERVICE 12/$total ****************"
-cd ${currentFolder}/services/cmskit/src/Arslan.Vms.CmskitService.HttpApi.Host
+echo "**************** BUILDING PRODUCT-SERVICE 7/$total ****************"
+cd ${currentFolder}/services/product/src/Arslan.Vms.ProductService.HttpApi.Host
 dotnet publish -c Release
-docker build -f Dockerfile.local --force-rm -t "Arslan.Vms/service-cmskit:${IMAGE_TAG}" .
+docker build -f Dockerfile.local  --force-rm -t "Arslan.Vms/service-product:${IMAGE_TAG}" .
+
+echo "**************** BUILDING VEHICLE-SERVICE 8/$total ****************"
+cd ${currentFolder}/services/vehicle/src/Arslan.Vms.VehicleService.HttpApi.Host
+dotnet publish -c Release
+docker build -f Dockerfile.local  --force-rm -t "Arslan.Vms/service-vehicle:${IMAGE_TAG}" .
+
+echo "*** BUILDING WEB-GATEWAY 9/$total ****************"
+cd ${currentFolder}/gateways/web/src/Arslan.Vms.WebGateway
+dotnet publish -c Release
+docker build  -f Dockerfile.local --force-rm -t "Arslan.Vms/gateway-web:${IMAGE_TAG}" .
 
 echo "ALL COMPLETED"
