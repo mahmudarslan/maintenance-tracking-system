@@ -26,7 +26,7 @@ services:
       - vms-st-gateway-web
     restart: on-failure
     networks:
-      - Arslan.Vms-network
+      - arslan.vms-network
 
   vms-st-administration:
     image: Arslan.Vms/service-administration:latest
@@ -56,7 +56,7 @@ services:
         condition: service_healthy
     restart: on-failure
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
   vms-st-identity:
     image: Arslan.Vms/service-identity:latest
     container_name: identity-service-container
@@ -95,7 +95,7 @@ services:
         condition: service_healthy
     restart: on-failure
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
   vms-st-catalog:
     image: Arslan.Vms/service-catalog:latest
     container_name: catalog-service-container
@@ -125,7 +125,7 @@ services:
         condition: service_healthy
     restart: on-failure  
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
   vms-st-basket:
     image: Arslan.Vms/service-basket:latest
     container_name: basket-service-container
@@ -153,7 +153,7 @@ services:
         condition: service_healthy
     restart: on-failure  
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
   vms-st-ordering:
     image: Arslan.Vms/service-ordering:latest
     container_name: ordering-service-container
@@ -180,7 +180,7 @@ services:
         condition: service_healthy
     restart: on-failure  
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
     # volumes:
     #   - ./certs:/root/certificate
   vms-st-cmskit:
@@ -211,7 +211,7 @@ services:
         condition: service_healthy
     restart: on-failure  
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
     # volumes:
     #   - ./certs:/root/certificate
   vms-st-payment:
@@ -243,7 +243,7 @@ services:
         condition: service_healthy
     restart: on-failure  
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
   vms-st-authserver:
     image: Arslan.Vms/app-authserver:latest
     container_name: app-authserver-container
@@ -271,7 +271,7 @@ services:
         condition: service_healthy
     restart: on-failure  
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
   vms-st-web:
     image: Arslan.Vms/app-web:latest
     container_name: app-web-container
@@ -287,7 +287,7 @@ services:
         condition: service_healthy
     restart: on-failure
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
   vms-st-public-web:
     image: Arslan.Vms/app-publicweb:latest
     container_name: app-publicweb-container
@@ -311,7 +311,7 @@ services:
         condition: service_healthy
     restart: on-failure  
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
   vms-st-gateway-web:
     image: Arslan.Vms/gateway-web:latest
     container_name: gateway-web-container
@@ -342,7 +342,7 @@ services:
         condition: service_healthy
     restart: on-failure  
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
   vms-st-gateway-web-public:
     image: Arslan.Vms/gateway-web-public:latest
     container_name: gateway-web-public-container
@@ -371,8 +371,8 @@ services:
         condition: service_healthy
     restart: on-failure  
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
 
 networks:
-  Arslan.Vms-network:
+  arslan.vms-network:
     external: true

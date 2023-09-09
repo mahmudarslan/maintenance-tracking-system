@@ -10,7 +10,7 @@ services:
         timeout: 30s
         retries: 3
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
 
   mongodb:
     container_name: mongodb
@@ -23,14 +23,14 @@ services:
       timeout: 10s
       retries: 10   
     networks: 
-      - Arslan.Vms-network  
+      - arslan.vms-network  
   redis:
     container_name: redis
     image: redis:alpine
     healthcheck:
       test: ["CMD", "redis-cli","ping"]
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
     
   postgres-db:
     container_name: postgres-db
@@ -43,7 +43,7 @@ services:
       timeout: 5s
       retries: 5  
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
   
   pgadmin:
     container_name: pgadmin
@@ -51,7 +51,7 @@ services:
     volumes:
        - pgadmin_data:/var/lib/pgadmin
     networks: 
-      - Arslan.Vms-network
+      - arslan.vms-network
 
   keycloak:
     container_name: keycloak
@@ -60,7 +60,7 @@ services:
       - postgres-db  
     restart: unless-stopped
     networks:
-      - Arslan.Vms-network
+      - arslan.vms-network
 
 volumes:
   postgres_data:
@@ -68,5 +68,5 @@ volumes:
   mongodb_data:
 
 networks:
-  Arslan.Vms-network:
+  arslan.vms-network:
     external: true
