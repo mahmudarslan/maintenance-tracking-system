@@ -5,9 +5,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.aspnetcore.multitenancy\7.3.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.MultiTenancy.abppkg.json" />
-	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.http.client.identitymodel.web\7.3.2\contentFiles\any\net7.0\Volo.Abp.Http.Client.IdentityModel.Web.abppkg.analyze.json" />
-	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.http.client.identitymodel.web\7.3.2\contentFiles\any\net7.0\Volo.Abp.Http.Client.IdentityModel.Web.abppkg.json" />
+		<Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.aspnetcore.multitenancy\7.3.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.MultiTenancy.abppkg.json" />
+		<Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.http.client.identitymodel.web\7.3.2\contentFiles\any\net7.0\Volo.Abp.Http.Client.IdentityModel.Web.abppkg.analyze.json" />
+		<Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.http.client.identitymodel.web\7.3.2\contentFiles\any\net7.0\Volo.Abp.Http.Client.IdentityModel.Web.abppkg.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -15,6 +15,8 @@
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.8" />
 		<PackageReference Include="DistributedLock.Redis" Version="1.0.2" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+		<PackageReference Include="Flurl" Version="3.0.7" />
+		<PackageReference Include="Flurl.Http" Version="3.2.4" />
 	</ItemGroup>
 
 	<ItemGroup>
