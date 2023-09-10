@@ -4,12 +4,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Arslan.Vms.PlannerService</RootNamespace>
+    <RootNamespace>Arslan.Vms.ProductService</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Http.Client" Version="7.3.2" />
-    <ProjectReference Include="..\Arslan.Vms.PlannerService.Application.Contracts\Arslan.Vms.PlannerService.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Arslan.Vms.ProductService.Application.Contracts\Arslan.Vms.ProductService.Application.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>

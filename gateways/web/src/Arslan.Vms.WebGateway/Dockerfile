@@ -105,7 +105,7 @@ COPY "NuGet.Config" "NuGet.Config"
 RUN dotnet restore "Arslan.Vms.sln"
 COPY . .
 
-WORKDIR "/src/services/administration/src/Arslan.Vms.AdministrationService.HttpApi.Host"
+WORKDIR "/src/gateways/web/src/Arslan.Vms.WebGateway"
 RUN dotnet publish -c Release -o /app 
 # RUN dotnet publish --no-restore -c Release -o /app 
 
@@ -114,4 +114,4 @@ FROM build AS publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Arslan.Vms.AdministrationService.HttpApi.Host.dll"]
+ENTRYPOINT ["dotnet", "Arslan.Vms.WebGateway.dll"]

@@ -3,23 +3,23 @@ using Volo.Abp.Http.Client;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
 
-namespace Arslan.Vms.PlannerService;
+namespace Arslan.Vms.VehicleService;
 
 [DependsOn(
-    typeof(PlannerServiceApplicationContractsModule),
+    typeof(VehicleServiceApplicationContractsModule),
     typeof(AbpHttpClientModule))]
-public class PlannerServiceHttpApiClientModule : AbpModule
+public class VehicleServiceHttpApiClientModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.AddHttpClientProxies(
-            typeof(PlannerServiceApplicationContractsModule).Assembly,
-            PlannerServiceRemoteServiceConsts.RemoteServiceName
+            typeof(VehicleServiceApplicationContractsModule).Assembly,
+            VehicleServiceRemoteServiceConsts.RemoteServiceName
         );
 
         Configure<AbpVirtualFileSystemOptions>(options =>
         {
-            options.FileSets.AddEmbedded<PlannerServiceHttpApiClientModule>();
+            options.FileSets.AddEmbedded<VehicleServiceHttpApiClientModule>();
         });
 
     }
