@@ -1,0 +1,38 @@
+<dx-data-grid #stockGrid id="gridContainer" [dataSource]="dataSource" [remoteOperations]="true" height="100%"
+    [allowColumnReordering]="true" [rowAlternationEnabled]="true" [hoverStateEnabled]="true" [showBorders]="true"
+    [showColumnLines]="true" [showRowLines]="true" [columnAutoWidth]="true" [allowColumnResizing]="true"
+    [wordWrapEnabled]="true" (onToolbarPreparing)="onToolbarPreparing($event)"
+    (onExporting)="onExporting($event,exportName)">
+    <dxo-selection mode="single"></dxo-selection>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="false"></dxo-header-filter>
+    <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"></dxo-search-panel>
+    <dxo-group-panel [visible]="false"></dxo-group-panel>
+    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 50]" [showInfo]="true" [visible]="true">
+    </dxo-pager>
+    <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
+    </dxo-editing>
+    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-state-storing [enabled]="true" type="localStorage" storageKey="Storage_CurrentStockList"></dxo-state-storing>
+
+    <dxi-column caption="{{'Inventory::ProductName'|abpLocalization}}" dataField="name" dataType="string"></dxi-column>
+    <dxi-column caption="{{'Inventory::Category'|abpLocalization}}" dataField="productCategoryId" dataType="string"
+        alignment="left">
+        <dxo-lookup [dataSource]="categoryArrayData" valueExpr="id" displayExpr="name">
+        </dxo-lookup>
+    </dxi-column>
+    <dxi-column caption="{{'Inventory::Location'|abpLocalization}}" dataField="locationId" dataType="string"
+        alignment="left">
+        <dxo-lookup [dataSource]="locationArrayData" valueExpr="id" displayExpr="name">
+        </dxo-lookup>
+    </dxi-column>
+    <dxi-column caption="{{'Inventory::Count'|abpLocalization}}" dataField="quantity" dataType="number" [width]="100"
+        format="#,##0">
+    </dxi-column>
+
+    <dxo-export [enabled]="true"></dxo-export>
+</dx-data-grid>

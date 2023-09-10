@@ -1,0 +1,12 @@
+﻿using System;
+
+namespace Arslan.Vms.VehicleService.v1.Taxes.Dtos
+{
+    public class TaxCodeDto
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public decimal Tax1Rate { get; set; }
+        public decimal Tax2Rate { get; set; }
+    }
+}

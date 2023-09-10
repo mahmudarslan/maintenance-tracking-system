@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Arslan.Vms.Keycloak.DbMigrator": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64179;http://localhost:64180"
+    }
+  }
+}

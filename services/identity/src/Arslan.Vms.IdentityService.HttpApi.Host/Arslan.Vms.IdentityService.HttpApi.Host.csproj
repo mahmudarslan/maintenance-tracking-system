@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<Import Project="..\..\..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<RootNamespace>Arslan.Vms.IdentityService</RootNamespace>
+		<PreserveCompilationReferences>true</PreserveCompilationReferences>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..\..\..</DockerfileContext>
+		<UserSecretsId>eccc4a67-da6f-4adf-be97-40c55f65f53a</UserSecretsId>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.10">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.Http.Client.IdentityModel.Web" Version="7.3.2" />
+		<PackageReference Include="Volo.Abp.Identity.HttpApi.Client" Version="7.3.2" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="7.3.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\Arslan.Vms.IdentityService.HttpApi\Arslan.Vms.IdentityService.HttpApi.csproj" />
+		<ProjectReference Include="..\..\src\Arslan.Vms.IdentityService.Application\Arslan.Vms.IdentityService.Application.csproj" />
+		<ProjectReference Include="..\..\src\Arslan.Vms.IdentityService.EntityFrameworkCore\Arslan.Vms.IdentityService.EntityFrameworkCore.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\shared\Arslan.Vms.Shared.Hosting.Microservices\Arslan.Vms.Shared.Hosting.Microservices.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Logs\**" />
+		<Content Remove="Logs\**" />
+		<EmbeddedResource Remove="Logs\**" />
+		<None Remove="Logs\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.aspnetcore.mvc.ui.multitenancy\7.3.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.abppkg.analyze.json" />
+		<Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.aspnetcore.mvc.ui.multitenancy\7.3.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.abppkg.json" />
+		<Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.http.client.identitymodel.web\7.3.2\contentFiles\any\net7.0\Volo.Abp.Http.Client.IdentityModel.Web.abppkg.analyze.json" />
+		<Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.http.client.identitymodel.web\7.3.2\contentFiles\any\net7.0\Volo.Abp.Http.Client.IdentityModel.Web.abppkg.json" />
+	</ItemGroup>
+
+</Project>

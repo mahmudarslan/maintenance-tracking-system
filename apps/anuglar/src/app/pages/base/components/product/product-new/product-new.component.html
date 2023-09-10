@@ -1,0 +1,161 @@
+<dx-form #form [formData]="product" [colCount]="1" labelLocation="left" [showColonAfterLabel]="true">
+    <dxi-item itemType="tabbed">
+        <dxi-tab title="{{'Inventory::Tab:Product'|abpLocalization}}" [colCount]="2">
+            <dxi-item itemType="group" caption="{{'Inventory::Product'|abpLocalization}}">
+                <dxi-item>
+                    <dxo-label text="{{'Inventory::Label:ProductType'|abpLocalization}}"></dxo-label>
+                    <div *dxTemplate>
+                        <dx-select-box #productTypeBox
+                            placeholder="{{'Inventory::Placeholder:ProductType'|abpLocalization}}"
+                            [readOnly]="isEditMode" [dataSource]="productTypeSource" displayExpr="productTypeName"
+                            valueExpr="id" [(value)]="product.productType"
+                            (onValueChanged)="onProductTypeChanged($event)" validationMessageMode="always"
+                            searchMode="contains" [searchEnabled]="true">
+                            <dx-validator>
+                                <dxi-validation-rule type="required"
+                                    message="{{'Inventory::Validation:ProductType'|abpLocalization}}">
+                                </dxi-validation-rule>
+                            </dx-validator>
+                        </dx-select-box>
+                    </div>
+                </dxi-item>
+                <dxi-item>
+                    <dxo-label text="{{'Inventory::Label:ProductName'|abpLocalization}}"></dxo-label>
+                    <div *dxTemplate>
+                        <dx-text-box placeholder="{{'Inventory::Placeholder:ProductName'|abpLocalization}}"
+                            [(value)]="product.name" [maxLength]="100" validationMessageMode="always">
+                            <dx-validator>
+                                <dxi-validation-rule type="required"
+                                    message="{{'Inventory::Validation:ProductName'|abpLocalization}}">
+                                </dxi-validation-rule>
+                            </dx-validator>
+                        </dx-text-box>
+                    </div>
+                </dxi-item>
+                <dxi-item>
+                    <dxo-label text="{{'Inventory::Label:Category'|abpLocalization}}"></dxo-label>
+                    <div *dxTemplate>
+                        <dx-select-box #productCategoryBox
+                            placeholder="{{'Inventory::Placeholder:Category'|abpLocalization}}"
+                            [dataSource]="categoriesSource" displayExpr="name" valueExpr="id"
+                            [(value)]="product.productCategoryId" validationMessageMode="always" searchMode="contains"
+                            [searchEnabled]="true">
+                            <dx-validator>
+                                <dxi-validation-rule type="required"
+                                    message="{{'Inventory::Validation:Category'|abpLocalization}}">
+                                </dxi-validation-rule>
+                            </dx-validator>
+                        </dx-select-box>
+                    </div>
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="group" caption="{{'Inventory::Picture'|abpLocalization}}">
+                <dxi-item>
+                    <div *dxTemplate>
+                        <img id="dropzone-image" [src]="(imageSource ? imageSource : (downloadUrl | secure | async) )"
+                            alt="" />
+                        <dx-file-uploader #fileUploader dialogTrigger="#dropzone-external" dropZone="#dropzone-external"
+                            [multiple]="false" [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png']"
+                            [visible]="true" [(value)]="value" uploadMode="instantly" uploadMethod="POST"
+                            [uploadHeaders]="uploadHeaders"
+                            selectButtonText="{{'Orders::Button:Upload'|abpLocalization}}" labelText=""
+                            (onValueChanged)="addIdParameter($event)" [showFileList]="false">
+                        </dx-file-uploader>
+                    </div>
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="group" caption="{{'Inventory::CostAndPrice'|abpLocalization}}" [colCount]="2">
+                <dxi-item>
+                    <dxo-label text="{{'Inventory::Label:PurchasePrice'|abpLocalization}}"></dxo-label>
+                    <div *dxTemplate>
+                        <dx-number-box placeholder="{{'Inventory::Placeholder:PurchasePrice'|abpLocalization}}"
+                            [(value)]="product.cost" [showSpinButtons]="true" [showClearButton]="true" [min]="0"
+                            [max]="999999999" format="#,##0">
+                        </dx-number-box>
+                    </div>
+                </dxi-item>
+                <dxi-item>
+                    <dxo-label text="{{'Inventory::Label:SalesPrice'|abpLocalization}}"></dxo-label>
+                    <div *dxTemplate>
+                        <dx-number-box placeholder="{{'Inventory::Placeholder:SalesPrice'|abpLocalization}}"
+                            [(value)]="product.defaultPrice" [showSpinButtons]="true" [showClearButton]="true" [min]="0"
+                            [max]="999999999" format="#,##0">
+                        </dx-number-box>
+                    </div>
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="group" caption="{{'Inventory::StorageInfo'|abpLocalization}}" [colCount]="2">
+                <dxi-item>
+                    <dxo-label text="{{'Inventory::Label:Barcode'|abpLocalization}}"></dxo-label>
+                    <div *dxTemplate>
+                        <dx-text-box placeholder="{{'Inventory::Placeholder:Barcode'|abpLocalization}}"
+                            [(value)]="product.barcode" [maxLength]="64">
+                        </dx-text-box>
+                    </div>
+                </dxi-item>
+                <dxi-item *ngIf="isProductTypeVisible">
+                    <dxo-label text="{{'Inventory::Label:QuantityCritical'|abpLocalization}}"></dxo-label>
+                    <div *dxTemplate>
+                        <dx-number-box placeholder="{{'Inventory::Placeholder:QuantityCritical'|abpLocalization}}"
+                            [(value)]="product.reorderPoint" [showSpinButtons]="true" [showClearButton]="true" [min]="1"
+                            [max]="999999999" format="#,##0">
+                        </dx-number-box>
+                    </div>
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="group" caption="{{'Inventory::Inventory'|abpLocalization}}" [colCount]="1"
+                *ngIf="isProductTypeVisible">
+                <dxi-item>
+                    <dx-data-grid #newStockGrid id="newStockGrid" [remoteOperations]="false" height="300"
+                        [dataSource]="stockAdjustmentLineDataSource" [allowColumnReordering]="true"
+                        [rowAlternationEnabled]="true" [hoverStateEnabled]="true" [showBorders]="true"
+                        [showColumnLines]="true" [showRowLines]="true" [columnAutoWidth]="true"
+                        [allowColumnResizing]="true" [wordWrapEnabled]="true"
+                        (onToolbarPreparing)="onToolbarPreparing($event)"
+                        (onEditorPreparing)="onEditorPreparing($event)" (onRowValidating)="onRowValidating($event)">
+                        <dxo-selection mode="single"></dxo-selection>
+                        <dxo-filter-row [visible]="false"></dxo-filter-row>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                        <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"></dxo-search-panel>
+                        <dxo-group-panel [visible]="false"></dxo-group-panel>
+                        <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+                        <dxo-paging [pageSize]="10"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                        </dxo-pager>
+                        <dxo-editing mode="batch" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true"
+                            selectTextOnEditStart="true" startEditAction="click">
+                        </dxo-editing>
+                        <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+
+                        <dxi-column caption="{{'Inventory::Location'|abpLocalization}}" dataField="locationId"
+                            alignment="left" [width]="150">
+                            <dxo-lookup [dataSource]="locationArrayData" valueExpr="id" displayExpr="name">
+                            </dxo-lookup>
+                            <dxi-validation-rule type="required"></dxi-validation-rule>
+                        </dxi-column>
+                        <dxi-column caption="{{'Inventory::Quantity'|abpLocalization}}" dataField="quantityAfter"
+                            dataType="number" alignment="left" [width]="100" format="#,##0">
+                            <dxi-validation-rule type="required"></dxi-validation-rule>
+                        </dxi-column>
+                        <dxi-column type="buttons" [width]="70" alignment="left" [fixed]="true">
+                            <dxi-button hint="{{'Inventory::Button:Delete'|abpLocalization}}" icon="trash"
+                                name="delete">
+                            </dxi-button>
+                        </dxi-column>
+
+                        <dxo-summary [recalculateWhileEditing]="true">
+                        </dxo-summary>
+                    </dx-data-grid>
+                </dxi-item>
+            </dxi-item>
+        </dxi-tab>
+    </dxi-item>
+</dx-form>
+
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.01)" [position]="{ of: '#form' }" [(visible)]="loadingVisible"
+    [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">
+</dx-load-panel>

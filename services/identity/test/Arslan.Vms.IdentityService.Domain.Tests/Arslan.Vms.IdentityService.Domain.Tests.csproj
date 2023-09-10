@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>Arslan.Vms.IdentityService</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.1" />
+    <ProjectReference Include="..\Arslan.Vms.IdentityService.EntityFrameworkCore.Tests\Arslan.Vms.IdentityService.EntityFrameworkCore.Tests.csproj" />
+  </ItemGroup>
+
+</Project>

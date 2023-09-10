@@ -1,0 +1,47 @@
+<dx-tree-list #vehicleTypeTreeList [dataSource]="vehicleTypeDataStore" [remoteOperations]="false" height="100%"
+    width="500" [rootValue]="null" keyExpr="id" parentIdExpr="parentId" [showRowLines]="true" [showBorders]="true"
+    [columnAutoWidth]="true" [wordWrapEnabled]="true" [autoExpandAll]="false" [expandedRowKeys]="[null]"
+    (onToolbarPreparing)="onToolbarPreparing($event)" (onCellPrepared)="onCellPrepared($event)"
+    (onRowUpdated)="onRowUpdated($event)" (onRowRemoved)="onRowRemoved($event)">
+    <dxo-selection mode="single"></dxo-selection>
+    <dxo-filter-row [visible]="false"></dxo-filter-row>
+    <dxo-header-filter [visible]="false"></dxo-header-filter>
+    <dxo-search-panel [visible]="true"></dxo-search-panel>
+    <dxo-group-panel [visible]="false"></dxo-group-panel>
+    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+    <dxo-sorting mode="multiple"></dxo-sorting>
+    <dxo-group-panel [visible]="false"></dxo-group-panel>
+    <dxo-scrolling mode="standard"></dxo-scrolling>
+    <dxo-paging [enabled]="false" [pageSize]="20">
+    </dxo-paging>
+    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[20, 50, 100]" [showInfo]="true">
+    </dxo-pager>
+    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+    </dxo-editing>
+    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-state-storing [enabled]="false" type="localStorage" storageKey="Storage_VehicleType"></dxo-state-storing>
+    <dxo-row-dragging [onDragChange]="onDragChange" [onReorder]="onReorder" [allowDropInsideItem]="true"
+        [allowReordering]="true" [showDragIcons]="true"></dxo-row-dragging>
+    <dxo-filter-panel [visible]="false"></dxo-filter-panel>
+
+    <dxi-column caption="{{'Base::Vehicle'|abpLocalization}}" dataField="name" dataType="string"
+        [editorOptions]="{ maxLength: 50, showClearButton: true }">
+    </dxi-column>
+    <!-- <dxi-column caption="{{'Base::Deleted'|abpLocalization}}" dataField="isDeleted" dataType="boolean"
+        [visible]="false" [filterValue]="filterValueIsDeleted">
+    </dxi-column> -->
+
+    <dxi-column type="buttons" [width]="100" [fixed]="true">
+        <dxi-button name="add" icon="add">
+        </dxi-button>
+        <dxi-button name="edit" [visible]="isDeleteIconVisible"></dxi-button>
+        <dxi-button name="delete" icon="trash" hint="{{'Inventory::Button:Delete'|abpLocalization}}"
+            [visible]="isDeleteIconVisible">
+        </dxi-button>
+        <dxi-button name="Undo" icon="undo" hint="{{'Inventory::Button:Undo'|abpLocalization}}" [onClick]="undoClick"
+            [visible]="isUndoIconVisible">
+        </dxi-button>
+    </dxi-column>
+</dx-tree-list>

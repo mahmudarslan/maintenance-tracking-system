@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<RootNamespace>Arslan.Vms.Shared.Hosting</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Remove="C:\Users\mtarslan\.nuget\packages\serilog.sinks.graylog\3.0.1\contentFiles\any\netstandard2.0\README.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Serilog.Extensions.Hosting" Version="7.0.0" />
+		<PackageReference Include="Serilog.Extensions.Logging" Version="7.0.0" />
+		<PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+		<PackageReference Include="Serilog.Sinks.Graylog" Version="3.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.Autofac" Version="7.3.2" />
+		<PackageReference Include="Volo.Abp.Data" Version="7.3.2" />
+	</ItemGroup>
+
+</Project>

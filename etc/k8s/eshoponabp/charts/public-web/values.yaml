@@ -1,0 +1,25 @@
+config:
+  selfUrl: https://vms-st-public-web
+  gatewayUrl: https://vms-st-gateway-web-public
+  authServer:
+    authority: http://vms-st-authserver
+    requireHttpsMetadata: "false"
+    isOnProd: false
+    metaAddress: #
+  dotnetEnv: Staging
+  redisHost: vms-st-redis
+  rabbitmqHost: vms-st-rabbitmq
+  elasticsearchHost: vms-st-elasticsearch
+  stringEncryptionDefaultPassPhrase: gsKnGZ041HLL4IM8
+  
+
+ingress:
+  host: vms-st-public-web
+  tlsSecret: vms-wildcard-tls
+
+image:
+  repository: Arslan.Vms/app-publicweb
+  tag: latest
+  pullPolicy: IfNotPresent
+
+env: {}

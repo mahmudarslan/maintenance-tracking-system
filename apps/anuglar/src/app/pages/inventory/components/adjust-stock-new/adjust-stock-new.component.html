@@ -1,0 +1,104 @@
+<dx-form #form [colCount]="3" labelLocation="left" initialized="forminitialized">
+
+    <dxi-item itemType="group" [colSpan]="3" [colCount]="4" [visible]="isEditMode">
+        <dxi-item>
+            <dxo-label text="{{'Inventory::Label:AdjustStockNumber'|abpLocalization}}"></dxo-label>
+            <div *dxTemplate>
+                <dx-text-box [value]="this.stockAdjustment.adjustmentNumber" [readOnly]="true">
+                </dx-text-box>
+            </div>
+        </dxi-item>
+        <dxi-item>
+            <dxo-label text="{{'Inventory::Label:CreationTime'|abpLocalization}}"></dxo-label>
+            <div *dxTemplate>
+                <dx-date-box type="date" [(value)]="this.stockAdjustment.creationTime" displayFormat="dd.MM.yyyy"
+                    [readOnly]="true">
+                </dx-date-box>
+            </div>
+        </dxi-item>
+        <dxi-item>
+            <dxo-label text="{{'Inventory::Label:Status'|abpLocalization}}"></dxo-label>
+            <div *dxTemplate>
+                <dx-text-box [value]="this.stockAdjustment.status" [readOnly]="true">
+                </dx-text-box>
+            </div>
+        </dxi-item>
+    </dxi-item>
+    <dxi-item [colSpan]="3">
+        <div *dxTemplate>
+            <dx-data-grid #newStockGrid id="newStockGrid" [remoteOperations]="false" height="500"
+                [dataSource]="stockAdjustmentLineDataStore" [allowColumnReordering]="true"
+                [rowAlternationEnabled]="true" [hoverStateEnabled]="true" [showBorders]="true" [showColumnLines]="true"
+                [showRowLines]="true" [columnAutoWidth]="true" [allowColumnResizing]="true" [wordWrapEnabled]="true"
+                (onToolbarPreparing)="onToolbarPreparing($event)" (onEditorPreparing)="overrideOnValueChanged($event)"
+                (onRowValidating)="onRowValidating($event)">
+                <dxo-selection mode="single"></dxo-selection>
+                <dxo-filter-row [visible]="false"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"></dxo-search-panel>
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager>
+                <dxo-editing mode="batch" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true"
+                    selectTextOnEditStart="true" startEditAction="click">
+                </dxo-editing>
+                <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+
+                <dxi-column caption="{{'Inventory::ProductName'|abpLocalization}}" dataField="productId"
+                    alignment="left">
+                    <dxo-lookup [dataSource]="productArrayData" valueExpr="id" displayExpr="name">
+                    </dxo-lookup>
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column caption="{{'Inventory::Location'|abpLocalization}}" dataField="locationId" alignment="left"
+                    [width]="150">
+                    <dxo-lookup [dataSource]="locationArrayData" valueExpr="id" displayExpr="name">
+                    </dxo-lookup>
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column caption="{{'Inventory::NewQuantity'|abpLocalization}}" dataField="quantityAfter"
+                    dataType="number" alignment="left" [width]="100" format="#,##0"
+                    [setCellValue]="setNewQuantityCellValue">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column caption="{{'Inventory::OldQuantity'|abpLocalization}}" dataField="quantityBefore"
+                    dataType="number" alignment="left" [width]="100" format="#,##0" [allowEditing]="false">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column caption="{{'Inventory::Difference'|abpLocalization}}" dataField="difference"
+                    dataType="number" alignment="left" [width]="100" format="#,##0"
+                    [setCellValue]="setDifferenceCellValue">
+                </dxi-column>
+                <dxi-column type="buttons" [width]="70" alignment="left" [fixed]="true">
+                    <dxi-button hint="{{'Inventory::Button:Delete'|abpLocalization}}" icon="trash" name="delete">
+                    </dxi-button>
+                </dxi-column>
+
+                <dxo-summary [recalculateWhileEditing]="true">
+                </dxo-summary>
+            </dx-data-grid>
+        </div>
+    </dxi-item>
+    <dxi-item [colSpan]="3">
+        <dxo-label text="{{'Inventory::Label:Description'|abpLocalization}}"></dxo-label>
+        <div *dxTemplate>
+            <dx-text-area placeholder="{{'Inventory::Placeholder:Description'|abpLocalization}}" id="description"
+                [(value)]="this.stockAdjustment.remarks" [maxLength]="500" [height]="90">
+            </dx-text-area>
+        </div>
+    </dxi-item>
+
+    <!-- <dxi-item [colSpan]="1">
+        <div *dxTemplate>
+            <div class="dx-fieldset">
+                <dx-validation-summary id="summary"></dx-validation-summary>
+            </div>
+        </div>
+    </dxi-item> -->
+</dx-form>
+
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.01)" [position]="{ of: '#form' }" [(visible)]="loadingVisible"
+    [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">
+</dx-load-panel>

@@ -1,0 +1,116 @@
+<dx-form #userForm [formData]="user" labelLocation="left" [colCount]="2">
+    <dxi-item [visible]="this.roleVisible">
+        <div *dxTemplate>
+            <div style="width: 70%; float:left">
+                <dx-select-box stylingMode="outlined" labelMode="floating" label="{{'Base::Role'|abpLocalization}}"
+                    placeholder="{{'Base::Placeholder:Role'|abpLocalization}}" [dataSource]="roleSource"
+                    displayExpr="name" valueExpr="value" [value]="user.selectedRole"
+                    (onValueChanged)="onRoleChanged($event)" validationMessageMode="always" searchMode="contains"
+                    [searchEnabled]="true">
+                    <dx-validator>
+                        <dxi-validation-rule type="required" message="{{'Base::Validation:Role'|abpLocalization}}">
+                        </dxi-validation-rule>
+                    </dx-validator>
+                </dx-select-box>
+            </div>
+            <div style="width: 30%; float:right;">
+                <dx-check-box stylingMode="outlined" labelMode="floating" [(value)]="user.isCustomerRole"
+                    text="{{'Base::AlsoCustomer'|abpLocalization}}">
+                </dx-check-box>
+            </div>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <div *dxTemplate>
+            <dx-text-box stylingMode="outlined" labelMode="floating" label="{{'Base::Label:UserName'|abpLocalization}}"
+                placeholder="{{'Base::Placeholder:UserName'|abpLocalization}}" [(value)]="user.userName"
+                [maxLength]="64" [showClearButton]="true" validationMessageMode="always" validationStatus="valid"
+                (onKeyDown)="onKeyDown($event)">
+                <dx-validator>
+                    <dxi-validation-rule type="required" message="{{'Base::Validation:UserName'|abpLocalization}}">
+                    </dxi-validation-rule>
+                </dx-validator>
+            </dx-text-box>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <div *dxTemplate>
+            <dx-text-box stylingMode="outlined" labelMode="floating" label="{{'Base::Label:Name'|abpLocalization}}"
+                placeholder="{{'Base::Placeholder:Name'|abpLocalization}}" [(value)]="user.name" [maxLength]="64"
+                [showClearButton]="true" validationMessageMode="always">
+                <dx-validator>
+                    <dxi-validation-rule type="required" message="{{'Base::Validation:Name'|abpLocalization}}">
+                    </dxi-validation-rule>
+                </dx-validator>
+            </dx-text-box>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <div *dxTemplate>
+            <dx-text-box stylingMode="outlined" labelMode="floating" label="{{'Base::Label:Surname'|abpLocalization}}"
+                placeholder="{{'Base::Placeholder:Surname'|abpLocalization}}" [(value)]="user.surname" [maxLength]="64"
+                [showClearButton]="true" validationMessageMode="always">
+                <dx-validator>
+                    <dxi-validation-rule type="required" message="{{'Base::Validation:Surname'|abpLocalization}}">
+                    </dxi-validation-rule>
+                </dx-validator>
+            </dx-text-box>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <div *dxTemplate>
+            <dx-text-box stylingMode="outlined" labelMode="floating" label="{{'Base::Label:Email'|abpLocalization}}"
+                placeholder="{{'Base::Placeholder:Email'|abpLocalization}}" [(value)]="user.email" [maxLength]="50"
+                [showClearButton]="true" validationMessageMode="always">
+                <dx-validator>
+                    <dxi-validation-rule type="required" message="{{'Base::Validation:Email'|abpLocalization}}">
+                    </dxi-validation-rule>
+                    <dxi-validation-rule type="email" message="{{'Base::Validation:EmailCheck'|abpLocalization}}">
+                    </dxi-validation-rule>
+                </dx-validator>
+            </dx-text-box>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <div *dxTemplate>
+            <dx-date-box stylingMode="outlined" labelMode="floating" label="{{'Base::Label:BirthDate'|abpLocalization}}"
+                placeholder="{{'Base::Placeholder:BirthDate'|abpLocalization}}" [(value)]="user.birthDate"
+                displayFormat="shortdate" dateSerializationFormat="yyyy-MM-dd" [max]="now" [min]="minDate"
+                [showClearButton]="true" validationMessageMode="always" useMaskBehavior="true" type="date"
+                invalidDateMessage="{{'Base::invalidDateMessage'|abpLocalization}} ">
+                <dx-validator>
+
+                </dx-validator>
+            </dx-date-box>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <div *dxTemplate>
+            <dx-text-box stylingMode="outlined" labelMode="floating" label="{{'Base::Label:MobileNo'|abpLocalization}}"
+                placeholder="{{'Base::Placeholder:MobileNo'|abpLocalization}}" mask="(000) 000-0000"
+                [(value)]="user.phoneNumber" [showClearButton]="true" validationMessageMode="always">
+                <dx-validator>
+                    <dxi-validation-rule type="required" message="{{'Base::Validation:MobileNo'|abpLocalization}}">
+                    </dxi-validation-rule>
+                </dx-validator>
+            </dx-text-box>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <div *dxTemplate>
+            <dx-text-box stylingMode="outlined" labelMode="floating"
+                label="{{'Base::Label:HomePhoneNo'|abpLocalization}}"
+                placeholder="{{'Base::Placeholder:HomePhoneNo'|abpLocalization}}" mask="(000) 000-0000"
+                [(value)]="user.homePhoneNumber" [showClearButton]="true">
+            </dx-text-box>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <div *dxTemplate>
+            <dx-text-box stylingMode="outlined" labelMode="floating" label="{{'Base::Label:Fax'|abpLocalization}}"
+                placeholder="{{'Base::Placeholder:Fax'|abpLocalization}}" mask="(000) 000-0000"
+                [(value)]="user.faxNumber" [showClearButton]="true">
+            </dx-text-box>
+        </div>
+    </dxi-item>
+</dx-form>

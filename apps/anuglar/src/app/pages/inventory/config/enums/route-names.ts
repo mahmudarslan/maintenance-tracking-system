@@ -1,0 +1,15 @@
+export const enum eInventoryRouteNames {
+    InventoryManagement = 'InventoryService::Menu:InventoryManagement',
+    Inventory = 'InventoryService::Menu:Inventory',
+    AdjustStock = 'InventoryService::Menu:AdjustStock',
+    AdjustStockNew = 'InventoryService::Menu:AdjustStockNew',
+    AdjustStockList = 'InventoryService::Menu:AdjustStockList',
+    CurrentStock = 'InventoryService::Menu:CurrentStock',
+    ReorderStock = 'InventoryService::Menu:ReorderStock',
+    Workorder = 'InventoryService::Menu:WorkOrder',    
+    Product = 'Base::Menu:Product',
+    NewProduct = 'Base::Menu:NewProduct',
+    ProductList = 'Base::Menu:ProductList',
+    ProductCategory = 'Base::Menu:ProductCategory',
+    Location = 'Base::Menu:Location',
+}

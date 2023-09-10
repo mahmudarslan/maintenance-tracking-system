@@ -1,0 +1,22 @@
+<dx-form #form [formData]="employee" labelLocation="left" [showValidationSummary]="true" [showColonAfterLabel]="true">
+    <dxi-item itemType="tabbed" [tabPanelOptions]="{ deferRendering: false}">
+        <dxi-tab title="{{'Base::Tab:Employee'|abpLocalization}}">
+            <dxi-item>
+                <div *dxTemplate>
+                    <app-user [(user)]="this.user" [roleVisible]="true" [isEditMode]="this.isEditMode"> </app-user>
+                </div>
+            </dxi-item>
+        </dxi-tab>
+        <dxi-tab title="{{'Base::Tab:Address'|abpLocalization}}">
+            <dxi-item>
+                <div *dxTemplate>
+                    <app-address [(address)]="address"> </app-address>
+                </div>
+            </dxi-item>
+        </dxi-tab>
+    </dxi-item>
+</dx-form>
+
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.01)" [position]="{ of: '#form' }" [(visible)]="loadingVisible"
+    [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">
+</dx-load-panel>

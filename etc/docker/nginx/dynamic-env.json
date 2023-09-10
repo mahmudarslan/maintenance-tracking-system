@@ -1,0 +1,23 @@
+{
+  "production": true,
+  "application": {
+    "baseUrl":"https://vms-st-web",
+    "name": "Arslan.Vms",
+    "logoUrl": ""
+  },
+  "oAuthConfig": {
+    "issuer": "https://vms-st-authserver",
+    "redirectUri": "https://vms-st-web",
+    "clientId": "Web",
+    "responseType": "code",
+    "scope": "offline_access openid profile email phone AccountService IdentityService AdministrationService CatalogService OrderingService",
+    "strictDiscoveryDocumentValidation": false,
+    "requireHttps": false
+  },
+  "apis": {
+    "default": {
+      "url": "https://vms-st-gateway-web",
+      "rootNamespace": "Arslan.Vms"
+    }
+  }
+}

@@ -1,0 +1,107 @@
+name: Arslan.Vms
+services:
+# - name: auth-server
+#   project: apps/auth-server/src/Arslan.Vms.AuthServer/Arslan.Vms.AuthServer.csproj
+#   bindings:
+#     - protocol: https
+#       port: 44330
+#   env:
+#     - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+#     - Kestrel__Certificates__Default__Password=8b6039b6-c67a-448b-977b-0ce6d3fcfd49
+
+- name: identity-service
+  project: services/identity/src/Arslan.Vms.IdentityService.HttpApi.Host/Arslan.Vms.IdentityService.HttpApi.Host.csproj
+  bindings:
+    - protocol: https
+      port: 44351
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=8b6039b6-c67a-448b-977b-0ce6d3fcfd49
+
+- name: administration-service
+  project: services/administration/src/Arslan.Vms.AdministrationService.HttpApi.Host/Arslan.Vms.AdministrationService.HttpApi.Host.csproj
+  bindings:
+    - protocol: https
+      port: 44353
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=8b6039b6-c67a-448b-977b-0ce6d3fcfd49
+
+- name: catalog-service
+  project: services/catalog/src/Arslan.Vms.CatalogService.HttpApi.Host/Arslan.Vms.CatalogService.HttpApi.Host.csproj
+  bindings:
+    - protocol: https
+      port: 44354
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=8b6039b6-c67a-448b-977b-0ce6d3fcfd49
+
+- name: basket-service
+  project: services/basket/src/Arslan.Vms.BasketService/Arslan.Vms.BasketService.csproj
+  bindings:
+    - protocol: https
+      port: 44355
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=8b6039b6-c67a-448b-977b-0ce6d3fcfd49
+
+- name: ordering-service
+  project: services/ordering/src/Arslan.Vms.OrderingService.HttpApi.Host/Arslan.Vms.OrderingService.HttpApi.Host.csproj
+  bindings:
+    - protocol: https
+      port: 44356
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=8b6039b6-c67a-448b-977b-0ce6d3fcfd49
+
+- name: payment-service
+  project: services/payment/src/Arslan.Vms.PaymentService.HttpApi.Host/Arslan.Vms.PaymentService.HttpApi.Host.csproj
+  bindings:
+    - protocol: https
+      port: 44357
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=8b6039b6-c67a-448b-977b-0ce6d3fcfd49
+  env_file:
+    - ./.env  
+  
+- name: cmskit-service
+  project: services/cmskit/src/Arslan.Vms.CmskitService.HttpApi.Host/Arslan.Vms.CmskitService.HttpApi.Host.csproj
+  bindings:
+    - protocol: https
+      port: 44358
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=8b6039b6-c67a-448b-977b-0ce6d3fcfd49
+  env_file:
+    - ./.env 
+
+- name: web-gateway
+  project: gateways/web/src/Arslan.Vms.WebGateway/Arslan.Vms.WebGateway.csproj
+  bindings:
+    - protocol: https
+      port: 44372
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=8b6039b6-c67a-448b-977b-0ce6d3fcfd49  
+
+- name: web-public-gateway
+  project: gateways/web-public/src/Arslan.Vms.WebPublicGateway/Arslan.Vms.WebPublicGateway.csproj
+  bindings:
+    - protocol: https
+      port: 44373
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=8b6039b6-c67a-448b-977b-0ce6d3fcfd49
+
+- name: public-web
+  project: apps/public-web/src/Arslan.Vms.PublicWeb/Arslan.Vms.PublicWeb.csproj
+  bindings:
+    - protocol: https
+      port: 44335
+  env:
+    - Kestrel__Certificates__Default__Path=../../../../etc/dev-cert/localhost.pfx
+    - Kestrel__Certificates__Default__Password=8b6039b6-c67a-448b-977b-0ce6d3fcfd49
+
+- name: keycloak-seeder
+  project: shared/Arslan.Vms.Keycloak.DbMigrator/Arslan.Vms.Keycloak.DbMigrator.csproj    

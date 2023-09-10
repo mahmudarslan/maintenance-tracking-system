@@ -1,0 +1,108 @@
+﻿using Arslan.Vms.InventoryService.Accounts.AccountTypes;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Volo.Abp.Domain.Services;
+
+namespace Arslan.Vms.InventoryService.Accounts.TransactionTypes
+{
+    public class InventoryTransaction : ITransaction
+    {
+        private readonly IAccountTypeProvider _accountTypeProvider;
+
+        public List<Entry> AllEntries { get; set; }
+        public DateTime Date { get; set; }
+        public TransactionId Id { get; set; }
+
+
+        public TransactionOrdering Ordering
+        {
+            get
+            {
+                return new TransactionOrdering(Id, Date);
+            }
+        }
+
+        public InventoryTransaction(TransactionId id, DateTime date, List<Entry> simpleOrAllEntries, bool calculateAggregates)
+        {
+            _accountTypeProvider = new AccountTypeProvider();
+
+            Id = id;
+            Date = date;
+            var array = simpleOrAllEntries;
+
+            if (calculateAggregates)
+            {
+                if (!IsBalanced(array))
+                {
+                    throw new ArgumentException(string.Concat("Simple entries to transaction are not balanced", array));
+                }
+                array.AddRange(GetAggregates(array));
+            }
+
+            AllEntries = MergeEntries(array);
+        }
+
+        public Transaction ToTransaction()
+        {
+            //            var ss = new Transaction(
+            //             Id,
+            //Date,
+            //                AllEntries
+
+
+            //                //Ordering = Ordering
+            //            );
+
+            return null;
+
+        }
+
+        public List<Entry> GetAggregates(List<Entry> primitiveEntries)
+        {
+            return _accountTypeProvider.GetAggregates(primitiveEntries);
+        }
+
+        public static bool IsBalanced(List<Entry> entries)
+        {
+            if (entries == null)
+            {
+                return true;
+            }
+
+            decimal num = new decimal(1, 0, 0, false, 5);
+
+            var amount = Math.Abs((
+                from e in entries
+                where ((InventoryAccountType)e.Account.AccountType).IsSimpleInventory()
+                select e).Sum((e) => e.Amount));
+
+            if (amount > num)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static List<Entry> MergeEntries(List<Entry> entries)
+        {
+            if (OneEntryPerAccount(entries))
+            {
+                return entries;
+            }
+
+            return
+                (from x in entries
+                 group x by x.Account into g
+                 select new Entry(g.Key, g.Sum((x) => x.Amount))).ToList();
+        }
+
+        public static bool OneEntryPerAccount(List<Entry> entries)
+        {
+            var data = entries.Select(s => s.Account).Distinct().ToList();
+
+            return data.Count() == entries.Count();
+        }
+    }
+}

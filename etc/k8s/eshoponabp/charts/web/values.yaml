@@ -1,0 +1,18 @@
+config:
+  selfUrl: https://admin.Arslan.Vms.com
+  gatewayUrl: https://www.gateway.Arslan.Vms.com/
+  authServer:
+    authority: https://auth.Arslan.Vms.com
+    requireHttpsMetadata: "false"
+    responseType: "code"
+ingress:
+  host: vms-st-web
+  tlsSecret: vms-wildcard-tls
+
+image:
+  repository: Arslan.Vms/app-web
+  tag: latest
+  pullPolicy: IfNotPresent
+
+# Extra environment variables or configurations
+env: {}

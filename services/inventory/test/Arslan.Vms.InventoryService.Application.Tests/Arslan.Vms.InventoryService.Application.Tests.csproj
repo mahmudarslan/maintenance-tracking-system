@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>Arslan.Vms.InventoryService</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Arslan.Vms.InventoryService.Application\Arslan.Vms.InventoryService.Application.csproj" />
+    <ProjectReference Include="..\Arslan.Vms.InventoryService.Domain.Tests\Arslan.Vms.InventoryService.Domain.Tests.csproj" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+  </ItemGroup>
+
+</Project>

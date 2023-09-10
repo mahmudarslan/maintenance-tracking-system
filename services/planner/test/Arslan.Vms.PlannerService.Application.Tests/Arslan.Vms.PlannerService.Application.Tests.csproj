@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>Arslan.Vms.PlannerService</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Arslan.Vms.PlannerService.Application\Arslan.Vms.PlannerService.Application.csproj" />
+    <ProjectReference Include="..\Arslan.Vms.PlannerService.Domain.Tests\Arslan.Vms.PlannerService.Domain.Tests.csproj" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.1" />
+  </ItemGroup>
+
+</Project>

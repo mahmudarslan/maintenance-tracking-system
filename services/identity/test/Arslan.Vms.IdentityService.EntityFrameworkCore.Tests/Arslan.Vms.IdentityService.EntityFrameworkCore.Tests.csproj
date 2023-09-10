@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>Arslan.Vms.IdentityService</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.10" />
+    <ProjectReference Include="..\..\src\Arslan.Vms.IdentityService.EntityFrameworkCore\Arslan.Vms.IdentityService.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Arslan.Vms.IdentityService.TestBase\Arslan.Vms.IdentityService.TestBase.csproj" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="7.3.2" />
+  </ItemGroup>
+
+</Project>

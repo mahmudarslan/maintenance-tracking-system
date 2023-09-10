@@ -1,0 +1,515 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XtraReportsLayoutSerializer SerializerVersion="19.2.7.0" Ref="1" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="WorkorderXtraReport" SnapGridSize="25" VerticalContentSplitting="Smart" HorizontalContentSplitting="Smart" ReportUnit="TenthsOfAMillimeter" Margins="90, 88, 191, 88" PaperKind="A4" PageWidth="2100" PageHeight="2970" Version="19.2" DataSource="#Ref-0" Dpi="254">
+  <Bands>
+    <Item1 Ref="2" ControlType="TopMarginBand" Name="topMarginBand1" HeightF="191" Dpi="254">
+      <Controls>
+        <Item1 Ref="3" ControlType="XRBarCode" Name="barCode1" Module="5.08" TextAlignment="MiddleRight" SizeF="685.38916,137.453033" LocationFloat="1236.61072, 25" Dpi="254" Font="Times New Roman, 8.25pt, charSet=0" Padding="26,26,0,0,254">
+          <Symbology Ref="4" Name="Code128" CharacterSet="CharsetAuto" />
+          <ExpressionBindings>
+            <Item1 Ref="5" EventName="BeforePrint" PropertyName="Text" Expression="[workorderNo]" />
+          </ExpressionBindings>
+          <StylePriority Ref="6" UseFont="false" UseTextAlignment="false" />
+        </Item1>
+      </Controls>
+    </Item1>
+    <Item2 Ref="7" ControlType="DetailBand" Name="detailBand1" HeightF="0" KeepTogether="true" Dpi="254">
+      <HierarchyPrintOptions Ref="8" Indent="50.8" />
+      <MultiColumn Ref="9" Mode="UseColumnCount" />
+    </Item2>
+    <Item3 Ref="10" ControlType="BottomMarginBand" Name="bottomMarginBand1" HeightF="88" Dpi="254" />
+    <Item4 Ref="11" ControlType="ReportHeaderBand" Name="ReportHeader" HeightF="734.4463" Dpi="254">
+      <Controls>
+        <Item1 Ref="12" ControlType="XRTable" Name="table1" TextAlignment="MiddleLeft" SizeF="1914.63342,404.226929" LocationFloat="0.555198669, 281.7815" Dpi="254" Padding="10,10,10,10,254" Borders="All">
+          <Rows>
+            <Item1 Ref="13" ControlType="XRTableRow" Name="tableRow1" Weight="1" Dpi="254">
+              <Cells>
+                <Item1 Ref="14" ControlType="XRTableCell" Name="tableCell1" Weight="0.85997292223019861" Multiline="true" Text="OTOMOBİL SAHİBİNİN" TextAlignment="MiddleLeft" Dpi="254" BackColor="LightGray">
+                  <ExpressionBindings>
+                    <Item1 Ref="15" EventName="BeforePrint" PropertyName="Text" Expression="[LabelUserName]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="16" UseBackColor="false" UseTextAlignment="false" />
+                </Item1>
+                <Item2 Ref="17" ControlType="XRTableCell" Name="tableCell2" Weight="1.4738842169704591" Multiline="true" Text="tableCell2" Dpi="254">
+                  <ExpressionBindings>
+                    <Item1 Ref="18" EventName="BeforePrint" PropertyName="Text" Expression="[UserName]" />
+                  </ExpressionBindings>
+                </Item2>
+                <Item3 Ref="19" ControlType="XRTableCell" Name="tableCell4" Weight="0.60295284496004731" Multiline="true" Text="PLAKA NO" TextAlignment="MiddleLeft" Dpi="254" BackColor="LightGray" Borders="Left, Top, Right">
+                  <ExpressionBindings>
+                    <Item1 Ref="20" EventName="BeforePrint" PropertyName="Text" Expression="[LabelVehiclePlateNo]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="21" UseBackColor="false" UseBorders="false" UseTextAlignment="false" />
+                </Item3>
+                <Item4 Ref="22" ControlType="XRTableCell" Name="tableCell3" Weight="1.0631900158392948" Multiline="true" Text="tableCell3" TextAlignment="MiddleLeft" Dpi="254" Borders="Left, Top, Right">
+                  <ExpressionBindings>
+                    <Item1 Ref="23" EventName="BeforePrint" PropertyName="Text" Expression="[VehiclePlateNo]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="24" UseBorders="false" UseTextAlignment="false" />
+                </Item4>
+              </Cells>
+            </Item1>
+            <Item2 Ref="25" ControlType="XRTableRow" Name="tableRow4" Weight="1" Dpi="254">
+              <Cells>
+                <Item1 Ref="26" ControlType="XRTableCell" Name="tableCell10" Weight="0.85997292223019861" Multiline="true" Text="ADRESİ" TextAlignment="MiddleLeft" Dpi="254" BackColor="LightGray">
+                  <ExpressionBindings>
+                    <Item1 Ref="27" EventName="BeforePrint" PropertyName="Text" Expression="[LabelUserAddress]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="28" UseBackColor="false" UseTextAlignment="false" />
+                </Item1>
+                <Item2 Ref="29" ControlType="XRTableCell" Name="tableCell11" Weight="1.4738842169704591" Multiline="true" Text="tableCell11" Dpi="254" Borders="Left, Top, Bottom">
+                  <ExpressionBindings>
+                    <Item1 Ref="30" EventName="BeforePrint" PropertyName="Text" Expression="[UserAddress]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="31" UseBorders="false" />
+                </Item2>
+                <Item3 Ref="32" ControlType="XRTableCell" Name="tableCell12" Weight="1.6661428607993423" Multiline="true" TextAlignment="MiddleLeft" Dpi="254" BackColor="Transparent">
+                  <Controls>
+                    <Item1 Ref="33" ControlType="XRTable" Name="table4" SizeF="800.582153,291.6316" LocationFloat="0, 0" Dpi="254" Borders="All">
+                      <Rows>
+                        <Item1 Ref="34" ControlType="XRTableRow" Name="tableRow8" Weight="1" Dpi="254">
+                          <Cells>
+                            <Item1 Ref="35" ControlType="XRTableCell" Name="tableCell13" Weight="0.721000297482499" Multiline="true" Text="GELİŞ TARİHİ" TextAlignment="MiddleLeft" Dpi="254" BackColor="LightGray">
+                              <ExpressionBindings>
+                                <Item1 Ref="36" EventName="BeforePrint" PropertyName="Text" Expression="[LabelVehicleReceiveDate]" />
+                              </ExpressionBindings>
+                              <StylePriority Ref="37" UseBackColor="false" UseTextAlignment="false" />
+                            </Item1>
+                            <Item2 Ref="38" ControlType="XRTableCell" Name="tableCell26" Weight="1.2789997025175008" Multiline="true" Text="tableCell26" TextAlignment="MiddleLeft" Dpi="254">
+                              <ExpressionBindings>
+                                <Item1 Ref="39" EventName="BeforePrint" PropertyName="Text" Expression="[VehicleReceiveDate]" />
+                              </ExpressionBindings>
+                              <StylePriority Ref="40" UseTextAlignment="false" />
+                            </Item2>
+                          </Cells>
+                        </Item1>
+                        <Item2 Ref="41" ControlType="XRTableRow" Name="tableRow9" Weight="1" Dpi="254">
+                          <Cells>
+                            <Item1 Ref="42" ControlType="XRTableCell" Name="tableCell27" Weight="0.721000297482499" Multiline="true" Text="GİRİŞ K.M'si" TextAlignment="MiddleLeft" Dpi="254" BackColor="LightGray">
+                              <ExpressionBindings>
+                                <Item1 Ref="43" EventName="BeforePrint" PropertyName="Text" Expression="[LabelVehicleEnteredKM]" />
+                              </ExpressionBindings>
+                              <StylePriority Ref="44" UseBackColor="false" UseTextAlignment="false" />
+                            </Item1>
+                            <Item2 Ref="45" ControlType="XRTableCell" Name="tableCell28" Weight="1.2789997025175008" TextFormatString="{0:#,#}" Multiline="true" Text="tableCell28" TextAlignment="MiddleLeft" Dpi="254">
+                              <ExpressionBindings>
+                                <Item1 Ref="46" EventName="BeforePrint" PropertyName="Text" Expression="[VehicleEnteredKM]" />
+                              </ExpressionBindings>
+                              <StylePriority Ref="47" UseTextAlignment="false" />
+                            </Item2>
+                          </Cells>
+                        </Item2>
+                        <Item3 Ref="48" ControlType="XRTableRow" Name="tableRow10" Weight="1" Dpi="254">
+                          <Cells>
+                            <Item1 Ref="49" ControlType="XRTableCell" Name="tableCell29" Weight="0.721000297482499" Multiline="true" Text="ARACI GETİREN" TextAlignment="MiddleLeft" Dpi="254" BackColor="LightGray">
+                              <ExpressionBindings>
+                                <Item1 Ref="50" EventName="BeforePrint" PropertyName="Text" Expression="[LabelVehicleArrivedByVehicle]" />
+                              </ExpressionBindings>
+                              <StylePriority Ref="51" UseBackColor="false" UseTextAlignment="false" />
+                            </Item1>
+                            <Item2 Ref="52" ControlType="XRTableCell" Name="tableCell30" Weight="1.2789997025175008" Multiline="true" Text="tableCell30" TextAlignment="MiddleLeft" Dpi="254">
+                              <ExpressionBindings>
+                                <Item1 Ref="53" EventName="BeforePrint" PropertyName="Text" Expression="[VehicleArrivedByVehicle]" />
+                              </ExpressionBindings>
+                              <StylePriority Ref="54" UseTextAlignment="false" />
+                            </Item2>
+                          </Cells>
+                        </Item3>
+                        <Item4 Ref="55" ControlType="XRTableRow" Name="tableRow11" Weight="1" Dpi="254">
+                          <Cells>
+                            <Item1 Ref="56" ControlType="XRTableCell" Name="tableCell31" Weight="0.721000297482499" Multiline="true" Text="TİP" TextAlignment="MiddleLeft" Dpi="254" BackColor="LightGray">
+                              <ExpressionBindings>
+                                <Item1 Ref="57" EventName="BeforePrint" PropertyName="Text" Expression="[LabelVehicleModelType]" />
+                              </ExpressionBindings>
+                              <StylePriority Ref="58" UseBackColor="false" UseTextAlignment="false" />
+                            </Item1>
+                            <Item2 Ref="59" ControlType="XRTableCell" Name="tableCell32" Weight="1.2789997025175008" Multiline="true" Text="tableCell32" TextAlignment="MiddleLeft" Dpi="254">
+                              <ExpressionBindings>
+                                <Item1 Ref="60" EventName="BeforePrint" PropertyName="Text" Expression="[VehicleModelType]" />
+                              </ExpressionBindings>
+                              <StylePriority Ref="61" UseTextAlignment="false" />
+                            </Item2>
+                          </Cells>
+                        </Item4>
+                      </Rows>
+                      <StylePriority Ref="62" UsePadding="false" UseBorders="false" />
+                    </Item1>
+                  </Controls>
+                  <StylePriority Ref="63" UseBackColor="false" UseTextAlignment="false" />
+                </Item3>
+              </Cells>
+            </Item2>
+            <Item3 Ref="64" ControlType="XRTableRow" Name="tableRow5" Weight="1" Dpi="254">
+              <Cells>
+                <Item1 Ref="65" ControlType="XRTableCell" Name="tableCell14" Weight="0.85997292223019861" Multiline="true" Text="TEL NO EV" TextAlignment="MiddleLeft" Dpi="254" BackColor="LightGray">
+                  <ExpressionBindings>
+                    <Item1 Ref="66" EventName="BeforePrint" PropertyName="Text" Expression="[LabelUserHomePhone]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="67" UseBackColor="false" UseTextAlignment="false" />
+                </Item1>
+                <Item2 Ref="68" ControlType="XRTableCell" Name="tableCell15" Weight="1.4738842169704591" TextFormatString="{0:(###) ###-##-##}" Multiline="true" Text="tableCell15" Dpi="254">
+                  <ExpressionBindings>
+                    <Item1 Ref="69" EventName="BeforePrint" PropertyName="Text" Expression="[UserHomePhoneInt]" />
+                  </ExpressionBindings>
+                </Item2>
+                <Item3 Ref="70" ControlType="XRTableCell" Name="tableCell16" Weight="0.60295284496004731" Multiline="true" Text="RENK" TextAlignment="MiddleLeft" Dpi="254" BackColor="LightGray">
+                  <ExpressionBindings>
+                    <Item1 Ref="71" EventName="BeforePrint" PropertyName="Text" Expression="[LabelVehicleColor]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="72" UseBackColor="false" UseTextAlignment="false" />
+                </Item3>
+                <Item4 Ref="73" ControlType="XRTableCell" Name="tableCell17" Weight="1.0631900158392948" Multiline="true" Text="tableCell17" TextAlignment="MiddleLeft" Dpi="254">
+                  <ExpressionBindings>
+                    <Item1 Ref="74" EventName="BeforePrint" PropertyName="Text" Expression="[VehicleColor]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="75" UseTextAlignment="false" />
+                </Item4>
+              </Cells>
+            </Item3>
+            <Item4 Ref="76" ControlType="XRTableRow" Name="tableRow6" Weight="1" Dpi="254">
+              <Cells>
+                <Item1 Ref="77" ControlType="XRTableCell" Name="tableCell18" Weight="0.85997292223019861" Multiline="true" Text="TEL NO İŞ" TextAlignment="MiddleLeft" Dpi="254" BackColor="LightGray">
+                  <ExpressionBindings>
+                    <Item1 Ref="78" EventName="BeforePrint" PropertyName="Text" Expression="[LabelUserWorkPhone]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="79" UseBackColor="false" UseTextAlignment="false" />
+                </Item1>
+                <Item2 Ref="80" ControlType="XRTableCell" Name="tableCell19" Weight="1.4738842169704591" TextFormatString="{0:(###) ###-##-##}" Multiline="true" Text="tableCell19" Dpi="254">
+                  <ExpressionBindings>
+                    <Item1 Ref="81" EventName="BeforePrint" PropertyName="Text" Expression="[UserWorkPhoneInt]" />
+                  </ExpressionBindings>
+                </Item2>
+                <Item3 Ref="82" ControlType="XRTableCell" Name="tableCell20" Weight="0.60295284496004731" Multiline="true" Text="ŞASE" TextAlignment="MiddleLeft" Dpi="254" BackColor="LightGray">
+                  <ExpressionBindings>
+                    <Item1 Ref="83" EventName="BeforePrint" PropertyName="Text" Expression="[LabelVehicleChassis]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="84" UseBackColor="false" UseTextAlignment="false" />
+                </Item3>
+                <Item4 Ref="85" ControlType="XRTableCell" Name="tableCell21" Weight="1.0631900158392948" Multiline="true" Text="tableCell21" TextAlignment="MiddleLeft" Dpi="254">
+                  <ExpressionBindings>
+                    <Item1 Ref="86" EventName="BeforePrint" PropertyName="Text" Expression="[VehicleChassis]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="87" UseTextAlignment="false" />
+                </Item4>
+              </Cells>
+            </Item4>
+            <Item5 Ref="88" ControlType="XRTableRow" Name="tableRow7" Weight="1" Dpi="254">
+              <Cells>
+                <Item1 Ref="89" ControlType="XRTableCell" Name="tableCell22" Weight="0.85997292223019861" Multiline="true" Text="GSM" TextAlignment="MiddleLeft" Dpi="254" BackColor="LightGray">
+                  <ExpressionBindings>
+                    <Item1 Ref="90" EventName="BeforePrint" PropertyName="Text" Expression="[LabelUserMobilePhone]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="91" UseBackColor="false" UseTextAlignment="false" />
+                </Item1>
+                <Item2 Ref="92" ControlType="XRTableCell" Name="tableCell23" Weight="1.4738842169704591" TextFormatString="{0:(###) ###-##-##}" Multiline="true" Text="tableCell23" Dpi="254">
+                  <ExpressionBindings>
+                    <Item1 Ref="93" EventName="BeforePrint" PropertyName="Text" Expression="[UserMobilePhoneInt]" />
+                  </ExpressionBindings>
+                </Item2>
+                <Item3 Ref="94" ControlType="XRTableCell" Name="tableCell24" Weight="0.60295284496004731" Multiline="true" Text="MOTOR" TextAlignment="MiddleLeft" Dpi="254" BackColor="LightGray">
+                  <ExpressionBindings>
+                    <Item1 Ref="95" EventName="BeforePrint" PropertyName="Text" Expression="[LabelVehicleMotor]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="96" UseBackColor="false" UseTextAlignment="false" />
+                </Item3>
+                <Item4 Ref="97" ControlType="XRTableCell" Name="tableCell25" Weight="1.0631900158392948" Multiline="true" Text="tableCell25" TextAlignment="MiddleLeft" Dpi="254">
+                  <ExpressionBindings>
+                    <Item1 Ref="98" EventName="BeforePrint" PropertyName="Text" Expression="[VehicleMotor]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="99" UseTextAlignment="false" />
+                </Item4>
+              </Cells>
+            </Item5>
+          </Rows>
+          <StylePriority Ref="100" UsePadding="false" UseBorders="false" UseTextAlignment="false" />
+        </Item1>
+        <Item2 Ref="101" ControlType="XRPictureBox" Name="pictureBox4" Sizing="ZoomImage" SizeF="1917.74609,255.323013" LocationFloat="0, 0" Dpi="254">
+          <ExpressionBindings>
+            <Item1 Ref="102" EventName="BeforePrint" PropertyName="ImageSource" Expression="[Logo]" />
+          </ExpressionBindings>
+        </Item2>
+      </Controls>
+    </Item4>
+    <Item5 Ref="103" ControlType="PageHeaderBand" Name="PageHeader" PrintOn="NotWithReportHeader" HeightF="369.429962" Dpi="254">
+      <Controls>
+        <Item1 Ref="104" ControlType="XRPictureBox" Name="pictureBox1" Sizing="ZoomImage" SizeF="1917.74609,255.323013" LocationFloat="0, 0" Dpi="254">
+          <ExpressionBindings>
+            <Item1 Ref="105" EventName="BeforePrint" PropertyName="ImageSource" Expression="[Logo]" />
+          </ExpressionBindings>
+        </Item1>
+        <Item2 Ref="106" ControlType="XRLabel" Name="label54" Multiline="true" Text="İŞ EMRİ" TextAlignment="MiddleLeft" SizeF="152.5763,58.4199677" LocationFloat="1315.81018, 290.247681" Dpi="254" BackColor="LightGray" Padding="5,5,0,0,254" Borders="All" BorderDashStyle="Solid">
+          <StylePriority Ref="107" UseBackColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item2>
+        <Item3 Ref="108" ControlType="XRLabel" Name="label55" Multiline="true" Text="label9" TextAlignment="MiddleLeft" SizeF="439.5863,58.4199753" LocationFloat="1468.38647, 290.247681" Dpi="254" Padding="5,5,0,0,254" Borders="All" BorderDashStyle="Solid">
+          <ExpressionBindings>
+            <Item1 Ref="109" EventName="BeforePrint" PropertyName="Text" Expression="[workorderNo]" />
+          </ExpressionBindings>
+          <StylePriority Ref="110" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item3>
+        <Item4 Ref="111" ControlType="XRLabel" Name="label50" Multiline="true" Text="label5" TextAlignment="MiddleLeft" SizeF="491.497559,58.4199829" LocationFloat="824.3127, 290.247681" Dpi="254" Padding="5,5,0,0,254" Borders="All" BorderDashStyle="Solid">
+          <ExpressionBindings>
+            <Item1 Ref="112" EventName="BeforePrint" PropertyName="Text" Expression="[vehicleModelType]" />
+          </ExpressionBindings>
+          <StylePriority Ref="113" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item4>
+        <Item5 Ref="114" ControlType="XRLabel" Name="label51" Multiline="true" Text="TİP" TextAlignment="MiddleLeft" SizeF="152.576355,58.4200134" LocationFloat="671.736267, 290.247681" Dpi="254" BackColor="LightGray" Padding="5,5,0,0,254" Borders="All" BorderDashStyle="Solid">
+          <StylePriority Ref="115" UseBackColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item5>
+        <Item6 Ref="116" ControlType="XRLabel" Name="label48" Multiline="true" Text="PLAKA NO" TextAlignment="MiddleLeft" SizeF="203.729126,58.42" LocationFloat="0, 290.247681" Dpi="254" BackColor="LightGray" Padding="5,5,0,0,254" Borders="All" BorderDashStyle="Solid">
+          <StylePriority Ref="117" UseBackColor="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item6>
+        <Item7 Ref="118" ControlType="XRLabel" Name="label49" Multiline="true" Text="label7" TextAlignment="MiddleLeft" SizeF="468.007324,58.42" LocationFloat="203.72908, 290.247681" Dpi="254" Padding="5,5,0,0,254" Borders="All" BorderDashStyle="Solid">
+          <ExpressionBindings>
+            <Item1 Ref="119" EventName="BeforePrint" PropertyName="Text" Expression="[vehiclePlateNo]" />
+          </ExpressionBindings>
+          <StylePriority Ref="120" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item7>
+      </Controls>
+    </Item5>
+    <Item6 Ref="121" ControlType="PageFooterBand" Name="PageFooter" HeightF="143.94133" Dpi="254" />
+    <Item7 Ref="122" ControlType="ReportFooterBand" Name="ReportFooter" PrintAtBottom="true" HeightF="317.590271" KeepTogether="true" Dpi="254">
+      <Controls>
+        <Item1 Ref="123" ControlType="XRTable" Name="table5" TextAlignment="MiddleLeft" SizeF="1157.82336,286.278534" LocationFloat="0.555198669, 24.9999275" Dpi="254" Padding="2,2,0,0,96" Borders="All">
+          <Rows>
+            <Item1 Ref="124" ControlType="XRTableRow" Name="tableRow12" Weight="1" Dpi="254">
+              <Cells>
+                <Item1 Ref="125" ControlType="XRTableCell" Name="tableCell36" Weight="0.40211893887213657" Multiline="true" Text="USTABAŞI" Dpi="254" BackColor="LightGray" Padding="10,10,10,10,254">
+                  <ExpressionBindings>
+                    <Item1 Ref="126" EventName="BeforePrint" PropertyName="Text" Expression="[LabelHeadWorker]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="127" UseBackColor="false" UsePadding="false" />
+                </Item1>
+                <Item2 Ref="128" ControlType="XRTableCell" Name="tableCell33" Weight="1.5978810611278633" Multiline="true" Text="tableCell33" Dpi="254" Padding="10,10,10,10,254">
+                  <ExpressionBindings>
+                    <Item1 Ref="129" EventName="BeforePrint" PropertyName="Text" Expression="[HeadWorker]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="130" UsePadding="false" />
+                </Item2>
+              </Cells>
+            </Item1>
+            <Item2 Ref="131" ControlType="XRTableRow" Name="tableRow13" Weight="1" Dpi="254">
+              <Cells>
+                <Item1 Ref="132" ControlType="XRTableCell" Name="tableCell37" Weight="0.40211893887213651" Multiline="true" Text="NOTLAR" Dpi="254" BackColor="LightGray" Padding="10,10,10,10,254">
+                  <ExpressionBindings>
+                    <Item1 Ref="133" EventName="BeforePrint" PropertyName="Text" Expression="[LabelNotes]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="134" UseBackColor="false" UsePadding="false" />
+                </Item1>
+                <Item2 Ref="135" ControlType="XRTableCell" Name="tableCell38" Weight="1.5978810611278635" Multiline="true" Text="tableCell38" Dpi="254" Padding="10,10,10,10,254">
+                  <ExpressionBindings>
+                    <Item1 Ref="136" EventName="BeforePrint" PropertyName="Text" Expression="[Notes]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="137" UsePadding="false" />
+                </Item2>
+              </Cells>
+            </Item2>
+          </Rows>
+          <StylePriority Ref="138" UseBorders="false" UseTextAlignment="false" />
+        </Item1>
+        <Item2 Ref="139" ControlType="XRLabel" Name="label42" Multiline="true" Text="İMZA" SizeF="202.4403,58.4199829" LocationFloat="1694.55969, 145.9814" Dpi="254" Padding="5,5,0,0,254">
+          <ExpressionBindings>
+            <Item1 Ref="140" EventName="BeforePrint" PropertyName="Text" Expression="[LabelSignature]" />
+          </ExpressionBindings>
+        </Item2>
+        <Item3 Ref="141" ControlType="XRLabel" Name="label39" Multiline="true" CanGrow="false" Text="OTOMOBİLİMİ merkezinden revizyon ve bakımı tamamen yapılmış olarak noksansız teslim aldım." AnchorVertical="Both" SizeF="759.2114,286.278381" LocationFloat="1158.37854, 25.00009" Dpi="254" Padding="20,20,20,20,254" Borders="All" BorderDashStyle="Solid">
+          <ExpressionBindings>
+            <Item1 Ref="142" EventName="BeforePrint" PropertyName="Text" Expression="[LabelSignatureDescription]" />
+          </ExpressionBindings>
+          <StylePriority Ref="143" UsePadding="false" UseBorders="false" UseBorderDashStyle="false" />
+        </Item3>
+      </Controls>
+    </Item7>
+    <Item8 Ref="144" ControlType="GroupFooterBand" Name="GroupFooter2" PrintAtBottom="true" HeightF="254.081635" KeepTogether="true" Dpi="254">
+      <Controls>
+        <Item1 Ref="145" ControlType="XRLabel" Name="label9" TextFormatString="{0:#,#}" Multiline="true" TextAlignment="MiddleRight" SizeF="241.93396,58.42003" LocationFloat="1675.81213, 116.840088" Dpi="254" Padding="5,5,0,0,254" Borders="Right, Bottom" BorderDashStyle="Dot">
+          <ExpressionBindings>
+            <Item1 Ref="146" EventName="BeforePrint" PropertyName="Text" Expression="[TaxRate]" />
+          </ExpressionBindings>
+          <StylePriority Ref="147" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item1>
+        <Item2 Ref="148" ControlType="XRLabel" Name="label10" TextFormatString="{0:#,#}" Multiline="true" Text="label10" TextAlignment="MiddleRight" SizeF="241.934082,58.42" LocationFloat="1675.65613, 0" Dpi="254" Padding="5,5,0,0,254" Borders="Top, Right, Bottom" BorderDashStyle="Dot">
+          <ExpressionBindings>
+            <Item1 Ref="149" EventName="BeforePrint" PropertyName="Text" Expression="[workTotalPrice]" />
+          </ExpressionBindings>
+          <StylePriority Ref="150" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item2>
+        <Item3 Ref="151" ControlType="XRLabel" Name="label38" Multiline="true" Text="ÜRÜN TOPLAM" TextAlignment="MiddleLeft" SizeF="322.51,58.4199829" LocationFloat="1347.85461, 58.4199371" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254" Borders="Left, Right, Bottom" BorderDashStyle="Dot">
+          <ExpressionBindings>
+            <Item1 Ref="152" EventName="BeforePrint" PropertyName="Text" Expression="[LabelToolTotalPrice]" />
+          </ExpressionBindings>
+          <StylePriority Ref="153" UseFont="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item3>
+        <Item4 Ref="154" ControlType="XRLabel" Name="label37" Multiline="true" Text="K.D.V" TextAlignment="MiddleLeft" SizeF="322.51,58.42" LocationFloat="1347.85461, 116.839874" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254" Borders="Left, Right, Bottom" BorderDashStyle="Dot">
+          <ExpressionBindings>
+            <Item1 Ref="155" EventName="BeforePrint" PropertyName="Text" Expression="[LabelTaxRate]" />
+          </ExpressionBindings>
+          <StylePriority Ref="156" UseFont="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item4>
+        <Item5 Ref="157" ControlType="XRLabel" Name="label11" TextFormatString="{0:#,#}" Multiline="true" Text="label11" TextAlignment="MiddleRight" SizeF="241.934082,58.4199829" LocationFloat="1675.65613, 58.4198837" Dpi="254" Padding="5,5,0,0,254" Borders="Right, Bottom" BorderDashStyle="Dot">
+          <ExpressionBindings>
+            <Item1 Ref="158" EventName="BeforePrint" PropertyName="Text" Expression="[toolTotalPrice]" />
+          </ExpressionBindings>
+          <StylePriority Ref="159" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item5>
+        <Item6 Ref="160" ControlType="XRLabel" Name="label35" Multiline="true" Text="G.TOPLAM" TextAlignment="MiddleLeft" SizeF="322.510132,55.95645" LocationFloat="1347.85449, 175.259842" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254" Borders="Left, Right, Bottom" BorderDashStyle="Dot">
+          <ExpressionBindings>
+            <Item1 Ref="161" EventName="BeforePrint" PropertyName="Text" Expression="[LabelGeneralTotalPrice]" />
+          </ExpressionBindings>
+          <StylePriority Ref="162" UseFont="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item6>
+        <Item7 Ref="163" ControlType="XRLabel" Name="label12" TextFormatString="{0:#,#}" Multiline="true" Text="label12" TextAlignment="MiddleRight" SizeF="241.934082,58.4200134" LocationFloat="1675.65613, 175.260132" Dpi="254" Padding="5,5,0,0,254" Borders="Right, Bottom" BorderDashStyle="Dot">
+          <ExpressionBindings>
+            <Item1 Ref="164" EventName="BeforePrint" PropertyName="Text" Expression="[generalTotalPrice]" />
+          </ExpressionBindings>
+          <StylePriority Ref="165" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item7>
+        <Item8 Ref="166" ControlType="XRLabel" Name="label36" Multiline="true" Text="SERVİS TOPLAM" TextAlignment="MiddleLeft" SizeF="322.51,58.42" LocationFloat="1347.85461, 0" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254" Borders="All" BorderDashStyle="Dot">
+          <ExpressionBindings>
+            <Item1 Ref="167" EventName="BeforePrint" PropertyName="Text" Expression="[LabelWorkTotalPrice]" />
+          </ExpressionBindings>
+          <StylePriority Ref="168" UseFont="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+        </Item8>
+      </Controls>
+    </Item8>
+    <Item9 Ref="169" ControlType="DetailReportBand" Name="DetailReport1" Level="1" DataMember="products" DataSource="#Ref-0" Dpi="254">
+      <Bands>
+        <Item1 Ref="170" ControlType="DetailBand" Name="Detail1" HeightF="64" Dpi="254">
+          <HierarchyPrintOptions Ref="171" Indent="50.8" />
+          <Controls>
+            <Item1 Ref="172" ControlType="XRTable" Name="table2" SizeF="1922,64" LocationFloat="0, 0" Dpi="254" Padding="10,10,10,10,254">
+              <Rows>
+                <Item1 Ref="173" ControlType="XRTableRow" Name="tableRow2" Weight="0.56097560975609762" Dpi="254">
+                  <Cells>
+                    <Item1 Ref="174" ControlType="XRTableCell" Name="tableCell5" Weight="0.31222825594357678" Multiline="true" Text="tableCell5" TextAlignment="MiddleLeft" Dpi="254" Borders="Left, Right, Bottom" BorderDashStyle="Dash">
+                      <ExpressionBindings>
+                        <Item1 Ref="175" EventName="BeforePrint" PropertyName="Text" Expression="[name]" />
+                      </ExpressionBindings>
+                      <StylePriority Ref="176" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+                    </Item1>
+                    <Item2 Ref="177" ControlType="XRTableCell" Name="tableCell6" Weight="0.047036241934782466" TextFormatString="{0:#,#}" Multiline="true" Text="tableCell6" TextAlignment="MiddleRight" Dpi="254" Padding="5,15,0,0,254" Borders="Left, Right, Bottom" BorderDashStyle="Dash">
+                      <ExpressionBindings>
+                        <Item1 Ref="178" EventName="BeforePrint" PropertyName="Text" Expression="[price]" />
+                      </ExpressionBindings>
+                      <StylePriority Ref="179" UsePadding="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+                    </Item2>
+                  </Cells>
+                </Item1>
+              </Rows>
+              <StylePriority Ref="180" UsePadding="false" />
+            </Item1>
+          </Controls>
+        </Item1>
+        <Item2 Ref="181" ControlType="GroupHeaderBand" Name="GroupHeader2" HeightF="58.420002" Dpi="254">
+          <Controls>
+            <Item1 Ref="182" ControlType="XRLabel" Name="label52" Multiline="true" Text="Ürün" TextAlignment="MiddleLeft" SizeF="1675.656,58.42" LocationFloat="0, 0" Dpi="254" ForeColor="Black" BackColor="LightGray" Padding="5,5,0,0,254" Borders="All">
+              <ExpressionBindings>
+                <Item1 Ref="183" EventName="BeforePrint" PropertyName="Text" Expression="[LabelProductName]" />
+              </ExpressionBindings>
+              <StylePriority Ref="184" UseForeColor="false" UseBackColor="false" UseBorders="false" UseTextAlignment="false" />
+            </Item1>
+            <Item2 Ref="185" ControlType="XRLabel" Name="label53" Multiline="true" Text="ÜCRET" TextAlignment="MiddleCenter" SizeF="246.34375,58.42" LocationFloat="1675.656, 0" Dpi="254" ForeColor="Black" BackColor="LightGray" Padding="5,5,0,0,254" Borders="All">
+              <ExpressionBindings>
+                <Item1 Ref="186" EventName="BeforePrint" PropertyName="Text" Expression="[LabelProductPrice]" />
+              </ExpressionBindings>
+              <StylePriority Ref="187" UseForeColor="false" UseBackColor="false" UseBorders="false" UseTextAlignment="false" />
+            </Item2>
+          </Controls>
+        </Item2>
+        <Item3 Ref="188" ControlType="GroupFooterBand" Name="GroupFooter4" HeightF="58.42" Dpi="254">
+          <Controls>
+            <Item1 Ref="189" ControlType="XRLabel" Name="label33" TextFormatString="{0:#,#}" Multiline="true" Text="label59" TextAlignment="MiddleRight" SizeF="246.343384,58.42" LocationFloat="1675.656, 0" Dpi="254" Padding="5,10,0,0,254">
+              <Summary Ref="190" Running="Group" />
+              <ExpressionBindings>
+                <Item1 Ref="191" EventName="BeforePrint" PropertyName="Text" Expression="sumSum([price])" />
+              </ExpressionBindings>
+              <StylePriority Ref="192" UsePadding="false" UseTextAlignment="false" />
+            </Item1>
+            <Item2 Ref="193" ControlType="XRLabel" Name="label34" Multiline="true" Text="Ürün TOPLAM :" TextAlignment="MiddleRight" SizeF="381.003418,58.42" LocationFloat="1294.65259, 0" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+              <ExpressionBindings>
+                <Item1 Ref="194" EventName="BeforePrint" PropertyName="Text" Expression="[LabelTotalProductPrice]" />
+              </ExpressionBindings>
+              <StylePriority Ref="195" UseFont="false" UseTextAlignment="false" />
+            </Item2>
+          </Controls>
+        </Item3>
+      </Bands>
+    </Item9>
+    <Item10 Ref="196" ControlType="DetailReportBand" Name="DetailReportWorks" Level="0" DataMember="services" DataSource="#Ref-0" Dpi="254">
+      <Bands>
+        <Item1 Ref="197" ControlType="DetailBand" Name="Detail2" HeightF="64" Dpi="254">
+          <HierarchyPrintOptions Ref="198" Indent="50.8" />
+          <Controls>
+            <Item1 Ref="199" ControlType="XRTable" Name="table3" SizeF="1922,64" LocationFloat="0, 0" Dpi="254" Padding="10,10,10,10,254">
+              <Rows>
+                <Item1 Ref="200" ControlType="XRTableRow" Name="tableRow3" Weight="0.56097560975609762" Dpi="254">
+                  <Cells>
+                    <Item1 Ref="201" ControlType="XRTableCell" Name="tableCell7" Weight="0.40098103178283606" Multiline="true" Text="tableCell7" TextAlignment="MiddleLeft" Dpi="254" Borders="Left, Right, Bottom" BorderDashStyle="Dash">
+                      <ExpressionBindings>
+                        <Item1 Ref="202" EventName="BeforePrint" PropertyName="Text" Expression="[name]" />
+                      </ExpressionBindings>
+                      <StylePriority Ref="203" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+                    </Item1>
+                    <Item2 Ref="204" ControlType="XRTableCell" Name="tableCell8" Weight="0.17172066722312637" Multiline="true" Text="tableCell8" TextAlignment="MiddleLeft" Dpi="254" Borders="Left, Right, Bottom" BorderDashStyle="Dash">
+                      <ExpressionBindings>
+                        <Item1 Ref="205" EventName="BeforePrint" PropertyName="Text" Expression="[worker]" />
+                      </ExpressionBindings>
+                      <StylePriority Ref="206" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+                    </Item2>
+                    <Item3 Ref="207" ControlType="XRTableCell" Name="tableCell9" Weight="0.084194852718175478" TextFormatString="{0:#,#}" Multiline="true" Text="tableCell9" TextAlignment="MiddleRight" Dpi="254" Padding="5,15,0,0,254" Borders="Left, Right, Bottom" BorderDashStyle="Dash">
+                      <ExpressionBindings>
+                        <Item1 Ref="208" EventName="BeforePrint" PropertyName="Text" Expression="[price]" />
+                      </ExpressionBindings>
+                      <StylePriority Ref="209" UsePadding="false" UseBorders="false" UseBorderDashStyle="false" UseTextAlignment="false" />
+                    </Item3>
+                  </Cells>
+                </Item1>
+              </Rows>
+              <StylePriority Ref="210" UsePadding="false" />
+            </Item1>
+          </Controls>
+        </Item1>
+        <Item2 Ref="211" ControlType="GroupHeaderBand" Name="GroupHeader3" HeightF="61.505127" Dpi="254">
+          <Controls>
+            <Item1 Ref="212" ControlType="XRLabel" Name="label60" Multiline="true" Text="ÜCRET" TextAlignment="MiddleCenter" SizeF="246.343628,58.42" LocationFloat="1675.65613, 3.085083" Dpi="254" ForeColor="Black" BackColor="LightGray" Padding="5,5,0,0,254" Borders="All">
+              <ExpressionBindings>
+                <Item1 Ref="213" EventName="BeforePrint" PropertyName="Text" Expression="[LabelServicePrice]" />
+              </ExpressionBindings>
+              <StylePriority Ref="214" UseForeColor="false" UseBackColor="false" UseBorders="false" UseTextAlignment="false" />
+            </Item1>
+            <Item2 Ref="215" ControlType="XRLabel" Name="label61" Multiline="true" Text="YAPAN USTA" TextAlignment="MiddleLeft" SizeF="502.9895,58.42" LocationFloat="1172.6665, 3.085083" Dpi="254" ForeColor="Black" BackColor="LightGray" Padding="5,5,0,0,254" Borders="All">
+              <ExpressionBindings>
+                <Item1 Ref="216" EventName="BeforePrint" PropertyName="Text" Expression="[LabelTechnician]" />
+              </ExpressionBindings>
+              <StylePriority Ref="217" UseForeColor="false" UseBackColor="false" UseBorders="false" UseTextAlignment="false" />
+            </Item2>
+            <Item3 Ref="218" ControlType="XRLabel" Name="label62" Multiline="true" Text="Servis" TextAlignment="MiddleLeft" SizeF="1172.11133,58.42" LocationFloat="0.5551583, 3.085083" Dpi="254" ForeColor="Black" BackColor="LightGray" Padding="5,5,0,0,254" Borders="All">
+              <ExpressionBindings>
+                <Item1 Ref="219" EventName="BeforePrint" PropertyName="Text" Expression="[LabelServiceName]" />
+              </ExpressionBindings>
+              <StylePriority Ref="220" UseForeColor="false" UseBackColor="false" UseBorders="false" UseTextAlignment="false" />
+            </Item3>
+          </Controls>
+        </Item2>
+        <Item3 Ref="221" ControlType="GroupFooterBand" Name="GroupFooter3" HeightF="188.017761" Dpi="254">
+          <Controls>
+            <Item1 Ref="222" ControlType="XRLabel" Name="label57" Multiline="true" Text="Servis TOPLAM :" TextAlignment="MiddleRight" SizeF="381.003418,58.42" LocationFloat="1294.65259, 0" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+              <ExpressionBindings>
+                <Item1 Ref="223" EventName="BeforePrint" PropertyName="Text" Expression="[LabelTotalServicePrice]" />
+              </ExpressionBindings>
+              <StylePriority Ref="224" UseFont="false" UseTextAlignment="false" />
+            </Item1>
+            <Item2 Ref="225" ControlType="XRLabel" Name="label59" TextFormatString="{0:#,#}" Multiline="true" Text="label59" TextAlignment="MiddleRight" SizeF="246.343872,58.42" LocationFloat="1675.656, 0" Dpi="254" Padding="5,10,0,0,254">
+              <Summary Ref="226" Running="Group" />
+              <ExpressionBindings>
+                <Item1 Ref="227" EventName="BeforePrint" PropertyName="Text" Expression="sumSum([price])" />
+              </ExpressionBindings>
+              <StylePriority Ref="228" UsePadding="false" UseTextAlignment="false" />
+            </Item2>
+          </Controls>
+        </Item3>
+      </Bands>
+    </Item10>
+  </Bands>
+  <ComponentStorage>
+    <Item1 Ref="0" ObjectType="DevExpress.DataAccess.ObjectBinding.ObjectDataSource,DevExpress.DataAccess.v19.2" Name="objectDataSource1" Base64="PE9iamVjdERhdGFTb3VyY2UgTmFtZT0ib2JqZWN0RGF0YVNvdXJjZTEiPjxEYXRhU291cmNlIFR5cGU9IkFyc2xhbi5WbXMuT3JkZXJzLnYxLlJlcG9ydHMuU2FsZXNPcmRlclJlcG9ydCwgQXJzbGFuLlZtcy5PcmRlcnMuQXBwbGljYXRpb24uQ29udHJhY3RzLCBWZXJzaW9uPTAuMS4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49bnVsbCIgLz48L09iamVjdERhdGFTb3VyY2U+" />
+  </ComponentStorage>
+</XtraReportsLayoutSerializer>
