@@ -8,14 +8,16 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp;
+using Volo.Abp.BlobStoring;
+using Volo.Abp.Emailing;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
+using Volo.Abp.SettingManagement;
 
 namespace Arslan.Vms.AdministrationService;
 
@@ -30,47 +32,36 @@ public class AdministrationServiceHttpApiHostModule : AbpModule
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        var hostingEnvironment = context.Services.GetHostingEnvironment();
         var configuration = context.Services.GetConfiguration();
+        var hostingEnvironment = context.Services.GetHostingEnvironment();
 
-        JwtBearerConfigurationHelper.Configure(context, "AdministrationService");
+        JwtBearerConfigurationHelper.Configure(context, "");
 
+        ConfigureLocalization();
+        ConfigureCors(context, configuration);
+        ConfigureSwaggerServices(context, configuration);
+    }
+
+    private static void ConfigureSwaggerServices(ServiceConfigurationContext context, IConfiguration configuration)
+    {
         SwaggerConfigurationHelper.ConfigureWithAuth(
             context: context,
-            scopes: new
-                Dictionary<string, string> /* Requested scopes for authorization code request and descriptions for swagger UI only */
-                {
-                    {"AdministrationService", "Administration Service API"}
-            },
-            apiTitle: "Administration Service API"
-        );
+            configuration: configuration,
+            scopes: new Dictionary<string, string> { { "Vms_AdministrationService", "Vms Administration Service API" } },
+            apiTitle: "Administration Service");
+    }
 
-        //if (hostingEnvironment.IsDevelopment())
-        //{
-        //    Configure<AbpVirtualFileSystemOptions>(options =>
-        //    {
-        //        options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceDomainSharedModule>(
-        //            Path.Combine(hostingEnvironment.ContentRootPath,
-        //                string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Domain.Shared", Path.DirectorySeparatorChar)));
-        //        options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceDomainModule>(
-        //            Path.Combine(hostingEnvironment.ContentRootPath,
-        //                string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Domain", Path.DirectorySeparatorChar)));
-        //        options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceApplicationContractsModule>(
-        //            Path.Combine(hostingEnvironment.ContentRootPath,
-        //                string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Application.Contracts",
-        //                    Path.DirectorySeparatorChar)));
-        //        options.FileSets.ReplaceEmbeddedByPhysical<AdministrationServiceApplicationModule>(
-        //            Path.Combine(hostingEnvironment.ContentRootPath,
-        //                string.Format("..{0}..{0}src{0}Arslan.Vms.AdministrationService.Application", Path.DirectorySeparatorChar)));
-        //    });
-        //}
-
+    private void ConfigureLocalization()
+    {
         Configure<AbpLocalizationOptions>(options =>
-        { 
-            options.Languages.Add(new LanguageInfo("en", "en", "English")); 
-            options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe")); 
+        {
+            options.Languages.Add(new LanguageInfo("en", "en", "English", "./assets/media/flags/united-states.svg"));
+            options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe", "./assets/media/flags/turkey.svg"));
         });
+    }
 
+    private void ConfigureCors(ServiceConfigurationContext context, IConfiguration configuration)
+    {
         context.Services.AddCors(options =>
         {
             options.AddDefaultPolicy(builder =>
@@ -79,7 +70,7 @@ public class AdministrationServiceHttpApiHostModule : AbpModule
                     .WithOrigins(
                         configuration["App:CorsOrigins"]
                             .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                            .Select(o => o.Trim().RemovePostFix("/"))
+                            .Select(o => o.RemovePostFix("/"))
                             .ToArray()
                     )
                     .WithAbpExposedHeaders()
@@ -95,39 +86,57 @@ public class AdministrationServiceHttpApiHostModule : AbpModule
     {
         var app = context.GetApplicationBuilder();
         var env = context.GetEnvironment();
-		var configuration = context.ServiceProvider.GetRequiredService<IConfiguration>();
+        var configuration = context.ServiceProvider.GetRequiredService<IConfiguration>();
 
-		if (env.IsDevelopment())
+        app.UsePathBase(configuration["App:PathBase"]);
+
+        if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
+        }
 
-            IdentityModelEventSource.ShowPII = true;
+        app.UseAbpRequestLocalization();
+
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+            var settingManager = context.ServiceProvider.GetService<SettingManager>();
+            //encrypts the password on set and decrypts on get
+            settingManager.SetGlobalAsync(EmailSettingNames.Smtp.Password, configuration["Settings:Abp.Mailing.Smtp.Password"]);
         }
 
         app.UseCorrelationId();
-        app.UseCors();
-        app.UseAbpRequestLocalization();
         app.UseStaticFiles();
         app.UseRouting();
+        app.UseCors();
         app.UseAuthentication();
         app.UseAbpClaimsMap();
-        app.UseAuthorization();
-        app.UseSwagger();
-		app.UseSwaggerUI(options =>
-		{
-			//options.SwaggerEndpoint(configuration["Swagger:Endpoint"], $"{env.EnvironmentName} - {version}");
-			options.OAuthClientId(configuration["Swagger:SwaggerClientId"]);
-			options.OAuthClientSecret(configuration["Swagger:SwaggerClientSecret"]);
-			var provider = app.ApplicationServices.GetRequiredService<IApiVersionDescriptionProvider>();
-			// build a swagger endpoint for each discovered API version
-			foreach (var description in provider.ApiVersionDescriptions)
-			{
-				options.SwaggerEndpoint($"{configuration["App:PathBase"]}/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
-			}
-		});
-		app.UseAbpSerilogEnrichers();
-        app.UseAuditing();
+
+        if (MultiTenancyConsts.IsEnabled)
+        {
+            app.UseMultiTenancy();
+        }
+
         app.UseUnitOfWork();
+
+        app.UseAuthorization();
+
+        app.UseSwagger();
+        app.UseSwaggerUI(options =>
+        {
+            //options.SwaggerEndpoint(configuration["Swagger:Endpoint"], $"{env.EnvironmentName} - {version}");
+            options.OAuthClientId(configuration["Swagger:SwaggerClientId"]);
+            options.OAuthClientSecret(configuration["Swagger:SwaggerClientSecret"]);
+            var provider = app.ApplicationServices.GetRequiredService<IApiVersionDescriptionProvider>();
+            // build a swagger endpoint for each discovered API version
+            foreach (var description in provider.ApiVersionDescriptions)
+            {
+                options.SwaggerEndpoint($"{configuration["App:PathBase"]}/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+            }
+        });
+
+        app.UseAuditing();
+        app.UseAbpSerilogEnrichers();
         app.UseConfiguredEndpoints();
     }
 

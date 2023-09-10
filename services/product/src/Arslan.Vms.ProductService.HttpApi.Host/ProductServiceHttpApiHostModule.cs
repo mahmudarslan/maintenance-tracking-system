@@ -2,29 +2,20 @@ using Arslan.Vms.ProductService.DbMigrations;
 using Arslan.Vms.ProductService.EntityFrameworkCore;
 using Arslan.Vms.Shared.Hosting.AspNetCore;
 using Arslan.Vms.Shared.Hosting.Microservices;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp;
-using Volo.Abp.Caching;
-using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.SqlServer;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
-using Volo.Abp.MultiTenancy;
-using Volo.Abp.VirtualFileSystem;
 
 namespace Arslan.Vms.ProductService;
 
@@ -47,7 +38,8 @@ public class ProductServiceHttpApiHostModule : AbpModule
 
 		SwaggerConfigurationHelper.ConfigureWithAuth(
 			context: context,
-			scopes: new
+            configuration: configuration,
+            scopes: new
 				Dictionary<string, string> /* Requested scopes for authorization code request and descriptions for swagger UI only */
                 {
 					{"ProductService", "Product Service API"}

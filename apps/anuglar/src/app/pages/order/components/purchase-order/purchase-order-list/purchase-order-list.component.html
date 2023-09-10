@@ -78,7 +78,7 @@
     <dxi-toolbar-item text="Title" location="center">
         <div *dxTemplate>
             <h3>
-                <font size="5" face="arial">{{ 'Ftms::TaskDetail' | abpLocalization }}</font>
+                <font size="5" face="arial">{{ 'Vms::TaskDetail' | abpLocalization }}</font>
             </h3>
         </div>
     </dxi-toolbar-item>
@@ -92,14 +92,14 @@
 
     <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="after" itemTemplate="deleteTemplate">
         <div *dxTemplate="let data of 'cancelTemplate'">
-            <dx-button stylingMode="contained" type="danger" text="{{'Ftms::Cancel' | abpLocalization}}" [width]="120"
+            <dx-button stylingMode="contained" type="danger" text="{{'Vms::Cancel' | abpLocalization}}" [width]="120"
                 (onClick)="onClick_Cancel($event)">
             </dx-button>
         </div>
     </dxi-toolbar-item>
     <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="after" itemTemplate="cancelTemplate">
         <div *dxTemplate="let data of 'deleteTemplate'">
-            <dx-button stylingMode="contained" type="success" text="{{'Ftms::Save' | abpLocalization}}" [width]="120"
+            <dx-button stylingMode="contained" type="success" text="{{'Vms::Save' | abpLocalization}}" [width]="120"
                 (onClick)="saveDetail($event)">
             </dx-button>
         </div>

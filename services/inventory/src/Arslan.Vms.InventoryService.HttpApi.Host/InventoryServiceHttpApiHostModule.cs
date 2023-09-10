@@ -35,7 +35,8 @@ public class InventoryServiceHttpApiHostModule : AbpModule
 
 		SwaggerConfigurationHelper.ConfigureWithAuth(
 			context: context,
-			scopes: new
+            configuration: configuration,
+            scopes: new
 				Dictionary<string, string> /* Requested scopes for authorization code request and descriptions for swagger UI only */
                 {
 					{"InventoryService", "Inventory Service API"}
