@@ -51,13 +51,13 @@ public class ArslanVmsSharedHostingMicroservicesModule : AbpModule
 
         Configure<AbpDistributedCacheOptions>(options =>
         {
-            options.KeyPrefix = "FtmsV2:";
+            options.KeyPrefix = "Vms:";
         });
 
         var redis = ConnectionMultiplexer.Connect(configuration["Redis:Configuration"]);
         context.Services
             .AddDataProtection()
-            .PersistKeysToStackExchangeRedis(redis, "Ftms-Protection-Keys");
+            .PersistKeysToStackExchangeRedis(redis, "Vms-Protection-Keys");
 
         context.Services.AddSingleton<IDistributedLockProvider>(sp =>
         {
