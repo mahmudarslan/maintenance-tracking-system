@@ -21,47 +21,47 @@ Write-Host "===== BUILDING APPLICATIONS =====" -ForegroundColor Yellow
 ### IDENTITY-SERVICE
 Write-Host "**************** BUILDING IDENTITY-SERVICE 1/$total ****************" -ForegroundColor Green
 Set-Location $identityServiceFolder
-docker build -f "$identityServiceFolder/Dockerfile" -t Arslan.Vms/service-identity:$version .
+docker build -f "$identityServiceFolder/Dockerfile" -t arslan.vms/service-identity:$version .
 
 ### ADMINISTRATION-SERVICE
 Write-Host "**************** BUILDING ADMINISTRATION-SERVICE 2/$total ****************" -ForegroundColor Green
 Set-Location $slnFolder
-docker build -f "$administrationServiceFolder/Dockerfile" -t Arslan.Vms/service-administration:$version .
+docker build -f "$administrationServiceFolder/Dockerfile" -t arslan.vms/service-administration:$version .
 
 ### INVENTORY-SERVICE
 Write-Host "**************** BUILDING INVENTORY-SERVICE 3/$total ****************" -ForegroundColor Green
 Set-Location $inventoryServiceFolder
-docker build -f "$inventoryServiceFolder/Dockerfile" -t Arslan.Vms/service-basket:$version .
+docker build -f "$inventoryServiceFolder/Dockerfile" -t arslan.vms/service-basket:$version .
 
 ### ORDER-SERVICE
 Write-Host "**************** BUILDING ORDER-SERVICE 4/$total ****************" -ForegroundColor Green
 Set-Location $orderServiceFolder
-docker build -f "$orderServiceFolder/Dockerfile" -t Arslan.Vms/service-catalog:$version .
+docker build -f "$orderServiceFolder/Dockerfile" -t arslan.vms/service-catalog:$version .
 
 ### PAYMENT-SERVICE
 Write-Host "**************** BUILDING PAYMENT-SERVICE 5/$total ****************" -ForegroundColor Green
 Set-Location $paymentServiceFolder
-docker build -f "$paymentServiceFolder/Dockerfile" -t Arslan.Vms/service-payment:$version .
+docker build -f "$paymentServiceFolder/Dockerfile" -t arslan.vms/service-payment:$version .
 
 ### PLANNER-SERVICE
 Write-Host "**************** BUILDING PLANNER-SERVICE 6/$total ****************" -ForegroundColor Green
 Set-Location $plannerServiceFolder
-docker build -f "$plannerServiceFolder/Dockerfile" -t Arslan.Vms/service-ordering:$version .
+docker build -f "$plannerServiceFolder/Dockerfile" -t arslan.vms/service-ordering:$version .
 
 ### PRODUCT-SERVICE
 Write-Host "**************** BUILDING PRODUCT-SERVICE 7/$total ****************" -ForegroundColor Green
 Set-Location $productServiceFolder
-docker build -f "$productServiceFolder/Dockerfile" -t Arslan.Vms/service-cmskit:$version .
+docker build -f "$productServiceFolder/Dockerfile" -t arslan.vms/service-cmskit:$version .
 
 ### VEHICLE-SERVICE
 Write-Host "**************** BUILDING VEHICLE-SERVICE 8/$total ****************" -ForegroundColor Green
 Set-Location $vehicleServiceFolder
-docker build -f "$vehicleServiceFolder/Dockerfile" -t Arslan.Vms/service-cmskit:$version .
+docker build -f "$vehicleServiceFolder/Dockerfile" -t arslan.vms/service-cmskit:$version .
 
 ### WEB-GATEWAY
 Write-Host "**************** BUILDING WEB-GATEWAY 9/$total ****************" -ForegroundColor Green
 Set-Location $webGatewayFolder
-docker build -f "$webGatewayFolder/Dockerfile" -t Arslan.Vms/gateway-web:$version .
+docker build -f "$webGatewayFolder/Dockerfile" -t arslan.vms/gateway-web:$version .
 
 ### ALL COMPLETED
 Write-Host "ALL COMPLETED" -ForegroundColor Green
