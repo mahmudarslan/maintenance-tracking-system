@@ -16,11 +16,9 @@ $vehicleServiceFolder = Join-Path $slnFolder "services/vehicle/src/Arslan.Vms.Ve
 
 $total = 9
 
-Write-Host "===== BUILDING APPLICATIONS =====" -ForegroundColor Yellow
-
 ### IDENTITY-SERVICE
 Write-Host "**************** BUILDING IDENTITY-SERVICE 1/$total ****************" -ForegroundColor Green
-Set-Location $identityServiceFolder
+Set-Location $slnFolder
 docker build -f "$identityServiceFolder/Dockerfile" -t arslan.vms/service-identity:$version .
 
 ### ADMINISTRATION-SERVICE
@@ -30,37 +28,37 @@ docker build -f "$administrationServiceFolder/Dockerfile" -t arslan.vms/service-
 
 ### INVENTORY-SERVICE
 Write-Host "**************** BUILDING INVENTORY-SERVICE 3/$total ****************" -ForegroundColor Green
-Set-Location $inventoryServiceFolder
+Set-Location $slnFolder
 docker build -f "$inventoryServiceFolder/Dockerfile" -t arslan.vms/service-basket:$version .
 
 ### ORDER-SERVICE
 Write-Host "**************** BUILDING ORDER-SERVICE 4/$total ****************" -ForegroundColor Green
-Set-Location $orderServiceFolder
+Set-Location $slnFolder
 docker build -f "$orderServiceFolder/Dockerfile" -t arslan.vms/service-catalog:$version .
 
 ### PAYMENT-SERVICE
 Write-Host "**************** BUILDING PAYMENT-SERVICE 5/$total ****************" -ForegroundColor Green
-Set-Location $paymentServiceFolder
+Set-Location $slnFolder
 docker build -f "$paymentServiceFolder/Dockerfile" -t arslan.vms/service-payment:$version .
 
 ### PLANNER-SERVICE
 Write-Host "**************** BUILDING PLANNER-SERVICE 6/$total ****************" -ForegroundColor Green
-Set-Location $plannerServiceFolder
+Set-Location $slnFolder
 docker build -f "$plannerServiceFolder/Dockerfile" -t arslan.vms/service-ordering:$version .
 
 ### PRODUCT-SERVICE
 Write-Host "**************** BUILDING PRODUCT-SERVICE 7/$total ****************" -ForegroundColor Green
-Set-Location $productServiceFolder
+Set-Location $slnFolder
 docker build -f "$productServiceFolder/Dockerfile" -t arslan.vms/service-cmskit:$version .
 
 ### VEHICLE-SERVICE
 Write-Host "**************** BUILDING VEHICLE-SERVICE 8/$total ****************" -ForegroundColor Green
-Set-Location $vehicleServiceFolder
+Set-Location $slnFolder
 docker build -f "$vehicleServiceFolder/Dockerfile" -t arslan.vms/service-cmskit:$version .
 
 ### WEB-GATEWAY
 Write-Host "**************** BUILDING WEB-GATEWAY 9/$total ****************" -ForegroundColor Green
-Set-Location $webGatewayFolder
+Set-Location $slnFolder
 docker build -f "$webGatewayFolder/Dockerfile" -t arslan.vms/gateway-web:$version .
 
 ### ALL COMPLETED

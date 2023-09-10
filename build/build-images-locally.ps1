@@ -14,8 +14,7 @@ $plannerServiceFolder = Join-Path $slnFolder "services/planner/src/Arslan.Vms.Pl
 $productServiceFolder = Join-Path $slnFolder "services/product/src/Arslan.Vms.ProductService.HttpApi.Host"
 $vehicleServiceFolder = Join-Path $slnFolder "services/vehicle/src/Arslan.Vms.VehicleService.HttpApi.Host"
 
-$total = 9   
-
+$total = 9
 
 ### IDENTITY-SERVICE
 Write-Host "*** BUILDING IDENTITY-SERVICE 1/$total ****************" -ForegroundColor Green

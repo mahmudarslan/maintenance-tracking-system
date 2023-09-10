@@ -1,26 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <Import Project="..\..\..\..\common.props" />
+	<Import Project="..\..\..\..\common.props" />
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>Arslan.Vms.ProductService</RootNamespace>
-    <PreserveCompilationReferences>true</PreserveCompilationReferences>
-    <UserSecretsId>Arslan.Vms.ProductService-c2d31439-b723-48e2-b061-5ebd7aeb6010</UserSecretsId>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<RootNamespace>Arslan.Vms.ProductService</RootNamespace>
+		<PreserveCompilationReferences>true</PreserveCompilationReferences>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..\..\..</DockerfileContext>
+		<UserSecretsId>eccc4a67-da6f-4adf-be97-40c55f65f53a</UserSecretsId>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\shared\Arslan.Vms.Shared.Hosting.Microservices\Arslan.Vms.Shared.Hosting.Microservices.csproj" />
-    <ProjectReference Include="..\Arslan.Vms.ProductService.Application\Arslan.Vms.ProductService.Application.csproj" />
-    <ProjectReference Include="..\Arslan.Vms.ProductService.EntityFrameworkCore\Arslan.Vms.ProductService.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\Arslan.Vms.ProductService.HttpApi\Arslan.Vms.ProductService.HttpApi.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\shared\Arslan.Vms.Shared.Hosting.Microservices\Arslan.Vms.Shared.Hosting.Microservices.csproj" />
+		<ProjectReference Include="..\Arslan.Vms.ProductService.Application\Arslan.Vms.ProductService.Application.csproj" />
+		<ProjectReference Include="..\Arslan.Vms.ProductService.EntityFrameworkCore\Arslan.Vms.ProductService.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\Arslan.Vms.ProductService.HttpApi\Arslan.Vms.ProductService.HttpApi.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Logs\**" />
-    <Content Remove="Logs\**" />
-    <EmbeddedResource Remove="Logs\**" />
-    <None Remove="Logs\**" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Logs\**" />
+		<Content Remove="Logs\**" />
+		<EmbeddedResource Remove="Logs\**" />
+		<None Remove="Logs\**" />
+	</ItemGroup>
 
 </Project>

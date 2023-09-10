@@ -6,7 +6,9 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<RootNamespace>Arslan.Vms.OrderService</RootNamespace>
 		<PreserveCompilationReferences>true</PreserveCompilationReferences>
-		<UserSecretsId>Arslan.Vms.OrderService-c2d31439-b723-48e2-b061-5ebd7aeb6010</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..\..\..</DockerfileContext>
+		<UserSecretsId>eccc4a67-da6f-4adf-be97-40c55f65f53a</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
