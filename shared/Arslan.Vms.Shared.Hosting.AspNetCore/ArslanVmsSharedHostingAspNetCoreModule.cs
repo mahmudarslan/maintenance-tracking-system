@@ -19,6 +19,7 @@ public class ArslanVmsSharedHostingAspNetCoreModule : AbpModule
         var configuration = context.Services.GetConfiguration();
 
         var preActions = context.Services.GetPreConfigureActions<AbpAspNetCoreMvcOptions>();
+
         Configure<AbpAspNetCoreMvcOptions>(options =>
         {
             preActions.Configure(options);

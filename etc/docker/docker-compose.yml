@@ -98,7 +98,7 @@ services:
     networks: 
       - arslan.vms-network
   
-  vms-st-catalog:
+  vms-catalog:
     image: Arslan.Vms/service-catalog:latest
     container_name: catalog-service-container
     build:
@@ -129,7 +129,7 @@ services:
     networks: 
       - arslan.vms-network
   
-  vms-st-basket:
+  vms-basket:
     image: Arslan.Vms/service-basket:latest
     container_name: basket-service-container
     build:
@@ -158,7 +158,7 @@ services:
     networks: 
       - arslan.vms-network
   
-  vms-st-ordering:
+  vms-ordering:
     image: Arslan.Vms/service-ordering:latest
     container_name: ordering-service-container
     build:
@@ -188,7 +188,7 @@ services:
     # volumes:
     #   - ./certs:/root/certificate
   
-  vms-st-cmskit:
+  vms-cmskit:
     image: Arslan.Vms/service-cmskit:latest
     container_name: cmskit-service-container
     build:
@@ -220,7 +220,7 @@ services:
     # volumes:
     #   - ./certs:/root/certificate
   
-  vms-st-payment:
+  vms-payment:
     image: Arslan.Vms/service-payment:latest
     container_name: payment-service-container
     build:
@@ -250,77 +250,8 @@ services:
     restart: on-failure  
     networks: 
       - arslan.vms-network
-  
-  vms-st-authserver:
-    image: Arslan.Vms/app-authserver:latest
-    container_name: app-authserver-container
-    build:
-      context: ../../
-      dockerfile: apps/auth-server/src/Arslan.Vms.AuthServer/Dockerfile
-    environment:
-      # - ASPNETCORE_ENVIRONMENT=Docker
-      - ASPNETCORE_URLS=http://+:80;
-      - App__SelfUrl=https://vms-st-authserver
-      - App__CorsOrigins=https://vms-st-web,https://vms-st-public-web,https://vms-st-identity,http://vms-st-administration,https://vms-st-administration,https://vms-st-catalog,https://vms-st-basket,https://vms-st-ordering,https://vms-st-cmskit,https://vms-st-payment
-      - App__RedirectAllowedUrls=http://vms-st-web
-      - AuthServer__Authority=http://vms-st-authserver
-      - AuthServer__RequireHttpsMetadata=false
-      - ConnectionStrings__IdentityService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=Arslan.Vms_Identity;Pooling=false;
-      - ConnectionStrings__AdministrationService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=Arslan.Vms_Administration;Pooling=false;   
-      - Redis__Configuration=redis
-      - RabbitMQ__Connections__Default__HostName=rabbitmq
-    depends_on:
-      redis:
-        condition: service_healthy
-      postgres-db:
-        condition: service_healthy  
-      rabbitmq:
-        condition: service_healthy
-    restart: on-failure  
-    networks: 
-      - arslan.vms-network
-  vms-st-web:
-    image: Arslan.Vms/app-web:latest
-    container_name: app-web-container
-    build:
-      context: ../../
-      dockerfile: apps/angular/Dockerfile
-    volumes:
-      - ./nginx/dynamic-env.json:/usr/share/nginx/html/dynamic-env.json
-    depends_on:
-      redis:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-    restart: on-failure
-    networks: 
-      - arslan.vms-network
-  vms-st-public-web:
-    image: Arslan.Vms/app-publicweb:latest
-    container_name: app-publicweb-container
-    build:
-      context: ../../
-      dockerfile: apps/public-web/src/Arslan.Vms.PublicWeb/Dockerfile
-    environment:
-      # - ASPNETCORE_ENVIRONMENT=Docker
-      - ASPNETCORE_URLS=http://+:80;
-      - App__SelfUrl=https://vms-st-public-web
-      - AuthServer__Authority=http://vms-st-authserver
-      - AuthServer__RequireHttpsMetadata=false
-      - RemoteServices__Default__BaseUrl=http://vms-st-gateway-web-public/                
-      - Redis__Configuration=redis
-      - RabbitMQ__Connections__Default__HostName=rabbitmq
-      - ReverseProxy__Clusters__cluster1__Destinations__destination1__Address=http://vms-st-gateway-web-public
-    depends_on:
-      redis:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-    restart: on-failure  
-    networks: 
-      - arslan.vms-network
-  
-  vms-st-gateway-web:
+ 
+  vms-gateway-web:
     image: Arslan.Vms/gateway-web:latest
     container_name: gateway-web-container
     build:
@@ -343,36 +274,6 @@ services:
       - ReverseProxy__Clusters__feature-management-cluster__Destinations__destination1__Address=http://vms-st-administration
       - ReverseProxy__Clusters__permission-management-cluster__Destinations__destination1__Address=http://vms-st-administration
       - ReverseProxy__Clusters__setting-management-cluster__Destinations__destination1__Address=http://vms-st-administration
-    depends_on:
-      redis:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-    restart: on-failure  
-    networks: 
-      - arslan.vms-network
-  
-  vms-st-gateway-web-public:
-    image: Arslan.Vms/gateway-web-public:latest
-    container_name: gateway-web-public-container
-    build:
-      context: ../../
-      dockerfile: gateways/web-public/src/Arslan.Vms.WebPublicGateway/Dockerfile
-    environment:
-      # - ASPNETCORE_ENVIRONMENT=Docker # Yarp can't resolve dns, needs to be overridden
-      - ASPNETCORE_URLS=http://+:80;
-      - App__SelfUrl=https://vms-st-gateway-web-public
-      - AuthServer__Authority=http://vms-st-authserver
-      - AuthServer__RequireHttpsMetadata=false
-      - Redis__Configuration=redis
-      - ReverseProxy__Clusters__accountCluster__Destinations__destination1__Address=http://vms-st-authserver
-      - ReverseProxy__Clusters__administrationCluster__Destinations__destination1__Address=http://vms-st-administration
-      - ReverseProxy__Clusters__catalogCluster__Destinations__destination1__Address=http://vms-st-catalog
-      - ReverseProxy__Clusters__basketCluster__Destinations__destination1__Address=http://vms-st-basket
-      - ReverseProxy__Clusters__orderingCluster__Destinations__destination1__Address=http://vms-st-ordering
-      - ReverseProxy__Clusters__cmskitCluster__Destinations__destination1__Address=http://vms-st-cmskit
-      - ReverseProxy__Clusters__paymentCluster__Destinations__destination1__Address=http://vms-st-payment
-      - ReverseProxy__Clusters__productPictureCluster__Destinations__destination1__Address=http://vms-st-catalog
     depends_on:
       redis:
         condition: service_healthy

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
+using Volo.Abp.MultiTenancy;
 
 namespace Arslan.Vms.Shared.Hosting.Microservices.Hangfires;
 
@@ -47,7 +48,7 @@ public class CustomHangFireMiddleware
 
         if (tenant == null || tenant.Contains("localhost"))
         {
-            tenant = _configuration["Tenants:DefaultTenant"];
+            tenant = _configuration.GetSection("Tenants").Get<List<TenantConfiguration>>().FirstOrDefault().Name;
         }
 
         var code = httpContext.Request.Query.FirstOrDefault(a => a.Key == "code" && !string.IsNullOrEmpty(a.Key));

@@ -12,20 +12,16 @@ export const environment = {
   oAuthConfig: {
     issuer: 'http://localhost:8080/realms/arslan',
     redirectUri: baseUrl,
-    clientId: 'Web',
+    clientId: 'vms-web',
     responseType: 'code',
-    scope: 'offline_access openid profile email phone roles AdministrationService IdentityService BasketService CatalogService OrderingService PaymentService CmskitService',
+    scope: 'offline_access openid profile email phone roles',
     requireHttps: false
   },
   apis: {
     default: {
-      url: 'https://localhost:7500',
+      url: 'http://localhost:4300',
       rootNamespace: 'Arslan.Vms',
-    },
-    inventory: {
-      url: 'https://localhost:7006',
-      rootNamespace: 'Arslan.Vms.InventoryService',
-    },
+    }
   },
   // remoteEnv: {
   //   url: '/assets/appsettings.json',

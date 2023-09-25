@@ -16,6 +16,7 @@ using Volo.Abp.BackgroundJobs.RabbitMQ;
 using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.DistributedLocking;
+using Volo.Abp.Emailing;
 using Volo.Abp.EventBus.RabbitMq;
 using Volo.Abp.Http.Client.IdentityModel.Web;
 using Volo.Abp.IdentityModel;
@@ -80,12 +81,20 @@ public class ArslanVmsSharedHostingMicroservicesModule : AbpModule
         Configure<AbpAuditingOptions>(options =>
         {
             options.IsEnabledForGetRequests = true;
-            //options.ApplicationName = "Web-Api";
             options.IsEnabledForIntegrationServices = true;
         });
 
         //Replacing the IConnectionStringResolver service
         context.Services.Replace(
             ServiceDescriptor.Transient<IdentityModelAuthenticationService, CustomIdentityModelAuthenticationService>());
+
+        if (hostingEnvironment.IsDevelopment())
+        {
+            context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, NullEmailSender>());
+        }
+        else
+        {
+            context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, CustomSmtpEmailSender>());
+        }
     }
 }
