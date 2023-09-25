@@ -21,25 +21,6 @@ using Volo.Abp.Uow;
 
 namespace Arslan.Vms.Shared.Hosting.Microservices;
 
-public class KeycloakConsts
-{
-    public static string KeycloakCacheKey = "KeycloakUserMapCacheItem";
-}
-
-[IgnoreMultiTenancy]
-[CacheName("KeycloakUserMapCacheItem")]
-public class KeycloakUserMapCacheItem
-{
-    public string Id { get; set; }
-}
-
-[IgnoreMultiTenancy]
-[CacheName("TenantCacheItem")]
-public class TenatCacheItem
-{
-    public List<string> Names { get; set; }
-}
-
 [UnitOfWork]
 public static class JwtBearerConfigurationHelper
 {
@@ -48,37 +29,40 @@ public static class JwtBearerConfigurationHelper
         string audience)
     {
         var configuration = context.Services.GetConfiguration();
-        var url = configuration["AuthServer:Authority"];
-
+        var defaultTenant = "";
         var tenants = new List<string>();
 
         using (var serviceProvider = context.Services.BuildServiceProvider())
         {
-            var cachedTenants = serviceProvider.GetRequiredService<IDistributedCache<TenatCacheItem>>().Get("TenantCacheItem");
+            var _cachedTenants = serviceProvider.GetRequiredService<IDistributedCache<TenatCacheItem>>();
+            var cachedTenants = _cachedTenants.Get("TenantCacheItem");
+
             if (cachedTenants != null && cachedTenants.Names.Count > 0)
             {
                 tenants.AddRange(cachedTenants.Names);
             }
-        }
 
-        if (tenants.Count == 0)
-        {
-            var t = configuration["Tenants:Tenants"]
-                               .Split(',')
-                               .Select(s => s.Trim())
-                               .Where(w => w.Length > 0)
-                               .ToList();
-
-            foreach (var item in t)
+            if (tenants.Count == 0)
             {
-                if (tenants.Any(a => a == item))
+                var t = configuration.GetSection("Tenants").Get<List<TenantConfiguration>>();
+
+                foreach (var item in t)
                 {
-                    continue;
+                    if (tenants.Any(a => a == item.Name))
+                    {
+                        continue;
+                    }
+
+                    tenants.Add(item.Name);
                 }
 
-                tenants.Add(item);
+                _cachedTenants.Set("TenantCacheItem",
+                       new TenatCacheItem() { Names = tenants },
+                       new Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions { SlidingExpiration = null });
             }
         }
+
+        defaultTenant = tenants.FirstOrDefault();
 
         var auth = context.Services
             .AddAuthentication(options =>
@@ -93,6 +77,7 @@ public static class JwtBearerConfigurationHelper
             options.ForwardDefaultSelector = c =>
             {
                 string authorization = c.Request.Headers[HeaderNames.Authorization];
+
                 if (!string.IsNullOrEmpty(authorization) && authorization.StartsWith("Bearer "))
                 {
                     var token = authorization.Substring("Bearer ".Length).Trim();
@@ -107,7 +92,7 @@ public static class JwtBearerConfigurationHelper
                     }
                 }
 
-                return configuration["Tenants:DefaultTenant"];
+                return defaultTenant;
             };
         });
 
@@ -115,12 +100,12 @@ public static class JwtBearerConfigurationHelper
         {
             auth.AddJwtBearer(tenant, x =>
             {
-                x.Authority = url.TrimEnd('/') + "/" + tenant;
+                x.Authority = configuration["AuthServer:Authority"].TrimEnd('/') + "/" + tenant;
                 x.Audience = configuration["AuthServer:Audience"];
                 x.IncludeErrorDetails = true;
                 x.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
                 x.RefreshOnIssuerKeyNotFound = false;
-                x.TokenValidationParameters = GetTokenValidationParameters(url, new List<string> { "master-realm", "account" });
+                x.TokenValidationParameters = GetTokenValidationParameters(configuration["AuthServer:Authority"], new List<string> { "master-realm", "account" });
                 x.BackchannelHttpHandler = GetHttpClientHandler();
                 x.Events = GetJwtBearerEvent(configuration, context);
                 x.Validate();
@@ -245,7 +230,34 @@ public static class JwtBearerConfigurationHelper
                 c.Response.StatusCode = 401;
                 c.Response.ContentType = "text/plain";
                 return c.Response.WriteAsync(c.Exception.ToString());
+            },
+            OnForbidden = c =>
+            {
+                return Task.CompletedTask;
+            },
+            OnChallenge = c =>
+            {
+                return Task.CompletedTask;
             }
         };
     }
+}
+
+public class KeycloakConsts
+{
+    public static string KeycloakCacheKey = "KeycloakUserMapCacheItem";
+}
+
+[IgnoreMultiTenancy]
+[CacheName("KeycloakUserMapCacheItem")]
+public class KeycloakUserMapCacheItem
+{
+    public string Id { get; set; }
+}
+
+[IgnoreMultiTenancy]
+[CacheName("TenantCacheItem")]
+public class TenatCacheItem
+{
+    public List<string> Names { get; set; }
 }

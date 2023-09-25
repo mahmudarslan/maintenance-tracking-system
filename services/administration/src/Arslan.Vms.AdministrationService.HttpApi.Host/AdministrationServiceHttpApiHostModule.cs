@@ -48,7 +48,8 @@ public class AdministrationServiceHttpApiHostModule : AbpModule
             context: context,
             configuration: configuration,
             scopes: new Dictionary<string, string> { { "Vms_AdministrationService", "Vms Administration Service API" } },
-            apiTitle: "Administration Service");
+            apiTitle: "Administration Service",
+            false);
     }
 
     private void ConfigureLocalization()

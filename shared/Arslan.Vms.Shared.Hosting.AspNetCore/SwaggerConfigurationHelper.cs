@@ -5,7 +5,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
-using Volo.Abp.Modularity; 
+using Volo.Abp.Modularity;
+using Volo.Abp.MultiTenancy;
 
 namespace Arslan.Vms.Shared.Hosting.AspNetCore;
 
@@ -28,9 +29,12 @@ public static class SwaggerConfigurationHelper
         var env = context.Services.GetHostingEnvironment();
         var version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
 
+
         context.Services.AddAbpApiVersioning(options =>
         {
+            // Show neutral/versionless APIs.
             options.UseApiBehavior = false;
+
             options.ReportApiVersions = true;
             options.AssumeDefaultVersionWhenUnspecified = true;
         });
@@ -38,7 +42,12 @@ public static class SwaggerConfigurationHelper
         context.Services.AddVersionedApiExplorer(
             options =>
             {
+                // add the versioned api explorer, which also adds IApiVersionDescriptionProvider service
+                // note: the specified format code will format the version as "'v'major[.minor][-status]"
                 options.GroupNameFormat = "'v'VVV";
+
+                // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
+                // can also be used to control the format of the API version in route templates
                 options.SubstituteApiVersionInUrl = true;
             });
 
@@ -52,6 +61,8 @@ public static class SwaggerConfigurationHelper
         context.Services.AddAbpSwaggerGen(
         options =>
         {
+            var defaultTenant = configuration.GetSection("Tenants")?.Get<List<TenantConfiguration>>()?.FirstOrDefault()?.Name ?? "";
+
             options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
             {
                 Type = SecuritySchemeType.OAuth2,
@@ -59,9 +70,9 @@ public static class SwaggerConfigurationHelper
                 {
                     AuthorizationCode = new OpenApiOAuthFlow
                     {
-                        AuthorizationUrl = new Uri($"{configuration["AuthServer:Authority"]}/protocol/openid-connect/auth"),
+                        AuthorizationUrl = new Uri($"{configuration["AuthServer:Authority"]}/{defaultTenant}/protocol/openid-connect/auth"),
                         Scopes = scopes,
-                        TokenUrl = new Uri($"{configuration["AuthServer:Authority"]}/protocol/openid-connect/token")
+                        TokenUrl = new Uri($"{configuration["AuthServer:Authority"]}/{defaultTenant}/protocol/openid-connect/token")
                     }
                 }
             });
