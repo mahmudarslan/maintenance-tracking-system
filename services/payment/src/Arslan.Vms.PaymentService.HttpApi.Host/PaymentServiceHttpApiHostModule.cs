@@ -1,3 +1,4 @@
+using Arslan.Vms.PaymentService.DbMigrations;
 using Arslan.Vms.PaymentService.EntityFrameworkCore;
 using Arslan.Vms.Shared.Hosting.AspNetCore;
 using Arslan.Vms.Shared.Hosting.Microservices;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.SqlServer;
 using Volo.Abp.Localization;
@@ -114,5 +116,20 @@ public class PaymentServiceHttpApiHostModule : AbpModule
 		app.UseAuditing();
         app.UseAbpSerilogEnrichers();
         app.UseConfiguredEndpoints();
+    }
+
+    //Hangfire için önceden database oluşturuluyor
+    public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)
+    {
+        await context.ServiceProvider
+        .GetRequiredService<PaymentServiceDatabaseMigrationChecker>()
+        .CheckAndApplyDatabaseMigrationsAsync(dataSeed: false);
+    }
+
+    public override async Task OnPostApplicationInitializationAsync(ApplicationInitializationContext context)
+    {
+        await context.ServiceProvider
+            .GetRequiredService<PaymentServiceDatabaseMigrationChecker>()
+            .CheckAndApplyDatabaseMigrationsAsync();
     }
 }

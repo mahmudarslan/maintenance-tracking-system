@@ -118,6 +118,14 @@ public class OrderServiceHttpApiHostModule : AbpModule
         app.UseConfiguredEndpoints();
     }
 
+    //Hangfire için önceden database oluşturuluyor
+    public override async Task OnPreApplicationInitializationAsync(ApplicationInitializationContext context)
+    {
+        await context.ServiceProvider
+        .GetRequiredService<OrderServiceDatabaseMigrationChecker>()
+        .CheckAndApplyDatabaseMigrationsAsync(dataSeed: false);
+    }
+
     public override async Task OnPostApplicationInitializationAsync(ApplicationInitializationContext context)
     {
         await context.ServiceProvider

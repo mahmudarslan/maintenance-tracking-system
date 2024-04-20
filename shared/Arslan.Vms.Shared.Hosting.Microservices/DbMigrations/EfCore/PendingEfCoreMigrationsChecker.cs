@@ -19,8 +19,9 @@ public abstract class PendingEfCoreMigrationsChecker<TDbContext> : PendingMigrat
     protected IServiceProvider ServiceProvider { get; }
     protected ICurrentTenant CurrentTenant { get; }
     protected IDistributedEventBus DistributedEventBus { get; }
-    protected IAbpDistributedLock DistributedLockProvider { get; }
     protected string DatabaseName { get; }
+    protected IAbpDistributedLock DistributedLockProvider { get; }
+
 
     protected PendingEfCoreMigrationsChecker(
         IUnitOfWorkManager unitOfWorkManager,
@@ -34,13 +35,59 @@ public abstract class PendingEfCoreMigrationsChecker<TDbContext> : PendingMigrat
         ServiceProvider = serviceProvider;
         CurrentTenant = currentTenant;
         DistributedEventBus = distributedEventBus;
-        DistributedLockProvider = abpDistributedLock;
         DatabaseName = databaseName;
+        DistributedLockProvider = abpDistributedLock;
     }
 
-    public virtual async Task CheckAndApplyDatabaseMigrationsAsync()
+    public virtual async Task CheckAndApplyDatabaseMigrationsAsync(bool dataSeed = true)
     {
-        await TryAsync(LockAndApplyDatabaseMigrationsAsync);
+        if (dataSeed)
+        {
+            await TryAsync(LockAndApplyDatabaseMigrationsAndDataSeedAsync, DatabaseName);
+        }
+        else
+        {
+            await TryAsync(LockAndApplyDatabaseMigrationsAsync, DatabaseName);
+        }
+    }
+
+    protected virtual async Task LockAndApplyDatabaseMigrationsAndDataSeedAsync()
+    {
+        await using (var handle = await DistributedLockProvider.TryAcquireAsync($"Migration_Microservice_{DatabaseName}"))
+        {
+            Log.Information($"Lock is acquired for db migration and seeding on database named: {DatabaseName}...");
+
+            if (handle is null)
+            {
+                Log.Information($"Handle is null because of the locking for : {DatabaseName}");
+                return;
+            }
+
+            using (CurrentTenant.Change(null))
+            {
+                // Create database tables if needed
+                using (var uow = UnitOfWorkManager.Begin(requiresNew: true, isTransactional: false))
+                {
+                    var dbContext = ServiceProvider.GetRequiredService<TDbContext>();
+
+                    var pendingMigrations = await dbContext
+                        .Database
+                        .GetPendingMigrationsAsync();
+
+                    if (pendingMigrations.Any())
+                    {
+                        await dbContext.Database.MigrateAsync();
+                    }
+
+                    await uow.CompleteAsync();
+                }
+
+                await ServiceProvider.GetRequiredService<IDataSeeder>()
+                                     .SeedAsync();
+            }
+
+            Log.Information($"Lock is released for db migration and seeding on database named: {DatabaseName}...");
+        }
     }
 
     protected virtual async Task LockAndApplyDatabaseMigrationsAsync()
@@ -73,10 +120,8 @@ public abstract class PendingEfCoreMigrationsChecker<TDbContext> : PendingMigrat
 
                     await uow.CompleteAsync();
                 }
-
-                await ServiceProvider.GetRequiredService<IDataSeeder>()
-                    .SeedAsync();
             }
+
             Log.Information($"Lock is released for db migration and seeding on database named: {DatabaseName}...");
         }
     }

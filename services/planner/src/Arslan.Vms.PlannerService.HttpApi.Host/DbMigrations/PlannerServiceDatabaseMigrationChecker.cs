@@ -1,4 +1,4 @@
-﻿using Arslan.Vms.ProductService.EntityFrameworkCore;
+﻿using Arslan.Vms.PlannerService.EntityFrameworkCore;
 using Arslan.Vms.Shared.Hosting.Microservices.DbMigrations.EfCore;
 using System;
 using System.Threading.Tasks;
@@ -7,12 +7,12 @@ using Volo.Abp.EventBus.Distributed;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Uow;
 
-namespace Arslan.Vms.ProductService.DbMigrations;
+namespace Arslan.Vms.PlannerService.DbMigrations;
 
-public class ProductServiceDatabaseMigrationChecker
-    : PendingEfCoreMigrationsChecker<ProductServiceDbContext>
+public class PlannerServiceDatabaseMigrationChecker
+    : PendingEfCoreMigrationsChecker<PlannerServiceDbContext>
 {
-    public ProductServiceDatabaseMigrationChecker(
+    public PlannerServiceDatabaseMigrationChecker(
         IUnitOfWorkManager unitOfWorkManager,
         IServiceProvider serviceProvider,
         ICurrentTenant currentTenant,
@@ -24,7 +24,7 @@ public class ProductServiceDatabaseMigrationChecker
             currentTenant,
             distributedEventBus,
             abpDistributedLock,
-            ProductServiceDbProperties.ConnectionStringName)
+            PlannerServiceDbProperties.ConnectionStringName)
     {
     }
 

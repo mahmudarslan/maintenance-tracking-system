@@ -13,7 +13,6 @@ COPY "Arslan.Vms.sln" "Arslan.Vms.sln"
 COPY ["devexpress-packages", "devexpress-packages/"]
  
 # Shared
-COPY "shared/Arslan.Vms.Keycloak.DbMigrator/Arslan.Vms.Keycloak.DbMigrator.csproj" "shared/Arslan.Vms.Keycloak.DbMigrator/Arslan.Vms.Keycloak.DbMigrator.csproj"
 COPY "shared/Arslan.Vms.Shared.Hosting/Arslan.Vms.Shared.Hosting.csproj" "shared/Arslan.Vms.Shared.Hosting/Arslan.Vms.Shared.Hosting.csproj"
 COPY "shared/Arslan.Vms.Shared.Hosting.AspNetCore/Arslan.Vms.Shared.Hosting.AspNetCore.csproj" "shared/Arslan.Vms.Shared.Hosting.AspNetCore/Arslan.Vms.Shared.Hosting.AspNetCore.csproj"
 COPY "shared/Arslan.Vms.Shared.Hosting.Gateways/Arslan.Vms.Shared.Hosting.Gateways.csproj" "shared/Arslan.Vms.Shared.Hosting.Gateways/Arslan.Vms.Shared.Hosting.Gateways.csproj"

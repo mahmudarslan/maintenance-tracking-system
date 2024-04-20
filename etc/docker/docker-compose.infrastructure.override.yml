@@ -10,9 +10,13 @@ services:
     ports:
       - "6379:6379"
 
-  mongodb:
+  mssql-db:
     ports:
-      - "27017:27017"
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "1q2w3E**"
+      MSSQL_PID: "Developer"
       
   postgres-db:
     ports:
@@ -20,13 +24,6 @@ services:
     environment:
       POSTGRES_DB: keycloak
       POSTGRES_PASSWORD: "myPassw0rd"
-
-  pgadmin:
-    ports:
-      - "${PGADMIN_PORT:-5050}:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
 
   keycloak:
     ports:
@@ -38,7 +35,7 @@ services:
       DB_USER: "postgres"
       DB_PASSWORD: "myPassw0rd"
       KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: "1q2w3E*"
+      KEYCLOAK_ADMIN_PASSWORD: "admin"
       KC_HEALTH_ENABLED: "true"
     entrypoint: ["/opt/keycloak/bin/kc.sh", "start-dev"]
 

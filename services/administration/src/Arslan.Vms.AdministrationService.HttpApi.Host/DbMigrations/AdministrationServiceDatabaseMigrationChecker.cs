@@ -1,5 +1,6 @@
 ﻿using Arslan.Vms.AdministrationService.EntityFrameworkCore;
 using Arslan.Vms.Shared.Hosting.Microservices.DbMigrations.EfCore;
+using Medallion.Threading;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -60,11 +61,21 @@ public class AdministrationServiceDatabaseMigrationChecker
         _guidGenerator = guidGenerator;
     }
 
-    public override async Task CheckAndApplyDatabaseMigrationsAsync()
+    public override async Task CheckAndApplyDatabaseMigrationsAsync(bool dataSeed = true)
     {
-        await base.CheckAndApplyDatabaseMigrationsAsync();
+        await base.CheckAndApplyDatabaseMigrationsAsync(dataSeed);
 
-        await TryAsync(async () => await SeedDataAsync());
+        if (dataSeed)
+        {
+            //await using (var handle = await _distributedLock.TryAcquireAsync("AdministrationServiceDataSeedContributor"))
+            //{
+            //    if (handle is null)
+            //    {
+            //        return;
+            //    }
+                await SeedDataAsync();
+            //}
+        }
     }
 
     private async Task SeedDataAsync()

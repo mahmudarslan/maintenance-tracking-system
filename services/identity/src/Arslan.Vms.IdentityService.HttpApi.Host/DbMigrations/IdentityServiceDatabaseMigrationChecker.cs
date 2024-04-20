@@ -38,11 +38,21 @@ public class IdentityServiceDatabaseMigrationChecker
         _permissionDataSeeder = permissionDataSeeder;
     }
 
-    public override async Task CheckAndApplyDatabaseMigrationsAsync()
+    public override async Task CheckAndApplyDatabaseMigrationsAsync(bool dataSeed = true)
     {
-        await base.CheckAndApplyDatabaseMigrationsAsync();
+        await base.CheckAndApplyDatabaseMigrationsAsync(dataSeed);
 
-        await TryAsync(async () => await SeedDataAsync());
+        if (dataSeed)
+        {
+            //await using (var handle = await _distributedLock.TryAcquireAsync("AdministrationServiceDataSeedContributor"))
+            //{
+            //    if (handle is null)
+            //    {
+            //        return;
+            //    }
+            await SeedDataAsync();
+            //}
+        }
     }
 
     private async Task SeedDataAsync()

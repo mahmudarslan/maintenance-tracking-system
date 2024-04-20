@@ -13,7 +13,6 @@ COPY "Arslan.Vms.sln" "Arslan.Vms.sln"
 COPY ["devexpress-packages", "devexpress-packages/"]
  
 # Shared
-COPY "shared/Arslan.Vms.Keycloak.DbMigrator/Arslan.Vms.Keycloak.DbMigrator.csproj" "shared/Arslan.Vms.Keycloak.DbMigrator/Arslan.Vms.Keycloak.DbMigrator.csproj"
 COPY "shared/Arslan.Vms.Shared.Hosting/Arslan.Vms.Shared.Hosting.csproj" "shared/Arslan.Vms.Shared.Hosting/Arslan.Vms.Shared.Hosting.csproj"
 COPY "shared/Arslan.Vms.Shared.Hosting.AspNetCore/Arslan.Vms.Shared.Hosting.AspNetCore.csproj" "shared/Arslan.Vms.Shared.Hosting.AspNetCore/Arslan.Vms.Shared.Hosting.AspNetCore.csproj"
 COPY "shared/Arslan.Vms.Shared.Hosting.Gateways/Arslan.Vms.Shared.Hosting.Gateways.csproj" "shared/Arslan.Vms.Shared.Hosting.Gateways/Arslan.Vms.Shared.Hosting.Gateways.csproj"
@@ -105,7 +104,7 @@ COPY "NuGet.Config" "NuGet.Config"
 RUN dotnet restore "Arslan.Vms.sln"
 COPY . .
 
-WORKDIR "/src/services/administration/src/Arslan.Vms.AdministrationService.HttpApi.Host"
+WORKDIR "/src/services/payment/src/Arslan.Vms.PaymentService.HttpApi.Host"
 RUN dotnet publish -c Release -o /app 
 # RUN dotnet publish --no-restore -c Release -o /app 
 
@@ -114,4 +113,4 @@ FROM build AS publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Arslan.Vms.AdministrationService.HttpApi.Host.dll"]
+ENTRYPOINT ["dotnet", "Arslan.Vms.PaymentService.HttpApi.Host.dll"]

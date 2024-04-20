@@ -1,9 +1,10 @@
 version: '3.7'
 
+name: arslan-vms
 services:
   lb:
     image: nginx:1.21
-    container_name: load-balancer-container
+    container_name: vms-load-balancer-container
     ports:
       - 80:80
       - 443:443
@@ -12,25 +13,15 @@ services:
       - ./nginx/certs/vms-st-web+10-key.pem:/etc/nginx/certs/app-cert-key.pem:ro
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
     depends_on:
-      - vms-administration
-      - vms-authserver
+      - vms-administration 
       - vms-identity
-      - vms-basket
-      - vms-catalog
-      - vms-ordering
-      - vms-cmskit
-      - vms-payment
-      - vms-web
-      - vms-public-web
-      - vms-gateway-web-public
-      - vms-gateway-web
     restart: on-failure
     networks:
       - arslan.vms-network
 
   vms-administration:
     image: Arslan.Vms/service-administration:latest
-    container_name: administration-service-container
+    container_name: vms-service-administration-container
     build:
       context: ../../
       dockerfile: services/administration/src/Arslan.Vms.AdministrationService.HttpApi.Host/Dockerfile
@@ -41,16 +32,19 @@ services:
       - App__CorsOrigins=https://gateway-web,gateway-web-public
       - RemoteServices__AbpIdentity__BaseUrl=vms-st-identity
       - RemoteServices__AbpIdentity__UseCurrentAccessToken=false
-      - ConnectionStrings__AdministrationService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=Arslan.Vms_Administration;Pooling=false;
+      - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - AuthServer__Authority=http://vms-st-authserver
       - AuthServer__RequireHttpsMetadata=false
       - IdentityClients__Default__Authority=http://vms-st-identity
-      - Redis__Configuration=redis
       - RabbitMQ__Connections__Default__HostName=rabbitmq
+      - RabbitMQ__EventBus__ClientName=Evc_AdministrationService
+      - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
+      - Redis__IsEnabled=true
+      - Redis__Configuration=redis
     depends_on:
       redis:
         condition: service_healthy
-      postgres-db:
+      mssql-db:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
@@ -60,7 +54,7 @@ services:
   
   vms-identity:
     image: Arslan.Vms/service-identity:latest
-    container_name: identity-service-container
+    container_name: vms-service-identity-container
     build:
       context: ../../
       dockerfile: services/identity/src/Arslan.Vms.IdentityService.HttpApi.Host/Dockerfile
@@ -71,10 +65,13 @@ services:
       - App__CorsOrigins=https://gateway-web,gateway-web-public
       - AuthServer__Authority=http://vms-st-authserver
       - AuthServer__RequireHttpsMetadata=false
-      - ConnectionStrings__IdentityService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=Arslan.Vms_Identity;Pooling=false;
-      - ConnectionStrings__AdministrationService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=Arslan.Vms_Administration;Pooling=false;
-      - Redis__Configuration=redis
+      - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
+      - ConnectionStrings__IdentityService=Server=mssql-db;Database=VmsIdentity;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - RabbitMQ__Connections__Default__HostName=rabbitmq
+      - RabbitMQ__EventBus__ClientName=Evc_IdentityService
+      - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
+      - Redis__IsEnabled=true
+      - Redis__Configuration=redis
       - IdentityServerClients__Web__RootUrl=https://vms-st-web
       - IdentityServerClients__PublicWeb__RootUrl=https://vms-st-public-web
       - IdentityServerClients__WebGateway__RootUrl=https://vms-st-gateway-web
@@ -90,7 +87,7 @@ services:
     depends_on:
       redis:
         condition: service_healthy
-      postgres-db:
+      mssql-db:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
@@ -98,12 +95,12 @@ services:
     networks: 
       - arslan.vms-network
   
-  vms-catalog:
-    image: Arslan.Vms/service-catalog:latest
-    container_name: catalog-service-container
+  vms-inventory:
+    image: Arslan.Vms/service-inventory:latest
+    container_name: vms-service-inventory-container
     build:
       context: ../../
-      dockerfile: services/catalog/src/Arslan.Vms.CatalogService.HttpApi.Host/Dockerfile
+      dockerfile: services/inventory/src/Arslan.Vms.InventoryService.HttpApi.Host/Dockerfile
     environment:
       # - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80;http://+:81;
@@ -114,14 +111,17 @@ services:
       - Kestrel__EndPoints__Http__Url=http://docker.host.internal:80
       - Kestrel__EndPoints__gRPC__Url=http://docker.host.internal:81
       - Kestrel__EndPoints__gRPC__Protocols=Http2
-      - ConnectionStrings__CatalogService=mongodb://mongodb/Arslan.Vms_Catalog
-      - ConnectionStrings__AdministrationService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=Arslan.Vms_Administration;Pooling=false;
-      - Redis__Configuration=redis
+      - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
+      - ConnectionStrings__InventoryService=Server=mssql-db;Database=VmsInventory;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - RabbitMQ__Connections__Default__HostName=rabbitmq
+      - RabbitMQ__EventBus__ClientName=Evc_InventoryService
+      - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
+      - Redis__IsEnabled=true
+      - Redis__Configuration=redis
     depends_on:
       redis:
         condition: service_healthy
-      mongodb:
+      mssql-db:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
@@ -129,12 +129,12 @@ services:
     networks: 
       - arslan.vms-network
   
-  vms-basket:
-    image: Arslan.Vms/service-basket:latest
-    container_name: basket-service-container
+  vms-order:
+    image: Arslan.Vms/service-order:latest
+    container_name: vms-service-order-container
     build:
       context: ../../
-      dockerfile: services/basket/src/Arslan.Vms.BasketService/Dockerfile
+      dockerfile: services/order/src/Arslan.Vms.OrderService.HttpApi.Host/Dockerfile
     environment:
       # - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
@@ -142,108 +142,133 @@ services:
       - App__CorsOrigins=https://vms-st-gateway-web,https://vms-st-gateway-web-public,https://vms-st-public-web
       - RemoteServices__Catalog__BaseUrl=http://vms-st-catalog:80
       - RemoteServices__Catalog__GrpcUrl=http://vms-st-catalog:81
-      - ConnectionStrings__AdministrationService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=Arslan.Vms_Administration;Pooling=false;
-      - AuthServer__Authority=http://vms-st-authserver
-      - AuthServer__RequireHttpsMetadata=false
-      - Redis__Configuration=redis
-      - RabbitMQ__Connections__Default__HostName=rabbitmq    
-    depends_on:
-      redis:
-        condition: service_healthy
-      mongodb:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-    restart: on-failure  
-    networks: 
-      - arslan.vms-network
-  
-  vms-ordering:
-    image: Arslan.Vms/service-ordering:latest
-    container_name: ordering-service-container
-    build:
-      context: ../../
-      dockerfile: services/ordering/src/Arslan.Vms.OrderingService.HttpApi.Host/Dockerfile
-    environment:
-      # - ASPNETCORE_ENVIRONMENT=Docker
-      - ASPNETCORE_URLS=http://+:80;
-      - App__SelfUrl=https://vms-st-ordering
-      - App__CorsOrigins=https://vms-st-gateway-web,https://vms-st-gateway-web-public,https://vms-st-web
-      - ConnectionStrings__OrderingService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=Arslan.Vms_Ordering;Pooling=false;
-      - ConnectionStrings__AdministrationService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=Arslan.Vms_Administration;Pooling=false;
-      - AuthServer__Authority=http://vms-st-authserver
-      - AuthServer__RequireHttpsMetadata=false
-      - Redis__Configuration=redis
+      - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
+      - ConnectionStrings__OrderService=Server=mssql-db;Database=VmsOrder;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - RabbitMQ__Connections__Default__HostName=rabbitmq
-    depends_on:
-      redis:
-        condition: service_healthy
-      postgres-db:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-    restart: on-failure  
-    networks: 
-      - arslan.vms-network
-    # volumes:
-    #   - ./certs:/root/certificate
-  
-  vms-cmskit:
-    image: Arslan.Vms/service-cmskit:latest
-    container_name: cmskit-service-container
-    build:
-      context: ../../
-      dockerfile: services/cmskit/src/Arslan.Vms.CmskitService.HttpApi.Host/Dockerfile
-    environment:
-      # - ASPNETCORE_ENVIRONMENT=Docker
-      - ASPNETCORE_URLS=http://+:80;
-      - App__SelfUrl=https://vms-st-cmskit
-      - App__CorsOrigins=https://vms-st-gateway-web,https://vms-st-gateway-web-public
-      - ConnectionStrings__CmskitService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=Arslan.Vms_Cmskit;Pooling=false;
-      - ConnectionStrings__AdministrationService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=Arslan.Vms_Administration;Pooling=false;
-      - AuthServer__Authority=http://vms-st-authserver
-      - AuthServer__RequireHttpsMetadata=false
+      - RabbitMQ__EventBus__ClientName=Evc_OrderService
+      - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
+      - Redis__IsEnabled=true
       - Redis__Configuration=redis
-      - RabbitMQ__Connections__Default__HostName=rabbitmq
-      - RemoteServices__AbpIdentity__BaseUrl=vms-st-identity
-      - IdentityClients__Default__Authority=http://vms-st-identity
     depends_on:
       redis:
         condition: service_healthy
-      postgres-db:
+      mssql-db:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
     restart: on-failure  
     networks: 
       - arslan.vms-network
-    # volumes:
-    #   - ./certs:/root/certificate
   
   vms-payment:
     image: Arslan.Vms/service-payment:latest
-    container_name: payment-service-container
+    container_name: vms-service-payment-container
     build:
       context: ../../
       dockerfile: services/payment/src/Arslan.Vms.PaymentService.HttpApi.Host/Dockerfile
     environment:
       # - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80;
-      - App__SelfUrl=https://vms-st-payment
-      - App__CorsOrigins=https://vms-st-gateway-web,https://vms-st-gateway-web-public      
-      - ConnectionStrings__PaymentService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=Arslan.Vms_Payment;Pooling=false;
-      - ConnectionStrings__AdministrationService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=Arslan.Vms_Administration;Pooling=false;
-      - AuthServer__Authority=http://vms-st-authserver
-      - AuthServer__RequireHttpsMetadata=false
-      - Redis__Configuration=redis
+      - App__SelfUrl=https://vms-st-ordering
+      - App__CorsOrigins=https://vms-st-gateway-web,https://vms-st-gateway-web-public,https://vms-st-web
+      - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
+      - ConnectionStrings__PaymentService=Server=mssql-db;Database=VmsPayment;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - RabbitMQ__Connections__Default__HostName=rabbitmq
-      - Payment__PayPal__ClientId=PAYPAL_CLIENT_ID
-      - Payment__PayPal__Secret=PAYPAL_SECRET
-      - Payment__PayPal__Environment=Sandbox
+      - RabbitMQ__EventBus__ClientName=Evc_PaymentService
+      - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
+      - Redis__IsEnabled=true
+      - Redis__Configuration=redis
     depends_on:
       redis:
         condition: service_healthy
-      postgres-db:
+      mssql-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure  
+    networks: 
+      - arslan.vms-network
+  
+  vms-planner:
+    image: Arslan.Vms/service-planner:latest
+    container_name: vms-service-planner-container
+    build:
+      context: ../../
+      dockerfile: services/planner/src/Arslan.Vms.PlannerService.HttpApi.Host/Dockerfile
+    environment:
+      # - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:80;
+      - App__SelfUrl=https://vms-st-cmskit
+      - App__CorsOrigins=https://vms-st-gateway-web,https://vms-st-gateway-web-public
+      - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
+      - ConnectionStrings__PlannerService=Server=mssql-db;Database=VmsPlanner;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
+      - RabbitMQ__Connections__Default__HostName=rabbitmq
+      - RabbitMQ__EventBus__ClientName=Evc_PlannerService
+      - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
+      - Redis__IsEnabled=true
+      - Redis__Configuration=redis
+    depends_on:
+      redis:
+        condition: service_healthy
+      mssql-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure  
+    networks: 
+      - arslan.vms-network
+  
+  vms-product:
+    image: Arslan.Vms/service-product:latest
+    container_name: vms-service-product-container
+    build:
+      context: ../../
+      dockerfile: services/product/src/Arslan.Vms.ProductService.HttpApi.Host/Dockerfile
+    environment:
+      # - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:80;
+      - App__SelfUrl=https://vms-st-payment
+      - App__CorsOrigins=https://vms-st-gateway-web,https://vms-st-gateway-web-public      
+      - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
+      - ConnectionStrings__ProductService=Server=mssql-db;Database=VmsProduct;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
+      - RabbitMQ__Connections__Default__HostName=rabbitmq
+      - RabbitMQ__EventBus__ClientName=Evc_ProductService
+      - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
+      - Redis__IsEnabled=true
+      - Redis__Configuration=redis
+    depends_on:
+      redis:
+        condition: service_healthy
+      mssql-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure  
+    networks: 
+      - arslan.vms-network
+
+  vms-vehicle:
+    image: Arslan.Vms/service-vehicle:latest
+    container_name: vms-service-vehicle-container
+    build:
+      context: ../../
+      dockerfile: services/vehicle/src/Arslan.Vms.VehicleService.HttpApi.Host/Dockerfile
+    environment:
+      # - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:80;
+      - App__SelfUrl=https://vms-st-payment
+      - App__CorsOrigins=https://vms-st-gateway-web,https://vms-st-gateway-web-public      
+      - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
+      - ConnectionStrings__VehicleService=Server=mssql-db;Database=VmsVehicle;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
+      - RabbitMQ__Connections__Default__HostName=rabbitmq
+      - RabbitMQ__EventBus__ClientName=Evc_VehicleService
+      - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
+      - Redis__IsEnabled=true
+      - Redis__Configuration=redis
+    depends_on:
+      redis:
+        condition: service_healthy
+      mssql-db:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
@@ -253,7 +278,7 @@ services:
  
   vms-gateway-web:
     image: Arslan.Vms/gateway-web:latest
-    container_name: gateway-web-container
+    container_name: vms-gateway-web-container
     build:
       context: ../../
       dockerfile: gateways/web/src/Arslan.Vms.WebGateway/Dockerfile

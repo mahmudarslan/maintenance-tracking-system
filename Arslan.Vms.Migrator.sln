@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFrameworks", "EntityFrameworks", "{97CA5661-5F09-4C76-8748-F8AE843CD926}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Keycloaks", "Keycloaks", "{E79344A5-E6AE-44E7-A407-F55EBE223D69}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.AdministrationService.EntityFrameworkCore", "services\administration\src\Arslan.Vms.AdministrationService.EntityFrameworkCore\Arslan.Vms.AdministrationService.EntityFrameworkCore.csproj", "{E1CA8D7B-ADA1-4F76-96A1-B4A648D097AD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.IdentityService.EntityFrameworkCore", "services\identity\src\Arslan.Vms.IdentityService.EntityFrameworkCore\Arslan.Vms.IdentityService.EntityFrameworkCore.csproj", "{6DEFF1B4-A94D-443D-A50C-296D16868512}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.InventoryService.EntityFrameworkCore", "services\inventory\src\Arslan.Vms.InventoryService.EntityFrameworkCore\Arslan.Vms.InventoryService.EntityFrameworkCore.csproj", "{071E09BA-5766-42B3-B41F-8FE35EDF6F49}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.OrderService.EntityFrameworkCore", "services\order\src\Arslan.Vms.OrderService.EntityFrameworkCore\Arslan.Vms.OrderService.EntityFrameworkCore.csproj", "{CC740CE5-8350-445B-9E4E-816A6D84BA3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.PaymentService.EntityFrameworkCore", "services\payment\src\Arslan.Vms.PaymentService.EntityFrameworkCore\Arslan.Vms.PaymentService.EntityFrameworkCore.csproj", "{6013CA8D-B081-4D26-AEF3-0B2DB8F0288E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.PlannerService.EntityFrameworkCore", "services\planner\src\Arslan.Vms.PlannerService.EntityFrameworkCore\Arslan.Vms.PlannerService.EntityFrameworkCore.csproj", "{A029F342-1BC5-4BAE-A9CB-D1483023382E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.ProductService.EntityFrameworkCore", "services\product\src\Arslan.Vms.ProductService.EntityFrameworkCore\Arslan.Vms.ProductService.EntityFrameworkCore.csproj", "{47C5F156-689D-4E07-A27D-4F232477FC2B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.VehicleService.EntityFrameworkCore", "services\vehicle\src\Arslan.Vms.VehicleService.EntityFrameworkCore\Arslan.Vms.VehicleService.EntityFrameworkCore.csproj", "{D7B0A624-413E-4762-B3BD-D3CBD6B394D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.Keycloak.DbMigrator", "_migration\src\Arslan.Vms.Keycloak.DbMigrator\Arslan.Vms.Keycloak.DbMigrator.csproj", "{4E332924-1676-4FA1-8C9C-24A276F8F5CA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arslan.Vms.DbMigrator", "_migration\src\Arslan.Vms.DbMigrator\Arslan.Vms.DbMigrator.csproj", "{6E2F1FDA-AD4C-4BA0-B158-FE808158197B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1CA8D7B-ADA1-4F76-96A1-B4A648D097AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1CA8D7B-ADA1-4F76-96A1-B4A648D097AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1CA8D7B-ADA1-4F76-96A1-B4A648D097AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1CA8D7B-ADA1-4F76-96A1-B4A648D097AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DEFF1B4-A94D-443D-A50C-296D16868512}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DEFF1B4-A94D-443D-A50C-296D16868512}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DEFF1B4-A94D-443D-A50C-296D16868512}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DEFF1B4-A94D-443D-A50C-296D16868512}.Release|Any CPU.Build.0 = Release|Any CPU
+		{071E09BA-5766-42B3-B41F-8FE35EDF6F49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{071E09BA-5766-42B3-B41F-8FE35EDF6F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{071E09BA-5766-42B3-B41F-8FE35EDF6F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{071E09BA-5766-42B3-B41F-8FE35EDF6F49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC740CE5-8350-445B-9E4E-816A6D84BA3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC740CE5-8350-445B-9E4E-816A6D84BA3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC740CE5-8350-445B-9E4E-816A6D84BA3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC740CE5-8350-445B-9E4E-816A6D84BA3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6013CA8D-B081-4D26-AEF3-0B2DB8F0288E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6013CA8D-B081-4D26-AEF3-0B2DB8F0288E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6013CA8D-B081-4D26-AEF3-0B2DB8F0288E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6013CA8D-B081-4D26-AEF3-0B2DB8F0288E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A029F342-1BC5-4BAE-A9CB-D1483023382E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A029F342-1BC5-4BAE-A9CB-D1483023382E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A029F342-1BC5-4BAE-A9CB-D1483023382E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A029F342-1BC5-4BAE-A9CB-D1483023382E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47C5F156-689D-4E07-A27D-4F232477FC2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47C5F156-689D-4E07-A27D-4F232477FC2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47C5F156-689D-4E07-A27D-4F232477FC2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47C5F156-689D-4E07-A27D-4F232477FC2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7B0A624-413E-4762-B3BD-D3CBD6B394D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7B0A624-413E-4762-B3BD-D3CBD6B394D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7B0A624-413E-4762-B3BD-D3CBD6B394D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7B0A624-413E-4762-B3BD-D3CBD6B394D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E332924-1676-4FA1-8C9C-24A276F8F5CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E332924-1676-4FA1-8C9C-24A276F8F5CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E332924-1676-4FA1-8C9C-24A276F8F5CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E332924-1676-4FA1-8C9C-24A276F8F5CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E2F1FDA-AD4C-4BA0-B158-FE808158197B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E2F1FDA-AD4C-4BA0-B158-FE808158197B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E2F1FDA-AD4C-4BA0-B158-FE808158197B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E2F1FDA-AD4C-4BA0-B158-FE808158197B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E1CA8D7B-ADA1-4F76-96A1-B4A648D097AD} = {97CA5661-5F09-4C76-8748-F8AE843CD926}
+		{6DEFF1B4-A94D-443D-A50C-296D16868512} = {97CA5661-5F09-4C76-8748-F8AE843CD926}
+		{071E09BA-5766-42B3-B41F-8FE35EDF6F49} = {97CA5661-5F09-4C76-8748-F8AE843CD926}
+		{CC740CE5-8350-445B-9E4E-816A6D84BA3C} = {97CA5661-5F09-4C76-8748-F8AE843CD926}
+		{6013CA8D-B081-4D26-AEF3-0B2DB8F0288E} = {97CA5661-5F09-4C76-8748-F8AE843CD926}
+		{A029F342-1BC5-4BAE-A9CB-D1483023382E} = {97CA5661-5F09-4C76-8748-F8AE843CD926}
+		{47C5F156-689D-4E07-A27D-4F232477FC2B} = {97CA5661-5F09-4C76-8748-F8AE843CD926}
+		{D7B0A624-413E-4762-B3BD-D3CBD6B394D1} = {97CA5661-5F09-4C76-8748-F8AE843CD926}
+		{4E332924-1676-4FA1-8C9C-24A276F8F5CA} = {E79344A5-E6AE-44E7-A407-F55EBE223D69}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {26F82565-C6A4-439D-93A4-3251E3E7D5B0}
+	EndGlobalSection
+EndGlobal

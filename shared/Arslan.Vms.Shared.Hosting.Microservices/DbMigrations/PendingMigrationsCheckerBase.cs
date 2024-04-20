@@ -8,7 +8,7 @@ namespace Arslan.Vms.Shared.Hosting.Microservices.DbMigrations;
 
 public abstract class PendingMigrationsCheckerBase : ITransientDependency
 {
-    public async Task TryAsync(Func<Task> task, int retryCount = 3)
+    public async Task TryAsync(Func<Task> task, string lockName, int retryCount = 3)
     {
         try
         {
@@ -27,7 +27,7 @@ public abstract class PendingMigrationsCheckerBase : ITransientDependency
 
             await Task.Delay(RandomHelper.GetRandom(5000, 15000));
 
-            await TryAsync(task, retryCount);
+            await TryAsync(task, lockName, retryCount);
         }
     }
 }
