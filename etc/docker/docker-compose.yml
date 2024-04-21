@@ -2,25 +2,31 @@ version: '3.7'
 
 name: arslan-vms
 services:
-  lb:
+  vms-lb:
     image: nginx:1.21
     container_name: vms-load-balancer-container
     ports:
       - 80:80
       - 443:443
     volumes:
-      - ./nginx/certs/vms-st-web+10.pem:/etc/nginx/certs/app-cert.pem:ro
-      - ./nginx/certs/vms-st-web+10-key.pem:/etc/nginx/certs/app-cert-key.pem:ro
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/default.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - vms-administration 
       - vms-identity
+      - vms-inventory
+      - vms-order
+      - vms-payment
+      - vms-planner
+      - vms-product
+      - vms-vehicle
+      - vms-gateway-web
+      - vms-web
     restart: on-failure
     networks:
       - arslan.vms-network
 
   vms-administration:
-    image: Arslan.Vms/service-administration:latest
+    image: arslan.vms/service-administration:latest
     container_name: vms-service-administration-container
     build:
       context: ../../
@@ -53,7 +59,7 @@ services:
       - arslan.vms-network
   
   vms-identity:
-    image: Arslan.Vms/service-identity:latest
+    image: arslan.vms/service-identity:latest
     container_name: vms-service-identity-container
     build:
       context: ../../
@@ -96,7 +102,7 @@ services:
       - arslan.vms-network
   
   vms-inventory:
-    image: Arslan.Vms/service-inventory:latest
+    image: arslan.vms/service-inventory:latest
     container_name: vms-service-inventory-container
     build:
       context: ../../
@@ -130,7 +136,7 @@ services:
       - arslan.vms-network
   
   vms-order:
-    image: Arslan.Vms/service-order:latest
+    image: arslan.vms/service-order:latest
     container_name: vms-service-order-container
     build:
       context: ../../
@@ -161,7 +167,7 @@ services:
       - arslan.vms-network
   
   vms-payment:
-    image: Arslan.Vms/service-payment:latest
+    image: arslan.vms/service-payment:latest
     container_name: vms-service-payment-container
     build:
       context: ../../
@@ -190,7 +196,7 @@ services:
       - arslan.vms-network
   
   vms-planner:
-    image: Arslan.Vms/service-planner:latest
+    image: arslan.vms/service-planner:latest
     container_name: vms-service-planner-container
     build:
       context: ../../
@@ -219,7 +225,7 @@ services:
       - arslan.vms-network
   
   vms-product:
-    image: Arslan.Vms/service-product:latest
+    image: arslan.vms/service-product:latest
     container_name: vms-service-product-container
     build:
       context: ../../
@@ -248,7 +254,7 @@ services:
       - arslan.vms-network
 
   vms-vehicle:
-    image: Arslan.Vms/service-vehicle:latest
+    image: arslan.vms/service-vehicle:latest
     container_name: vms-service-vehicle-container
     build:
       context: ../../
@@ -277,7 +283,7 @@ services:
       - arslan.vms-network
  
   vms-gateway-web:
-    image: Arslan.Vms/gateway-web:latest
+    image: arslan.vms/gateway-web:latest
     container_name: vms-gateway-web-container
     build:
       context: ../../
@@ -305,6 +311,21 @@ services:
       rabbitmq:
         condition: service_healthy
     restart: on-failure  
+    networks: 
+      - arslan.vms-network
+
+  vms-web:
+    image: arslan.vms/app-web:latest
+    container_name: vms-app-web-container
+    build:
+      context: ../../
+      dockerfile: apps/angular1/Dockerfile
+    depends_on:
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure
     networks: 
       - arslan.vms-network
 

@@ -1,13 +1,13 @@
 {
   "production": true,
   "application": {
-    "baseUrl":"https://vms-st-web",
+    "baseUrl":"https://vms-web",
     "name": "Arslan.Vms",
     "logoUrl": ""
   },
   "oAuthConfig": {
     "issuer": "https://vms-st-authserver",
-    "redirectUri": "https://vms-st-web",
+    "redirectUri": "https://vms-web",
     "clientId": "Web",
     "responseType": "code",
     "scope": "offline_access openid profile email phone AccountService IdentityService AdministrationService CatalogService OrderingService",
@@ -16,7 +16,7 @@
   },
   "apis": {
     "default": {
-      "url": "https://vms-st-gateway-web",
+      "url": "https://vms-gateway-web",
       "rootNamespace": "Arslan.Vms"
     }
   }

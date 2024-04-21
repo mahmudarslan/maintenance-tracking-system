@@ -1,1 +1,0 @@
-helm upgrade --install vms-st Arslan.Vms -f ./Arslan.Vms/values.yaml --namespace vms --create-namespace

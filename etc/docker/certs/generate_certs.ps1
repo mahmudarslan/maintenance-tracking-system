@@ -8,11 +8,12 @@ $authserverCNs = "app-authserver", "localhost"
 $publicWebCNs = "app-public-web", "localhost"
 $administrationServiceCNs = "administration-service", "localhost"
 $identityServiceCNs = "identity-service", "localhost"
-$catalogServiceCNs = "catalog-service", "localhost"
-$basketServiceCNs = "basket-service", "localhost"
-$orderingServiceCNs = "ordering-service", "localhost"
-$cmskitServiceCNs = "cmskit-service", "localhost"
+$inventoryServiceCNs = "inventory-service", "localhost"
+$orderServiceCNs = "order-service", "localhost"
 $paymentServiceCNs = "payment-service", "localhost"
+$plannerServiceCNs = "planner-service", "localhost"
+$productServiceCNs = "product-service", "localhost"
+$vehicleServiceCNs = "vehicle-service", "localhost"
 
 $alreadyExistingCertsRoot = Get-ChildItem -Path Cert:\LocalMachine\My -Recurse | Where-Object {$_.Subject -eq "CN=$rootCN"}
 
