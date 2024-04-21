@@ -5,15 +5,6 @@
     "name": "Arslan.Vms",
     "logoUrl": ""
   },
-  "oAuthConfig": {
-    "issuer": "https://vms-st-authserver",
-    "redirectUri": "https://vms-web",
-    "clientId": "Web",
-    "responseType": "code",
-    "scope": "offline_access openid profile email phone AccountService IdentityService AdministrationService CatalogService OrderingService",
-    "strictDiscoveryDocumentValidation": false,
-    "requireHttps": false
-  },
   "apis": {
     "default": {
       "url": "https://vms-gateway-web",
