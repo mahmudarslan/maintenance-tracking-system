@@ -35,7 +35,7 @@ services:
       # - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
       - App__SelfUrl=https://vms-st-administration
-      - App__CorsOrigins=https://gateway-web,gateway-web-public
+      - App__CorsOrigins=http://vms-gateway-web,vms-gateway-web-public
       - RemoteServices__AbpIdentity__BaseUrl=vms-st-identity
       - RemoteServices__AbpIdentity__UseCurrentAccessToken=false
       - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
@@ -68,7 +68,7 @@ services:
       # - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
       - App__SelfUrl=https://vms-st-identity
-      - App__CorsOrigins=https://gateway-web,gateway-web-public
+      - App__CorsOrigins=http://vms-gateway-web,vms-gateway-web-public
       - AuthServer__Authority=http://vms-st-authserver
       - AuthServer__RequireHttpsMetadata=false
       - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
@@ -111,7 +111,7 @@ services:
       # - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80;http://+:81;
       - App__SelfUrl=https://vms-st-catalog
-      - App__CorsOrigins=https://vms-st-gateway-web,https://vms-st-gateway-web-public,https://vms-st-public-web,https://vms-st-web
+      - App__CorsOrigins=http://vms-gateway-web,vms-gateway-web-public
       - AuthServer__Authority=http://vms-st-authserver
       - AuthServer__RequireHttpsMetadata=false
       - Kestrel__EndPoints__Http__Url=http://docker.host.internal:80
@@ -145,7 +145,7 @@ services:
       # - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
       - App__SelfUrl=https://vms-st-basket
-      - App__CorsOrigins=https://vms-st-gateway-web,https://vms-st-gateway-web-public,https://vms-st-public-web
+      - App__CorsOrigins=http://vms-gateway-web,vms-gateway-web-public
       - RemoteServices__Catalog__BaseUrl=http://vms-st-catalog:80
       - RemoteServices__Catalog__GrpcUrl=http://vms-st-catalog:81
       - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
@@ -176,7 +176,7 @@ services:
       # - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80;
       - App__SelfUrl=https://vms-st-ordering
-      - App__CorsOrigins=https://vms-st-gateway-web,https://vms-st-gateway-web-public,https://vms-st-web
+      - App__CorsOrigins=http://vms-gateway-web,vms-gateway-web-public
       - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - ConnectionStrings__PaymentService=Server=mssql-db;Database=VmsPayment;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - RabbitMQ__Connections__Default__HostName=rabbitmq
@@ -205,7 +205,7 @@ services:
       # - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80;
       - App__SelfUrl=https://vms-st-cmskit
-      - App__CorsOrigins=https://vms-st-gateway-web,https://vms-st-gateway-web-public
+      - App__CorsOrigins=http://vms-gateway-web,vms-gateway-web-public
       - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - ConnectionStrings__PlannerService=Server=mssql-db;Database=VmsPlanner;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - RabbitMQ__Connections__Default__HostName=rabbitmq
@@ -234,7 +234,7 @@ services:
       # - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80;
       - App__SelfUrl=https://vms-st-payment
-      - App__CorsOrigins=https://vms-st-gateway-web,https://vms-st-gateway-web-public      
+      - App__CorsOrigins=http://vms-gateway-web,vms-gateway-web-public   
       - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - ConnectionStrings__ProductService=Server=mssql-db;Database=VmsProduct;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - RabbitMQ__Connections__Default__HostName=rabbitmq
@@ -263,7 +263,7 @@ services:
       # - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80;
       - App__SelfUrl=https://vms-st-payment
-      - App__CorsOrigins=https://vms-st-gateway-web,https://vms-st-gateway-web-public      
+      - App__CorsOrigins=http://vms-gateway-web,vms-gateway-web-public    
       - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - ConnectionStrings__VehicleService=Server=mssql-db;Database=VmsVehicle;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - RabbitMQ__Connections__Default__HostName=rabbitmq
@@ -290,21 +290,143 @@ services:
       dockerfile: gateways/web/src/Arslan.Vms.WebGateway/Dockerfile
     environment:
       #- ASPNETCORE_ENVIRONMENT=Docker # Yarp can't resolve dns, needs to be overridden
+      - ASPNETCORE_ENVIRONMENT=development-docker
       - ASPNETCORE_URLS=http://+:80;
-      - App__SelfUrl=https://vms-st-gateway-web
-      - App__CorsOrigins=https://vms-st-web
-      - AuthServer__Authority=http://vms-st-authserver
+      - App__CorsOrigins=http://vms-web
+      - App__PathBase=/evc/api
+      - ConnectionStrings__AdministrationService=Server=192.168.56.1;Database=EvcAdministration;UID=sa;PASSWORD=1;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
+      - AuthServer__Authority=http://gio.local.io:8080/realms
       - AuthServer__RequireHttpsMetadata=false
-      - Redis__Configuration=redis
-      - ReverseProxy__Clusters__accountCluster__Destinations__destination1__Address=http://vms-st-authserver
-      - ReverseProxy__Clusters__identityCluster__Destinations__destination1__Address=http://vms-st-identity
-      - ReverseProxy__Clusters__administrationCluster__Destinations__destination1__Address=http://vms-st-administration
-      - ReverseProxy__Clusters__catalogCluster__Destinations__destination1__Address=http://vms-st-catalog
-      - ReverseProxy__Clusters__orderingCluster__Destinations__destination1__Address=http://vms-st-ordering
-      - ReverseProxy__Clusters__cmskitCluster__Destinations__destination1__Address=http://vms-st-cmskit
-      - ReverseProxy__Clusters__feature-management-cluster__Destinations__destination1__Address=http://vms-st-administration
-      - ReverseProxy__Clusters__permission-management-cluster__Destinations__destination1__Address=http://vms-st-administration
-      - ReverseProxy__Clusters__setting-management-cluster__Destinations__destination1__Address=http://vms-st-administration
+      - AuthServer__Audience=evc
+      - RabbitMQ__Connections__Default__HostName=192.168.56.1
+      - RabbitMQ__EventBus__ClientName=Evc_Gateway
+      - RabbitMQ__EventBus__ExchangeName=Evc
+      - Redis__IsEnabled=true
+      - Redis__Configuration=192.168.56.1
+      - Logging__LogLevel__Default=Information
+      - Logging__LogLevel__Microsoft=Information
+      - Logging__LogLevel__Microsoft.Hosting.Lifetime=Information
+      - AuthServer__SwaggerClientId=vms-webgateway-swagger
+      - AuthServer__SwaggerClientSecret=l2fmvDb3iSmfS98rawvbHyZnbmS81tUL
+      - Serilog__MinimumLevel__Default=Information
+      - Serilog__MinimumLevel__Override__Microsoft=Information
+      - Serilog__MinimumLevel__Override__System=Information
+      - Serilog__MinimumLevel__Override__Microsoft.EntityFrameworkCore=Information
+      - Serilog__Enrich__0=FromLogContext
+      - Serilog__WriteTo__0__Name=Graylog
+      - Serilog__WriteTo__0__Args__hostnameOrAddress=192.168.56.1
+      - Serilog__WriteTo__0__Args__port=12201
+      - Serilog__WriteTo__0__Args__transportType=Udp
+      - Serilog__WriteTo__0__Args__inventory=evc
+      - Serilog__WriteTo__1__Name=Console
+      - Serilog__Properties__Application=Centralized logging application
+      - Serilog__AllowedHosts=*
+      - AbpAuditingOptions__IsEnabled=true
+      - AbpAuditingOptions__IsEnabledForGetRequests=true
+      - AbpAuditingOptions__IsEnabledForIntegrationServices=false
+      - AbpAuditingOptions__HideErrors=true
+      - AbpAuditingOptions__IsEnabledForAnonymousUsers=true
+      - AbpAuditingOptions__AlwaysLogOnException=true
+      - AbpAuditingOptions__DisableLogActionInfo=false
+      - AbpAuditingOptions__ApplicationName=
+      - ReverseProxy__Routes__AdministrationService__Match__Path=/administration/{*any}
+      - ReverseProxy__Routes__AdministrationService__ClusterId=administrationCluster
+      - ReverseProxy__Routes__AdministrationService__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__AdministrationService__Transforms__1__X-Forwarded=Set
+      - ReverseProxy__Routes__AdministrationService__Transforms__1__Proto=Append
+      - ReverseProxy__Routes__IdentityService__Match__Path=/identity/{*any}
+      - ReverseProxy__Routes__IdentityService__ClusterId=identityCluster
+      - ReverseProxy__Routes__IdentityService__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__IdentityService__Transforms__1__X-Forwarded=Set
+      - ReverseProxy__Routes__IdentityService__Transforms__1__Proto=Append
+      - ReverseProxy__Routes__Inventory__Match__Path=/inventory/{*any}
+      - ReverseProxy__Routes__Inventory__ClusterId=inventoryCluster
+      - ReverseProxy__Routes__Inventory__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__Inventory__Transforms__1__X-Forwarded=Set
+      - ReverseProxy__Routes__Inventory__Transforms__1__Proto=Append
+      - ReverseProxy__Routes__Order__Match__Path=/order/{*any}
+      - ReverseProxy__Routes__Order__ClusterId=orderCluster
+      - ReverseProxy__Routes__Order__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__Order__Transforms__1__X-Forwarded=Set
+      - ReverseProxy__Routes__Order__Transforms__1__Proto=Append
+      - ReverseProxy__Routes__Payment__Match__Path=/payment/{*any}
+      - ReverseProxy__Routes__Payment__ClusterId=paymentCluster
+      - ReverseProxy__Routes__Payment__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__Payment__Transforms__1__X-Forwarded=Set
+      - ReverseProxy__Routes__Payment__Transforms__1__Proto=Append
+      - ReverseProxy__Routes__Planner__Match__Path=/planner/{*any}
+      - ReverseProxy__Routes__Planner__ClusterId=plannerCluster
+      - ReverseProxy__Routes__Planner__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__Planner__Transforms__1__X-Forwarded=Set
+      - ReverseProxy__Routes__Planner__Transforms__1__Proto=Append
+      - ReverseProxy__Routes__Product__Match__Path=/product/{*any}
+      - ReverseProxy__Routes__Product__ClusterId=productCluster
+      - ReverseProxy__Routes__Product__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__Product__Transforms__1__X-Forwarded=Set
+      - ReverseProxy__Routes__Product__Transforms__1__Proto=Append
+      - ReverseProxy__Routes__Vehicle__Match__Path=/vehicle/{*any}
+      - ReverseProxy__Routes__Vehicle__ClusterId=vehicleCluster
+      - ReverseProxy__Routes__Vehicle__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__Vehicle__Transforms__1__X-Forwarded=Set
+      - ReverseProxy__Routes__Vehicle__Transforms__1__Proto=Append
+      - ReverseProxy__Routes__abp-route__Match__Path=/api/abp/{*any}
+      - ReverseProxy__Routes__abp-route__ClusterId=administrationCluster
+      - ReverseProxy__Routes__tenant-management-route__Match__Path=/api/tenant-management/{*any}
+      - ReverseProxy__Routes__tenant-management-route__ClusterId=administrationCluster
+      - ReverseProxy__Routes__feature-management-route__Match__Path=/api/feature-management/{*any}
+      - ReverseProxy__Routes__feature-management-route__ClusterId=administrationCluster
+      - ReverseProxy__Routes__permission-management-route__Match__Path=/api/permission-management/{*any}
+      - ReverseProxy__Routes__permission-management-route__ClusterId=administrationCluster
+      - ReverseProxy__Routes__setting-management-route__Match__Path=/api/setting-management/{*any}
+      - ReverseProxy__Routes__setting-management-route__ClusterId=administrationCluster
+      - ReverseProxy__Routes__SwaggerAdministrationService__Match__Path=/swagger/administrationCluster/{*any}
+      - ReverseProxy__Routes__SwaggerAdministrationService__ClusterId=administrationCluster
+      - ReverseProxy__Routes__SwaggerAdministrationService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerAdministrationService__Transforms__1__PathRemovePrefix=/swagger/administrationCluster
+      - ReverseProxy__Routes__SwaggerIdentityService__Match__Path=/swagger/identityCluster/{*any}
+      - ReverseProxy__Routes__SwaggerIdentityService__ClusterId=identityCluster
+      - ReverseProxy__Routes__SwaggerIdentityService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerIdentityService__Transforms__1__PathRemovePrefix=/swagger/identityCluster
+      - ReverseProxy__Routes__SwaggerInventoryService__Match__Path=/swagger/inventoryCluster/{*any}
+      - ReverseProxy__Routes__SwaggerInventoryService__ClusterId=inventoryCluster
+      - ReverseProxy__Routes__SwaggerInventoryService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerInventoryService__Transforms__1__PathRemovePrefix=/swagger/inventoryCluster
+      - ReverseProxy__Routes__SwaggerOrderService__Match__Path=/swagger/orderCluster/{*any}
+      - ReverseProxy__Routes__SwaggerOrderService__ClusterId=orderCluster
+      - ReverseProxy__Routes__SwaggerOrderService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerOrderService__Transforms__1__PathRemovePrefix=/swagger/orderCluster
+      - ReverseProxy__Routes__SwaggerPaymentService__Match__Path=/swagger/paymentCluster/{*any}
+      - ReverseProxy__Routes__SwaggerPaymentService__ClusterId=paymentCluster
+      - ReverseProxy__Routes__SwaggerPaymentService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerPaymentService__Transforms__1__PathRemovePrefix=/swagger/paymentCluster
+      - ReverseProxy__Routes__SwaggerPlannerService__Match__Path=/swagger/plannerCluster/{*any}
+      - ReverseProxy__Routes__SwaggerPlannerService__ClusterId=plannerCluster
+      - ReverseProxy__Routes__SwaggerPlannerService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerPlannerService__Transforms__1__PathRemovePrefix=/swagger/plannerCluster
+      - ReverseProxy__Routes__SwaggerProductService__Match__Path=/swagger/productCluster/{*any}
+      - ReverseProxy__Routes__SwaggerProductService__ClusterId=productCluster
+      - ReverseProxy__Routes__SwaggerProductService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerProductService__Transforms__1__PathRemovePrefix=/swagger/productCluster
+      - ReverseProxy__Routes__SwaggerVehicleService__Match__Path=/swagger/vehicleCluster/{*any}
+      - ReverseProxy__Routes__SwaggerVehicleService__ClusterId=vehicleCluster
+      - ReverseProxy__Routes__SwaggerVehicleService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerVehicleService__Transforms__1__PathRemovePrefix=/swagger/vehicleCluster
+      - ReverseProxy__Clusters__administrationCluster__Destinations__destination1__Address=http://vms-administration
+      - ReverseProxy__Clusters__administrationCluster__HttpRequest__ActivityTimeout=00:05:00
+      - ReverseProxy__Clusters__identityCluster__Destinations__destination1__Address=http://vms-identity
+      - ReverseProxy__Clusters__identityCluster__HttpRequest__ActivityTimeout=00:05:00
+      - ReverseProxy__Clusters__inventoryCluster__Destinations__destination1__Address=http://vms-inventory
+      - ReverseProxy__Clusters__inventoryCluster__HttpRequest__ActivityTimeout=00:05:00
+      - ReverseProxy__Clusters__orderCluster__Destinations__destination1__Address=http://vms-order
+      - ReverseProxy__Clusters__orderCluster__HttpRequest__ActivityTimeout=00:05:00
+      - ReverseProxy__Clusters__paymentCluster__Destinations__destination1__Address=http://payment-payment
+      - ReverseProxy__Clusters__paymentCluster__HttpRequest__ActivityTimeout=00:05:00
+      - ReverseProxy__Clusters__plannerCluster__Destinations__destination1__Address=http://vms-planner
+      - ReverseProxy__Clusters__plannerCluster__HttpRequest__ActivityTimeout=00:05:00
+      - ReverseProxy__Clusters__productCluster__Destinations__destination1__Address=http://vms-product
+      - ReverseProxy__Clusters__productCluster__HttpRequest__ActivityTimeout=00:05:00
+      - ReverseProxy__Clusters__vehicleCluster__Destinations__destination1__Address=http://vms-vehicle
+      - ReverseProxy__Clusters__vehicleCluster__HttpRequest__ActivityTimeout=00:05:00
     depends_on:
       redis:
         condition: service_healthy
@@ -320,6 +442,8 @@ services:
     build:
       context: ../../
       dockerfile: apps/angular1/Dockerfile
+    volumes:
+      - ./nginx/dynamic-env.json:/usr/share/nginx/html/dynamic-env.json
     depends_on:
       redis:
         condition: service_healthy

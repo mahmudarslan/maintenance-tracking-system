@@ -12,7 +12,7 @@ export const environment = {
   oAuthConfig: {
     issuer: 'https://localhost:44342/',
     redirectUri: baseUrl,
-    clientId: 'Vms_App',
+    clientId: 'vms_app',
     responseType: 'code',
     scope: 'offline_access Vms',
     requireHttps: true
@@ -22,5 +22,9 @@ export const environment = {
       url: 'https://localhost:44342',
       rootNamespace: 'Arslan.Vms',
     },
+    remoteEnv: {
+      url: '/getEnvConfig',
+      mergeStrategy: 'deepmerge'
+    }
   },
 } as Environment;

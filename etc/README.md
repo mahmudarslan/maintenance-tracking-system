@@ -20,18 +20,17 @@ helm upgrade --install --version=4.0.19 ingress-nginx ingress-nginx/ingress-ngin
 * Add entries to the hosts file (in Windows: `C:\Windows\System32\drivers\etc\hosts`, in linux and macos: `/etc/hosts` ):
 
 ````powershell
-127.0.0.1 vms-st-web
-127.0.0.1 vms-st-public-web
-127.0.0.1 vms-st-authserver
-127.0.0.1 vms-st-identity
-127.0.0.1 vms-st-administration
-127.0.0.1 vms-st-basket
-127.0.0.1 vms-st-catalog
-127.0.0.1 vms-st-ordering
-127.0.0.1 vms-st-cmskit
-127.0.0.1 vms-st-payment
-127.0.0.1 vms-st-gateway-web
-127.0.0.1 vms-st-gateway-web-public
+127.0.0.1 vms-web
+127.0.0.1 vms-authserver
+127.0.0.1 vms-administration
+127.0.0.1 vms-identity
+127.0.0.1 vms-inventory
+127.0.0.1 vms-order
+127.0.0.1 vms-payment
+127.0.0.1 vms-planner
+127.0.0.1 vms-product
+127.0.0.1 vms-vehicle
+127.0.0.1 vms-gateway-web
 ````
 
 * Run `build-images.ps1` or `build-images.sh` in the `build` directory.
