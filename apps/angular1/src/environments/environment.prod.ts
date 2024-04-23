@@ -21,10 +21,10 @@ export const environment = {
     default: {
       url: 'https://localhost:44342',
       rootNamespace: 'Arslan.Vms',
-    },
-    remoteEnv: {
-      url: '/getEnvConfig',
-      mergeStrategy: 'deepmerge'
     }
   },
+  remoteEnv: {
+    url: '/getEnvConfig',
+    mergeStrategy: 'deepmerge'
+  }
 } as Environment;
