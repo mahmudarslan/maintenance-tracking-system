@@ -3,8 +3,8 @@
         "windowsAuthentication": false,
         "anonymousAuthentication": true,
         "iisExpress": {
-            "applicationUrl": "http://localhost:4301",
-            "sslPort": 4301
+            "applicationUrl": "http://localhost:44301",
+            "sslPort": 44301
         }
     },
     "profiles": {
@@ -18,7 +18,7 @@
         "Arslan.Vms.AdministrationService.HttpApi.Host": {
             "commandName": "Project",
             "launchBrowser": true,
-            "applicationUrl": "http://localhost:4301",
+            "applicationUrl": "http://localhost:44301",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
@@ -28,7 +28,7 @@
             "launchBrowser": true,
             "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
             "publishAllPorts": true,
-            "httpPort": 4301,
+            "httpPort": 44301,
             "useSSL": false,
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Docker"

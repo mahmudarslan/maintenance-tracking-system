@@ -10,16 +10,16 @@ export const environment = {
     logoUrl: '',
   },
   oAuthConfig: {
-    issuer: 'https://localhost:44342/',
+    issuer: 'http://localhost:8080/',
     redirectUri: baseUrl,
-    clientId: 'Vms_App',
+    clientId: 'vms_app',
     responseType: 'code',
     scope: 'offline_access Vms',
     requireHttps: true,
   },
   apis: {
     default: {
-      url: 'https://localhost:44342',
+      url: 'http://localhost:44300',
       rootNamespace: 'Arslan.Vms',
     },
   },
