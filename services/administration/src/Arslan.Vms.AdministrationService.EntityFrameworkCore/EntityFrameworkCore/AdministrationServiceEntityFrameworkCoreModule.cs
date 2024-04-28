@@ -47,13 +47,12 @@ public class AdministrationServiceEntityFrameworkCoreModule : AbpModule
             });
         });
 
-		Configure<AbpDistributedEventBusOptions>(options =>
-		{
-			options.Outboxes.Configure(config =>
-			{
-				config.UseDbContext<AdministrationServiceDbContext>();
-			});
-		});
-
+		//Configure<AbpDistributedEventBusOptions>(options =>
+		//{
+		//	options.Outboxes.Configure(config =>
+		//	{
+		//		config.UseDbContext<AdministrationServiceDbContext>();
+		//	});
+		//});
 	}
 }

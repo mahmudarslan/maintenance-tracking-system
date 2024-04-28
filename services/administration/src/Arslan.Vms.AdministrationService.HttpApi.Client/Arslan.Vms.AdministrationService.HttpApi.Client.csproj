@@ -24,4 +24,11 @@
 		<Content Remove="**\*generate-proxy.json" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="Properties\launchSettings.json">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>

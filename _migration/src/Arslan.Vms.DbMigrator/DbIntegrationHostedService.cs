@@ -1,4 +1,5 @@
 ﻿using Arslan.Vms.AdministrationService;
+using Arslan.Vms.KeycloakService;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -45,10 +46,42 @@ public class DbIntegrationHostedService : IHostedService
 
                 using (_currentTenant.Change(MigrationConst.DemoTenantId))
                 {
+                    Console.WriteLine($"Keycloak data transfer started");
+                    await UsingUowAsync(application, async () => { await (new KeycloakServiceIntegration(application)).SeedDataAsync(); }, "Keycloak");
+
+
                     Console.WriteLine($"Administration data transfer started");
                     await UsingUowAsync(application, async () => { await (new AdministrationServiceIntegration(application)).SeedDataAsync(); }, "Administration");
                     Console.WriteLine($"--------------------------------------------------------");
-    
+
+                    Console.WriteLine($"Identity data transfer started");
+                    await UsingUowAsync(application, async () => { await (new IdentityServiceIntegration(application)).SeedDataAsync(); }, "Identity");
+                    Console.WriteLine($"--------------------------------------------------------");
+
+                    Console.WriteLine($"Inventory data transfer started");
+                    await UsingUowAsync(application, async () => { await (new InventoryServiceIntegration(application)).SeedDataAsync(); }, "Inventory");
+                    Console.WriteLine($"--------------------------------------------------------");
+
+                    Console.WriteLine($"Order data transfer started");
+                    await UsingUowAsync(application, async () => { await (new OrderServiceIntegration(application)).SeedDataAsync(); }, "Order");
+                    Console.WriteLine($"--------------------------------------------------------");
+
+                    Console.WriteLine($"Payment data transfer started");
+                    await UsingUowAsync(application, async () => { await (new PaymentServiceIntegration(application)).SeedDataAsync(); }, "Payment");
+                    Console.WriteLine($"--------------------------------------------------------");
+
+                    Console.WriteLine($"Planner data transfer started");
+                    await UsingUowAsync(application, async () => { await (new PlannerServiceIntegration(application)).SeedDataAsync(); }, "Planner");
+                    Console.WriteLine($"--------------------------------------------------------");
+
+                    Console.WriteLine($"Product data transfer started");
+                    await UsingUowAsync(application, async () => { await (new ProductServiceIntegration(application)).SeedDataAsync(); }, "Product");
+                    Console.WriteLine($"--------------------------------------------------------");
+
+                    Console.WriteLine($"Vehicle data transfer started");
+                    await UsingUowAsync(application, async () => { await (new VehicleServiceIntegration(application)).SeedDataAsync(); }, "Vehicle");
+                    Console.WriteLine($"--------------------------------------------------------");
+
                     Console.WriteLine($"--------------------------------------------------------");
                     Log.Information("All data transfer is finished");
 

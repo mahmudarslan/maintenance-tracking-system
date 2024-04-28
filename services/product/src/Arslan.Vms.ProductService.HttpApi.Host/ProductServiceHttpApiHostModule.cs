@@ -2,6 +2,7 @@ using Arslan.Vms.ProductService.DbMigrations;
 using Arslan.Vms.ProductService.EntityFrameworkCore;
 using Arslan.Vms.Shared.Hosting.AspNetCore;
 using Arslan.Vms.Shared.Hosting.Microservices;
+using Arslan.Vms.Shared.Hosting.Microservices.Auths;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;

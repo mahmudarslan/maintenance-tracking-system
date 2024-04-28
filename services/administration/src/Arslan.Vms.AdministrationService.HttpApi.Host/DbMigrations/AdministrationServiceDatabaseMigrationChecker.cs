@@ -82,63 +82,63 @@ public class AdministrationServiceDatabaseMigrationChecker
     {
         using var uow = UnitOfWorkManager.Begin(requiresNew: true, isTransactional: true);
 
-        var tenants = (await _tenantRepository.ToListAsync()).Select(s => new TenantConfiguration { Id = s.Id, Name = s.Name }).ToList();
+        //var tenants = (await _tenantRepository.ToListAsync()).Select(s => new TenantConfiguration { Id = s.Id, Name = s.Name }).ToList();
 
-        if (tenants.Count == 0)
-        {
-            tenants.AddRange(_configuration.GetSection("Tenants").Get<List<TenantConfiguration>>());
-        }
+        //if (tenants.Count == 0)
+        //{
+        //    tenants.AddRange(_configuration.GetSection("Tenants").Get<List<TenantConfiguration>>());
+        //}
 
-        await CreatePermissions(MultiTenancySides.Host);
+        //await CreatePermissions(MultiTenancySides.Host);
 
-        foreach (var tenant in tenants)
-        {
-            using (_currentTenant.Change(tenant.Id, tenant.Name))
-            {
-                await CreatePermissions(MultiTenancySides.Tenant);
-            }
-        }
+        //foreach (var tenant in tenants)
+        //{
+        //    using (_currentTenant.Change(tenant.Id, tenant.Name))
+        //    {
+        //        await CreatePermissions(MultiTenancySides.Tenant);
+        //    }
+        //}
 
         await uow.CompleteAsync();
     }
 
-    public async Task CreateTenantAsync()
-    {
-        var tenants = await _tenantRepository.ToListAsync();
+    //public async Task CreateTenantAsync()
+    //{
+    //    var tenants = await _tenantRepository.ToListAsync();
 
-        if (!tenants.Any(a => a.Name == "arslan"))
-        {
-            var tenant = await _tenantManager.CreateAsync("arslan");
+    //    if (!tenants.Any(a => a.Name == "arslan"))
+    //    {
+    //        var tenant = await _tenantManager.CreateAsync("arslan");
 
-            await _tenantRepository.InsertAsync(tenant, true);
-        }
-    }
+    //        await _tenantRepository.InsertAsync(tenant, true);
+    //    }
+    //}
 
-    public async Task CreatePermissions(MultiTenancySides multiTenancySide)
-    {
-        var permissionNames = (await _permissionDefinitionManager
-            .GetPermissionsAsync())
-            .Where(p => p.MultiTenancySide.HasFlag(multiTenancySide))
-            .Where(p => !p.Providers.Any() ||
-                        p.Providers.Contains(RolePermissionValueProvider.ProviderName))
-            .Select(p => p.Name)
-            .ToArray();
+    //public async Task CreatePermissions(MultiTenancySides multiTenancySide)
+    //{
+    //    var permissionNames = (await _permissionDefinitionManager
+    //        .GetPermissionsAsync())
+    //        .Where(p => p.MultiTenancySide.HasFlag(multiTenancySide))
+    //        .Where(p => !p.Providers.Any() ||
+    //                    p.Providers.Contains(RolePermissionValueProvider.ProviderName))
+    //        .Select(p => p.Name)
+    //        .ToArray();
 
-        var perList = await _permissionManager.GetListAsync();
+    //    var perList = await _permissionManager.GetListAsync();
 
-        var insertList = new List<PermissionGrant>();
+    //    var insertList = new List<PermissionGrant>();
 
-        foreach (var item in permissionNames)
-        {
-            if (!perList.Any(a => a.Name == item && a.ProviderName == RolePermissionValueProvider.ProviderName && a.ProviderKey == "admin"))
-            {
-                insertList.Add(new PermissionGrant(
-                                    id: _guidGenerator.Create(),
-                                    name: item,
-                                    providerName: RolePermissionValueProvider.ProviderName,
-                                    providerKey: "admin",
-                                    tenantId: _currentTenant.Id));
-            }
-        }
-    }
+    //    foreach (var item in permissionNames)
+    //    {
+    //        if (!perList.Any(a => a.Name == item && a.ProviderName == RolePermissionValueProvider.ProviderName && a.ProviderKey == "admin"))
+    //        {
+    //            insertList.Add(new PermissionGrant(
+    //                                id: _guidGenerator.Create(),
+    //                                name: item,
+    //                                providerName: RolePermissionValueProvider.ProviderName,
+    //                                providerKey: "admin",
+    //                                tenantId: _currentTenant.Id));
+    //        }
+    //    }
+    //}
 }

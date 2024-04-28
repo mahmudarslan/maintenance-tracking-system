@@ -43,7 +43,7 @@ services:
       - AuthServer__RequireHttpsMetadata=false
       - IdentityClients__Default__Authority=http://vms-st-identity
       - RabbitMQ__Connections__Default__HostName=rabbitmq
-      - RabbitMQ__EventBus__ClientName=Evc_AdministrationService
+      - RabbitMQ__EventBus__ClientName=Vms_AdministrationService
       - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
       - Redis__IsEnabled=true
       - Redis__Configuration=redis
@@ -74,7 +74,7 @@ services:
       - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - ConnectionStrings__IdentityService=Server=mssql-db;Database=VmsIdentity;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - RabbitMQ__Connections__Default__HostName=rabbitmq
-      - RabbitMQ__EventBus__ClientName=Evc_IdentityService
+      - RabbitMQ__EventBus__ClientName=Vms_IdentityService
       - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
       - Redis__IsEnabled=true
       - Redis__Configuration=redis
@@ -120,7 +120,7 @@ services:
       - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - ConnectionStrings__InventoryService=Server=mssql-db;Database=VmsInventory;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - RabbitMQ__Connections__Default__HostName=rabbitmq
-      - RabbitMQ__EventBus__ClientName=Evc_InventoryService
+      - RabbitMQ__EventBus__ClientName=Vms_InventoryService
       - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
       - Redis__IsEnabled=true
       - Redis__Configuration=redis
@@ -151,7 +151,7 @@ services:
       - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - ConnectionStrings__OrderService=Server=mssql-db;Database=VmsOrder;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - RabbitMQ__Connections__Default__HostName=rabbitmq
-      - RabbitMQ__EventBus__ClientName=Evc_OrderService
+      - RabbitMQ__EventBus__ClientName=Vms_OrderService
       - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
       - Redis__IsEnabled=true
       - Redis__Configuration=redis
@@ -180,7 +180,7 @@ services:
       - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - ConnectionStrings__PaymentService=Server=mssql-db;Database=VmsPayment;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - RabbitMQ__Connections__Default__HostName=rabbitmq
-      - RabbitMQ__EventBus__ClientName=Evc_PaymentService
+      - RabbitMQ__EventBus__ClientName=Vms_PaymentService
       - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
       - Redis__IsEnabled=true
       - Redis__Configuration=redis
@@ -209,7 +209,7 @@ services:
       - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - ConnectionStrings__PlannerService=Server=mssql-db;Database=VmsPlanner;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - RabbitMQ__Connections__Default__HostName=rabbitmq
-      - RabbitMQ__EventBus__ClientName=Evc_PlannerService
+      - RabbitMQ__EventBus__ClientName=Vms_PlannerService
       - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
       - Redis__IsEnabled=true
       - Redis__Configuration=redis
@@ -238,7 +238,7 @@ services:
       - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - ConnectionStrings__ProductService=Server=mssql-db;Database=VmsProduct;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - RabbitMQ__Connections__Default__HostName=rabbitmq
-      - RabbitMQ__EventBus__ClientName=Evc_ProductService
+      - RabbitMQ__EventBus__ClientName=Vms_ProductService
       - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
       - Redis__IsEnabled=true
       - Redis__Configuration=redis
@@ -267,7 +267,7 @@ services:
       - ConnectionStrings__AdministrationService=Server=mssql-db;Database=VmsAdministration;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - ConnectionStrings__VehicleService=Server=mssql-db;Database=VmsVehicle;UID=sa;PASSWORD=1q2w3E**;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - RabbitMQ__Connections__Default__HostName=rabbitmq
-      - RabbitMQ__EventBus__ClientName=Evc_VehicleService
+      - RabbitMQ__EventBus__ClientName=Vms_VehicleService
       - RabbitMQ__EventBus__ExchangeName=Arslan.Vms
       - Redis__IsEnabled=true
       - Redis__Configuration=redis
@@ -293,14 +293,14 @@ services:
       - ASPNETCORE_ENVIRONMENT=development-docker
       - ASPNETCORE_URLS=http://+:80;
       - App__CorsOrigins=http://vms-web
-      - App__PathBase=/evc/api
-      - ConnectionStrings__AdministrationService=Server=192.168.56.1;Database=EvcAdministration;UID=sa;PASSWORD=1;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
+      - App__PathBase=/vms/api
+      - ConnectionStrings__AdministrationService=Server=192.168.56.1;Database=VmsAdministration;UID=sa;PASSWORD=1;Integrated Security=True;Trusted_Connection=False;TrustServerCertificate=True;Pooling=True;Max Pool Size=1000;Timeout=300
       - AuthServer__Authority=http://gio.local.io:8080/realms
       - AuthServer__RequireHttpsMetadata=false
-      - AuthServer__Audience=evc
+      - AuthServer__Audience=vms
       - RabbitMQ__Connections__Default__HostName=192.168.56.1
-      - RabbitMQ__EventBus__ClientName=Evc_Gateway
-      - RabbitMQ__EventBus__ExchangeName=Evc
+      - RabbitMQ__EventBus__ClientName=Vms_Gateway
+      - RabbitMQ__EventBus__ExchangeName=Vms
       - Redis__IsEnabled=true
       - Redis__Configuration=192.168.56.1
       - Logging__LogLevel__Default=Information
@@ -317,7 +317,7 @@ services:
       - Serilog__WriteTo__0__Args__hostnameOrAddress=192.168.56.1
       - Serilog__WriteTo__0__Args__port=12201
       - Serilog__WriteTo__0__Args__transportType=Udp
-      - Serilog__WriteTo__0__Args__inventory=evc
+      - Serilog__WriteTo__0__Args__inventory=vms
       - Serilog__WriteTo__1__Name=Console
       - Serilog__Properties__Application=Centralized logging application
       - Serilog__AllowedHosts=*
@@ -331,42 +331,42 @@ services:
       - AbpAuditingOptions__ApplicationName=
       - ReverseProxy__Routes__AdministrationService__Match__Path=/administration/{*any}
       - ReverseProxy__Routes__AdministrationService__ClusterId=administrationCluster
-      - ReverseProxy__Routes__AdministrationService__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__AdministrationService__Transforms__0__PathPrefix=/vms/api
       - ReverseProxy__Routes__AdministrationService__Transforms__1__X-Forwarded=Set
       - ReverseProxy__Routes__AdministrationService__Transforms__1__Proto=Append
       - ReverseProxy__Routes__IdentityService__Match__Path=/identity/{*any}
       - ReverseProxy__Routes__IdentityService__ClusterId=identityCluster
-      - ReverseProxy__Routes__IdentityService__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__IdentityService__Transforms__0__PathPrefix=/vms/api
       - ReverseProxy__Routes__IdentityService__Transforms__1__X-Forwarded=Set
       - ReverseProxy__Routes__IdentityService__Transforms__1__Proto=Append
       - ReverseProxy__Routes__Inventory__Match__Path=/inventory/{*any}
       - ReverseProxy__Routes__Inventory__ClusterId=inventoryCluster
-      - ReverseProxy__Routes__Inventory__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__Inventory__Transforms__0__PathPrefix=/vms/api
       - ReverseProxy__Routes__Inventory__Transforms__1__X-Forwarded=Set
       - ReverseProxy__Routes__Inventory__Transforms__1__Proto=Append
       - ReverseProxy__Routes__Order__Match__Path=/order/{*any}
       - ReverseProxy__Routes__Order__ClusterId=orderCluster
-      - ReverseProxy__Routes__Order__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__Order__Transforms__0__PathPrefix=/vms/api
       - ReverseProxy__Routes__Order__Transforms__1__X-Forwarded=Set
       - ReverseProxy__Routes__Order__Transforms__1__Proto=Append
       - ReverseProxy__Routes__Payment__Match__Path=/payment/{*any}
       - ReverseProxy__Routes__Payment__ClusterId=paymentCluster
-      - ReverseProxy__Routes__Payment__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__Payment__Transforms__0__PathPrefix=/vms/api
       - ReverseProxy__Routes__Payment__Transforms__1__X-Forwarded=Set
       - ReverseProxy__Routes__Payment__Transforms__1__Proto=Append
       - ReverseProxy__Routes__Planner__Match__Path=/planner/{*any}
       - ReverseProxy__Routes__Planner__ClusterId=plannerCluster
-      - ReverseProxy__Routes__Planner__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__Planner__Transforms__0__PathPrefix=/vms/api
       - ReverseProxy__Routes__Planner__Transforms__1__X-Forwarded=Set
       - ReverseProxy__Routes__Planner__Transforms__1__Proto=Append
       - ReverseProxy__Routes__Product__Match__Path=/product/{*any}
       - ReverseProxy__Routes__Product__ClusterId=productCluster
-      - ReverseProxy__Routes__Product__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__Product__Transforms__0__PathPrefix=/vms/api
       - ReverseProxy__Routes__Product__Transforms__1__X-Forwarded=Set
       - ReverseProxy__Routes__Product__Transforms__1__Proto=Append
       - ReverseProxy__Routes__Vehicle__Match__Path=/vehicle/{*any}
       - ReverseProxy__Routes__Vehicle__ClusterId=vehicleCluster
-      - ReverseProxy__Routes__Vehicle__Transforms__0__PathPrefix=/evc/api
+      - ReverseProxy__Routes__Vehicle__Transforms__0__PathPrefix=/vms/api
       - ReverseProxy__Routes__Vehicle__Transforms__1__X-Forwarded=Set
       - ReverseProxy__Routes__Vehicle__Transforms__1__Proto=Append
       - ReverseProxy__Routes__abp-route__Match__Path=/api/abp/{*any}
@@ -381,35 +381,35 @@ services:
       - ReverseProxy__Routes__setting-management-route__ClusterId=administrationCluster
       - ReverseProxy__Routes__SwaggerAdministrationService__Match__Path=/swagger/administrationCluster/{*any}
       - ReverseProxy__Routes__SwaggerAdministrationService__ClusterId=administrationCluster
-      - ReverseProxy__Routes__SwaggerAdministrationService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerAdministrationService__Transforms__0__PathRemovePrefix=/vms/api
       - ReverseProxy__Routes__SwaggerAdministrationService__Transforms__1__PathRemovePrefix=/swagger/administrationCluster
       - ReverseProxy__Routes__SwaggerIdentityService__Match__Path=/swagger/identityCluster/{*any}
       - ReverseProxy__Routes__SwaggerIdentityService__ClusterId=identityCluster
-      - ReverseProxy__Routes__SwaggerIdentityService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerIdentityService__Transforms__0__PathRemovePrefix=/vms/api
       - ReverseProxy__Routes__SwaggerIdentityService__Transforms__1__PathRemovePrefix=/swagger/identityCluster
       - ReverseProxy__Routes__SwaggerInventoryService__Match__Path=/swagger/inventoryCluster/{*any}
       - ReverseProxy__Routes__SwaggerInventoryService__ClusterId=inventoryCluster
-      - ReverseProxy__Routes__SwaggerInventoryService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerInventoryService__Transforms__0__PathRemovePrefix=/vms/api
       - ReverseProxy__Routes__SwaggerInventoryService__Transforms__1__PathRemovePrefix=/swagger/inventoryCluster
       - ReverseProxy__Routes__SwaggerOrderService__Match__Path=/swagger/orderCluster/{*any}
       - ReverseProxy__Routes__SwaggerOrderService__ClusterId=orderCluster
-      - ReverseProxy__Routes__SwaggerOrderService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerOrderService__Transforms__0__PathRemovePrefix=/vms/api
       - ReverseProxy__Routes__SwaggerOrderService__Transforms__1__PathRemovePrefix=/swagger/orderCluster
       - ReverseProxy__Routes__SwaggerPaymentService__Match__Path=/swagger/paymentCluster/{*any}
       - ReverseProxy__Routes__SwaggerPaymentService__ClusterId=paymentCluster
-      - ReverseProxy__Routes__SwaggerPaymentService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerPaymentService__Transforms__0__PathRemovePrefix=/vms/api
       - ReverseProxy__Routes__SwaggerPaymentService__Transforms__1__PathRemovePrefix=/swagger/paymentCluster
       - ReverseProxy__Routes__SwaggerPlannerService__Match__Path=/swagger/plannerCluster/{*any}
       - ReverseProxy__Routes__SwaggerPlannerService__ClusterId=plannerCluster
-      - ReverseProxy__Routes__SwaggerPlannerService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerPlannerService__Transforms__0__PathRemovePrefix=/vms/api
       - ReverseProxy__Routes__SwaggerPlannerService__Transforms__1__PathRemovePrefix=/swagger/plannerCluster
       - ReverseProxy__Routes__SwaggerProductService__Match__Path=/swagger/productCluster/{*any}
       - ReverseProxy__Routes__SwaggerProductService__ClusterId=productCluster
-      - ReverseProxy__Routes__SwaggerProductService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerProductService__Transforms__0__PathRemovePrefix=/vms/api
       - ReverseProxy__Routes__SwaggerProductService__Transforms__1__PathRemovePrefix=/swagger/productCluster
       - ReverseProxy__Routes__SwaggerVehicleService__Match__Path=/swagger/vehicleCluster/{*any}
       - ReverseProxy__Routes__SwaggerVehicleService__ClusterId=vehicleCluster
-      - ReverseProxy__Routes__SwaggerVehicleService__Transforms__0__PathRemovePrefix=/evc/api
+      - ReverseProxy__Routes__SwaggerVehicleService__Transforms__0__PathRemovePrefix=/vms/api
       - ReverseProxy__Routes__SwaggerVehicleService__Transforms__1__PathRemovePrefix=/swagger/vehicleCluster
       - ReverseProxy__Clusters__administrationCluster__Destinations__destination1__Address=http://vms-administration
       - ReverseProxy__Clusters__administrationCluster__HttpRequest__ActivityTimeout=00:05:00

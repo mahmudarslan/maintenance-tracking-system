@@ -15,6 +15,10 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.Uow;
+using Volo.Abp.Features;
+using Volo.Abp.FeatureManagement;
+using Volo.Abp.SettingManagement;
+using Arslan.Vms.AdministrationService.Saas;
 
 namespace Arslan.Vms.AdministrationService;
 
@@ -29,8 +33,11 @@ internal class AdministrationServiceIntegration
 	private readonly IUnitOfWorkManager _unitOfWorkManager;
 	IDbContextProvider<AdministrationServiceDbContext> _dbContextProvider;
 	private readonly IConfiguration _configuration;
+    private readonly ISettingManager _settingManager;
+    private readonly IFeatureManagementStore _featureManagementStore;
+    private readonly IRepository<SaasEdition> _editionRepository;
 
-	public AdministrationServiceIntegration(IAbpApplicationWithInternalServiceProvider application)
+    public AdministrationServiceIntegration(IAbpApplicationWithInternalServiceProvider application)
 	{
 		_tenantRepository = application.ServiceProvider.GetRequiredService<IRepository<Tenant>>();
 		_permissionGrantRepository = application.ServiceProvider.GetRequiredService<IRepository<PermissionGrant>>();
@@ -41,9 +48,13 @@ internal class AdministrationServiceIntegration
 		_unitOfWorkManager = application.ServiceProvider.GetRequiredService<IUnitOfWorkManager>();
 		_dbContextProvider = application.ServiceProvider.GetRequiredService<IDbContextProvider<AdministrationServiceDbContext>>();
 		_configuration = application.ServiceProvider.GetRequiredService<IConfiguration>();
-	}
+		_settingManager = application.ServiceProvider.GetRequiredService<ISettingManager>();
+        _featureManagementStore = application.ServiceProvider.GetRequiredService<IFeatureManagementStore>();
 
-	public async Task SeedDataAsync()
+        _editionRepository = application.ServiceProvider.GetRequiredService<IRepository<SaasEdition>>();
+    }
+
+    public async Task SeedDataAsync()
 	{
 		using (_dataFilter.Disable<IMultiTenant>())
 		{
@@ -62,11 +73,40 @@ internal class AdministrationServiceIntegration
 						await uow.CompleteAsync();
 					}
 				}
-			}
+
+                await CreateEditionAsync();
+
+				await CreateFeaturesAsync();
+
+                await CreateDemoTenantAsync();
+            }
 		}
 	}
 
-	public async Task CreateDemoTenantAsync()
+    public async Task CreateEditionAsync()
+    {
+        var editions = await _editionRepository.ToListAsync();
+
+        if (!editions.Any(w => w.Name != EditionConsts.Enterprise))
+            await _editionRepository.InsertAsync(new SaasEdition(id: _guidGenerator.Create(), name: EditionConsts.Enterprise, isStatic: true), true);
+
+        if (!editions.Any(w => w.Name != EditionConsts.Premium))
+            await _editionRepository.InsertAsync(new SaasEdition(id: _guidGenerator.Create(), name: EditionConsts.Premium, isStatic: true), true);
+
+        if (!editions.Any(w => w.Name != EditionConsts.Standard))
+            await _editionRepository.InsertAsync(new SaasEdition(id: _guidGenerator.Create(), name: EditionConsts.Standard, isStatic: true), true);
+    }
+
+    public async Task CreateFeaturesAsync()
+    {
+        var editions = await _editionRepository.ToListAsync();
+
+        var enterprise = editions.FirstOrDefault(f => f.NormalizedName == EditionConsts.Enterprise.ToUpperInvariant());
+        var premium = editions.FirstOrDefault(f => f.NormalizedName == EditionConsts.Premium.ToUpperInvariant());
+        var standard = editions.FirstOrDefault(f => f.NormalizedName == EditionConsts.Standard.ToUpperInvariant());
+    }
+
+    public async Task CreateDemoTenantAsync()
 	{
 		var tenants = await _tenantRepository.ToListAsync();
 		var environmentName = _configuration["EnvironmentName"];
@@ -92,7 +132,7 @@ internal class AdministrationServiceIntegration
 				var query = "INSERT INTO [VmsAdministration].[dbo].[AbpTenants]" +
 "([Id],[Name],[EntityVersion],[ExtraProperties],[ConcurrencyStamp],[CreationTime],[CreatorId],[LastModificationTime],[LastModifierId],[IsDeleted],[DeleterId],[DeletionTime])" +
 "VALUES" +
-"('" + MigrationConst.DemoTenantId.ToString() + "','" + tenantName + "',0,'{{\"Edition\":\"Enterprise\",\"Host\":\"demo.arslan.io\"}}','55D067DE-FE2B-8906-F578-3A12088824B5','2023-08-16 09:15:00.6303327',null,null,null,0,null,null)";
+"('" + MigrationConst.DemoTenantId.ToString() + "','" + tenantName + "',0,'{{\"Edition\":\"Enterprise\",\"Host\":\"demo.arslan.io\"}}','800152D8-9DFC-69CE-FE28-3A1237310092','2024-01-12 09:15:00.6303327',null,null,null,0,null,null)";
 
 				var result2 = await (await _dbContextProvider.GetDbContextAsync())
 					.Database

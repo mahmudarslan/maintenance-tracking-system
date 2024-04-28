@@ -2,6 +2,7 @@ using Arslan.Vms.PaymentService.DbMigrations;
 using Arslan.Vms.PaymentService.EntityFrameworkCore;
 using Arslan.Vms.Shared.Hosting.AspNetCore;
 using Arslan.Vms.Shared.Hosting.Microservices;
+using Arslan.Vms.Shared.Hosting.Microservices.Auths;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;

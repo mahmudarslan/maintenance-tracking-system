@@ -1,5 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+	<Import Project="..\..\common.props" />
+
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -7,8 +9,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.aspnetcore.serilog\7.3.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Serilog.abppkg.analyze.json" />
-	  <Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.aspnetcore.serilog\7.3.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Serilog.abppkg.json" />
+		<Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.aspnetcore.serilog\7.3.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Serilog.abppkg.analyze.json" />
+		<Content Remove="C:\Users\mtarslan\.nuget\packages\volo.abp.aspnetcore.serilog\7.3.2\contentFiles\any\net7.0\Volo.Abp.AspNetCore.Serilog.abppkg.json" />
 	</ItemGroup>
 
 	<ItemGroup>

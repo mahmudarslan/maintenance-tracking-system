@@ -8,6 +8,9 @@ namespace Arslan.Vms.AdministrationService.EntityFrameworkCore
 
         public static void Configure()
         {
+            AdministrationServiceGlobalFeatureConfigurator.Configure();
+            AdministrationServiceModuleExtensionConfigurator.Configure();
+
             OneTimeRunner.Run(() =>
             {
                 /* You can configure extra properties for the

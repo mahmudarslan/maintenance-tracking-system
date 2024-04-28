@@ -19,6 +19,6 @@ public static class SerilogConfigurationHelper
             .Enrich.WithProperty("Application", $"{applicationName}")
             .WriteTo.Async(c => c.File("Logs/logs.txt"))
             .WriteTo.Async(c => c.Console())
-            .CreateLogger();
+            .CreateBootstrapLogger();
     }
 }

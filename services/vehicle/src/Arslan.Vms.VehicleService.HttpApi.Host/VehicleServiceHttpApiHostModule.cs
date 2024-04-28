@@ -1,5 +1,6 @@
 using Arslan.Vms.Shared.Hosting.AspNetCore;
 using Arslan.Vms.Shared.Hosting.Microservices;
+using Arslan.Vms.Shared.Hosting.Microservices.Auths;
 using Arslan.Vms.VehicleService.DbMigrations;
 using Arslan.Vms.VehicleService.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;

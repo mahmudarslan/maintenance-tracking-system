@@ -23,7 +23,7 @@ public static class YarpSwaggerUIBuilderExtensions
 
             var routedClusters = yarpConfig.Clusters
                 .SelectMany(t => t.Destinations,
-                    (clusterId, destination) => new {clusterId.ClusterId, destination.Value});
+                    (clusterId, destination) => new { clusterId.ClusterId, destination.Value });
 
             var groupedClusters = routedClusters
                 .GroupBy(q => q.Value.Address)
@@ -33,20 +33,41 @@ public static class YarpSwaggerUIBuilderExtensions
 
             foreach (var clusterGroup in groupedClusters)
             {
-                var routeConfig = yarpConfig.Routes.FirstOrDefault(q =>
+                var routeConfig = yarpConfig.Routes.Where(w => w.RouteId.StartsWith("Swagger")).FirstOrDefault(q =>
                     q.ClusterId == clusterGroup.ClusterId);
+
                 if (routeConfig == null)
                 {
                     logger.LogWarning($"Swagger UI: Couldn't find route configuration for {clusterGroup.ClusterId}...");
                     continue;
                 }
 
-                options.SwaggerEndpoint($"{clusterGroup.Value.Address}/swagger/v1/swagger.json", $"{routeConfig.RouteId} API");
-                options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
-                options.OAuthClientSecret(configuration["AuthServer:SwaggerClientSecret"]);
+                var routes = yarpConfig.Routes.Where(f => f.RouteId.Contains("Swagger") && f.ClusterId == clusterGroup.ClusterId).ToList();
+                var version = "v1";
+
+                foreach (var route in routes)
+                {
+                    if (route.RouteId.Contains("-"))
+                    {
+                        var routeVersion = route.RouteId.Split("-").Last();
+
+                        if (!string.IsNullOrEmpty(routeVersion))
+                        {
+                            version = routeVersion;
+                            options.SwaggerEndpoint($"{clusterGroup.ClusterId}/{version}{configuration["App:PathBase"]}/swagger/{version}/swagger.json", $"{route.RouteId.Replace("Swagger", "")}");
+                        }
+                    }
+                    else
+                    {
+                        options.SwaggerEndpoint($"{clusterGroup.ClusterId}{configuration["App:PathBase"]}/swagger/{version}/swagger.json", $"{route.RouteId.Replace("Swagger", "")}-{version}");
+                    }
+
+                    options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
+                    options.OAuthClientSecret(configuration["AuthServer:SwaggerClientSecret"]);
+                }
             }
         });
-        
+
         return app;
     }
 }

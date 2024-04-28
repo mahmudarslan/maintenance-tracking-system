@@ -12,6 +12,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\identity\src\Arslan.Vms.IdentityService.Application.Contracts\Arslan.Vms.IdentityService.Application.Contracts.csproj" />
+		<ProjectReference Include="..\..\..\inventory\src\Arslan.Vms.InventoryService.Application.Contracts\Arslan.Vms.InventoryService.Application.Contracts.csproj" />
+		<ProjectReference Include="..\..\..\order\src\Arslan.Vms.OrderService.Application.Contracts\Arslan.Vms.OrderService.Application.Contracts.csproj" />
+		<ProjectReference Include="..\..\..\payment\src\Arslan.Vms.PaymentService.Application.Contracts\Arslan.Vms.PaymentService.Application.Contracts.csproj" />
+		<ProjectReference Include="..\..\..\planner\src\Arslan.Vms.PlannerService.Application.Contracts\Arslan.Vms.PlannerService.Application.Contracts.csproj" />
+		<ProjectReference Include="..\..\..\product\src\Arslan.Vms.ProductService.Application.Contracts\Arslan.Vms.ProductService.Application.Contracts.csproj" />
+		<ProjectReference Include="..\..\..\vehicle\src\Arslan.Vms.VehicleService.Application.Contracts\Arslan.Vms.VehicleService.Application.Contracts.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Flurl" Version="3.0.7" />
 		<PackageReference Include="Flurl.Http" Version="3.2.4" />
 		<PackageReference Include="Volo.Abp.Authorization" Version="7.3.2" />

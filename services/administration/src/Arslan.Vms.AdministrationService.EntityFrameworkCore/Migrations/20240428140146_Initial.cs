@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Arslan.Vms.AdministrationService.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -195,6 +195,47 @@ namespace Arslan.Vms.AdministrationService.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AbpTenants", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IncomingEvents",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MessageId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EventName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EventData = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Processed = table.Column<bool>(type: "bit", nullable: false),
+                    ProcessedTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IncomingEvents", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SaasEditions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    NormalizedName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsStatic = table.Column<bool>(type: "bit", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SaasEditions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -388,6 +429,11 @@ namespace Arslan.Vms.AdministrationService.Migrations
                 name: "IX_AbpTenants_Name",
                 table: "AbpTenants",
                 column: "Name");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SaasEditions_Name",
+                table: "SaasEditions",
+                column: "Name");
         }
 
         /// <inheritdoc />
@@ -425,6 +471,12 @@ namespace Arslan.Vms.AdministrationService.Migrations
 
             migrationBuilder.DropTable(
                 name: "AbpTenantConnectionStrings");
+
+            migrationBuilder.DropTable(
+                name: "IncomingEvents");
+
+            migrationBuilder.DropTable(
+                name: "SaasEditions");
 
             migrationBuilder.DropTable(
                 name: "AbpEntityChanges");

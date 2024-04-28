@@ -15,7 +15,8 @@ public static class ApplicationBuilderHelper
         builder.Host
             .AddAppSettingsSecretsJson()
             .UseAutofac()
-            .UseSerilog();
+            .UseSerilog(configureLogger: (hostingContext, loggerConfiguration) => loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration),
+                        writeToProviders: true);
 
         await builder.AddApplicationAsync<TStartupModule>();
         return builder.Build();
