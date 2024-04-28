@@ -16,6 +16,11 @@ import { AppComponent } from './app.component';
 import { APP_ROUTE_PROVIDER } from './route.provider';
 import { FeatureManagementModule } from '@abp/ng.feature-management';
 import { AbpOAuthModule } from '@abp/ng.oauth';
+import { OrderConfigModule } from '@arslan/vms.order/config/order-config.module';
+import { BaseConfigModule } from '@arslan/vms.base/config/base-config.module';
+import { InventoryConfigModule } from '@arslan/vms.inventory/config/inventory-config.module';
+import { PaymentConfigModule } from '@arslan/vms.payment/config/payment-config.module';
+import { PlannerConfigModule } from '@arslan/vms.planner/config/planner-config.module';
 
 @NgModule({
   imports: [
@@ -35,6 +40,11 @@ import { AbpOAuthModule } from '@abp/ng.oauth';
     ThemeLeptonXModule.forRoot(),
     SideMenuLayoutModule.forRoot(),
     FeatureManagementModule.forRoot(),
+    OrderConfigModule.forRoot(),
+    BaseConfigModule.forRoot(),
+    InventoryConfigModule.forRoot(),
+    PaymentConfigModule.forRoot(),
+    PlannerConfigModule.forRoot(),
   ],
   declarations: [AppComponent],
   providers: [APP_ROUTE_PROVIDER],

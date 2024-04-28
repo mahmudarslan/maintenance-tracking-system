@@ -1,0 +1,64 @@
+<dx-form id="form1" labelLocation="left" [colCount]="2">
+    <dxi-item>
+        <!-- <dxo-label text="{{'Base::Label:AddressCountry'|abpLocalization}}"></dxo-label> -->
+        <div *dxTemplate>
+            <dx-select-box #countrySelectBox stylingMode="outlined" labelMode="floating"
+                label="{{'Base::Label:AddressCountry'|abpLocalization}}" [deferRendering]="true"
+                placeholder="{{'Base::Placeholder:AddressCountry'|abpLocalization}}" [dataSource]="countryDataSource"
+                displayExpr="name" valueExpr="id" [(value)]="address && address.countryId"
+                (onValueChanged)="onCountryChanged($event)" searchMode="contains" [searchEnabled]="true">
+                <!-- <dx-validator>
+                    <dxi-validation-rule type="required"
+                        message="{{'Base::Validation:AddressCountry'|abpLocalization}}">
+                    </dxi-validation-rule>
+                </dx-validator> -->
+            </dx-select-box>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <!-- <dxo-label text="{{'Base::Label:AddressCity'|abpLocalization}}"></dxo-label> -->
+        <div *dxTemplate>
+            <dx-select-box stylingMode="outlined" labelMode="floating"
+                label="{{'Base::Label:AddressCity'|abpLocalization}}"
+                placeholder="{{'Base::Placeholder:AddressCity'|abpLocalization}}" [dataSource]="cityDataSource"
+                displayExpr="name" valueExpr="id" [(value)]="address && address.cityId"
+                (onValueChanged)="onCityChanged($event)" searchMode="contains" [searchEnabled]="true">
+                <!-- <dx-validator>
+                    <dxi-validation-rule type="required"
+                        message="{{'Base::Validation:AddressCity'|abpLocalization}}">
+                    </dxi-validation-rule>
+                </dx-validator> -->
+            </dx-select-box>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <!-- <dxo-label text="{{'Base::Label:AddressDistrict'|abpLocalization}}"></dxo-label> -->
+        <div *dxTemplate>
+            <dx-select-box stylingMode="outlined" labelMode="floating"
+                label="{{'Base::Label:AddressDistrict'|abpLocalization}}"
+                placeholder="{{'Base::Placeholder:AddressDistrict'|abpLocalization}}" [dataSource]="districtDataSource"
+                displayExpr="name" valueExpr="id" [(value)]="address && address.districtId" searchMode="contains"
+                [searchEnabled]="true">
+                <!-- <dx-validator>
+                    <dxi-validation-rule type="required"
+                        message="{{'Base::Validation:AddressDistrict'|abpLocalization}}">
+                    </dxi-validation-rule>
+                </dx-validator> -->
+            </dx-select-box>
+        </div>
+    </dxi-item>
+    <dxi-item>
+        <!-- <dxo-label text="{{'Base::Label:Address'|abpLocalization}}"></dxo-label> -->
+        <div *dxTemplate>
+            <dx-text-area stylingMode="outlined" labelMode="floating" label="{{'Base::Label:Address'|abpLocalization}}"
+                placeholder="{{'Base::Placeholder:Address'|abpLocalization}}" [(value)]="address && address.address1"
+                [maxLength]="500" [height]="90">
+                <!-- <dx-validator>
+                    <dxi-validation-rule type="required"
+                        message="{{'Base::Validation:Address'|abpLocalization}}">
+                    </dxi-validation-rule>
+                </dx-validator> -->
+            </dx-text-area>
+        </div>
+    </dxi-item>
+</dx-form>

@@ -1,8 +1,10 @@
+import { AuthGuard, authGuard } from '@abp/ng.core';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
+const routes: Routes = [ 
   {
+    canActivate: [authGuard],
     path: '',
     pathMatch: 'full',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
@@ -24,6 +26,26 @@ const routes: Routes = [
     path: 'setting-management',
     loadChildren: () =>
       import('@abp/ng.setting-management').then(m => m.SettingManagementModule.forLazy()),
+  },
+  {
+    path: 'base',
+    loadChildren: () => import('@arslan/vms.base').then((m) => m.BaseModule.forLazy()),
+  },
+  {
+    path: 'inventory',
+    loadChildren: () => import('@arslan/vms.inventory').then(m => m.InventoryModule.forLazy()),
+  },
+  {
+    path: 'order',
+    loadChildren: () => import('@arslan/vms.order').then(m => m.OrderModule.forLazy()),
+  },
+  {
+    path: 'payment',
+    loadChildren: () => import('@arslan/vms.payment').then(m => m.PaymentModule.forLazy()),
+  },
+  {
+    path: 'planner',
+    loadChildren: () => import('@arslan/vms.planner').then(m => m.PlannerModule.forLazy()),
   },
 ];
 

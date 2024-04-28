@@ -1,0 +1,17 @@
+export const enum eBaseComponents {
+  CustomerNew = 'Base.CustomerNew',
+  CustomerList = 'Base.CustomerList',
+  EmployeeNew = 'Base.EmployeeNew',
+  EmployeeList = 'Base.EmployeeList',
+  VendorNew = 'Base.VendorNew',
+  VendorList = 'Base.VendorList',
+  VehicleNew = 'Base.VehicleNew',
+  VehicleList = 'Base.VehicleList',
+  Company = 'Base.Company',
+  Address = 'Base.Address',
+  DocNumbers = 'Base.DocNumbers',
+  ProductNew = 'Base.ProductNew',
+  ProductList = 'Base.ProductList',
+  ProductCategory = 'Base.Category',
+  Location = 'Base.Location',
+}

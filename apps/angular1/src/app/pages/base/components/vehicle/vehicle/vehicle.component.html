@@ -1,0 +1,52 @@
+<dx-data-grid #vehicleGrid [dataSource]="vehicleDataSource" [remoteOperations]="true" height="600"
+    [allowColumnReordering]="true" [rowAlternationEnabled]="true" [hoverStateEnabled]="true" [showBorders]="true"
+    [showColumnLines]="true" [showRowLines]="true" [columnAutoWidth]="true" [allowColumnResizing]="true"
+    [wordWrapEnabled]="true" (onEditingStart)="onEditingStart($event)" (onEditorPreparing)="onEditorPreparing($event)"
+    (onToolbarPreparing)="onToolbarPreparing($event)" (onRowValidating)="onRowValidating($event)"
+    [wordWrapEnabled]="true">
+    <dxo-selection mode="single"></dxo-selection>
+    <dxo-filter-row [visible]="false"></dxo-filter-row>
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+    <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" aria-placeholder="ara">
+    </dxo-search-panel>
+    <dxo-group-panel [visible]="false"></dxo-group-panel>
+    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+    </dxo-pager>
+    <dxo-editing mode="batch" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true"
+        selectTextOnEditStart="true" startEditAction="click">
+    </dxo-editing>
+    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+
+    <dxi-column caption="{{'Base::Label:VehicleBrand'|abpLocalization}}" dataField="brandId"
+        [setCellValue]="setModelValue" dataType="string">
+        <dxo-lookup [dataSource]="brandDataSource" valueExpr="id" displayExpr="name">
+        </dxo-lookup>
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column caption="{{'Base::Label:VehicleModel'|abpLocalization}}" dataField="modelId" dataType="string">
+        <dxo-lookup [dataSource]="getFilteredVehicleModels" valueExpr="id" displayExpr="name">
+        </dxo-lookup>
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column caption="{{'Base::Label:VehiclePlateNo'|abpLocalization}}" dataField="plate" dataType="string"
+        [editorOptions]="{ maxLength: 25, showClearButton: true }">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column caption="{{'Base::Label:VehicleEngine'|abpLocalization}}" dataField="motor" dataType="string"
+        [editorOptions]="{ maxLength: 25, showClearButton: true }">
+        <dxi-validation-rule type="stringLength" [max]="25"
+            message="{{'Base::Validation:EngineNumberCanNotBeGreaterThan10'|abpLocalization}}">
+        </dxi-validation-rule>
+    </dxi-column>
+    <dxi-column caption="{{'Base::Label:VehicleChassisNo'|abpLocalization}}" dataField="chassis"
+        dataType="string" [editorOptions]="{ maxLength: 30, showClearButton: true }"></dxi-column>
+    <dxi-column caption="{{'Base::Label:VehicleColor'|abpLocalization}}" dataField="color" dataType="string"
+        [editorOptions]="{ maxLength: 15, showClearButton: true }">
+    </dxi-column>
+    <dxi-column type="buttons" [width]="70" [fixed]="true">
+        <dxi-button hint="{{'Base::Button:Delete'|abpLocalization}}" icon="trash" name="delete">
+        </dxi-button>
+    </dxi-column>
+</dx-data-grid>

@@ -17,6 +17,21 @@
       "dom"
     ],
     "paths": {
+      "@arslan/vms.base/*": ["src/app/pages/base/*"],
+      "@arslan/vms.base": ["src/app/pages/base/public-api"],
+      "@arslan/vms.base/config": ["src/app/pages/base/config/public-api"],
+      "@arslan/vms.inventory/*": ["src/app/pages/inventory/*"],
+      "@arslan/vms.inventory": ["src/app/pages/inventory/public-api"],
+      "@arslan/vms.inventory/config": ["src/app/pages/inventory/config/public-api"],
+      "@arslan/vms.order/*": ["src/app/pages/order/*"],
+      "@arslan/vms.order": ["src/app/pages/order/public-api"],
+      "@arslan/vms.order/config": ["src/app/pages/order/config/public-api"],
+      "@arslan/vms.payment/*": ["src/app/pages/payment/*"],
+      "@arslan/vms.payment": ["src/app/pages/payment/public-api"],
+      "@arslan/vms.payment/config": ["src/app/pages/payment/config/public-api"],
+      "@arslan/vms.planner/*": ["src/app/pages/planner/*"],
+      "@arslan/vms.planner": ["src/app/pages/planner/public-api"],
+      "@arslan/vms.planner/config": ["src/app/pages/planner/config/public-api"],
       "@proxy": [
         "src/app/proxy/index.ts"
       ],

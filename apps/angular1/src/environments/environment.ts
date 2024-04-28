@@ -10,12 +10,13 @@ export const environment = {
     logoUrl: '',
   },
   oAuthConfig: {
-    issuer: 'http://localhost:8080/',
+    issuer: 'http://localhost:8080/realms/arslan',
     redirectUri: baseUrl,
-    clientId: 'vms_app',
+    clientId: 'vms',
     responseType: 'code',
-    scope: 'offline_access Vms',
-    requireHttps: true,
+    scope: 'offline_access',
+    requireHttps: false,
+    cacheLocation: 'localstorage' // <-- add this config
   },
   apis: {
     default: {

@@ -1,0 +1,114 @@
+<dx-data-grid #salesorderGrid [dataSource]="dataSource" [remoteOperations]="true" height="100%"
+    [allowColumnReordering]="true" [rowAlternationEnabled]="true" [hoverStateEnabled]="true" [showBorders]="true"
+    [showColumnLines]="true" [showRowLines]="true" [columnAutoWidth]="true" [allowColumnResizing]="true"
+    [wordWrapEnabled]="true" [filterSyncEnabled]="true" (onToolbarPreparing)="onToolbarPreparing($event)"
+    (onExporting)="onExporting($event,exportName)" (onRowRemoved)="onRowRemoved($event)">
+    <dxo-selection mode="single"></dxo-selection>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="false"></dxo-header-filter>
+    <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true" aria-placeholder="ara"></dxo-search-panel>
+    <dxo-group-panel [visible]="false"></dxo-group-panel>
+    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 50]" [showInfo]="true" [visible]="true">
+    </dxo-pager>
+    <dxo-editing mode="row" [allowUpdating]="false" [allowDeleting]="true">
+    </dxo-editing>
+    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-state-storing [enabled]="true" type="localStorage" storageKey="Storage_SalesOrderList"></dxo-state-storing>
+    <dxo-load-panel [enabled]="true">
+    </dxo-load-panel>
+
+    <dxi-column caption="{{'Orders::CreatedDate'|abpLocalization}}" dataField="creationTime" dataType="date"
+        sortOrder="desc" [visible]="false">
+    </dxi-column>
+    <dxi-column caption="{{'Orders::OrderNumber'|abpLocalization}}" dataField="orderNumber" dataType="string">
+    </dxi-column>
+    <dxi-column caption="{{'Orders::OrderDate'|abpLocalization}}" dataField="orderDate" dataType="date">
+    </dxi-column>
+    <dxi-column caption="{{'Orders::InventoryStatus'|abpLocalization}}" dataField="inventoryStatus" dataType="string">
+        <dxo-lookup [dataSource]="salesOrderInventoryStatusData" valueExpr="id" displayExpr="name">
+        </dxo-lookup>
+    </dxi-column>
+    <dxi-column caption="{{'Orders::PaymentStatus'|abpLocalization}}" dataField="paymentStatus" dataType="string">
+        <dxo-lookup [dataSource]="salesOrderPaymentStatusData" valueExpr="id" displayExpr="name">
+        </dxo-lookup>
+    </dxi-column>
+    <dxi-column caption="{{'Orders::Customer'|abpLocalization}}" dataField="name" dataType="string"></dxi-column>
+    <dxi-column caption="{{'Orders::Brand'|abpLocalization}}" dataField="brandName" dataType="string">
+    </dxi-column>
+    <dxi-column caption="{{'Orders::Model'|abpLocalization}}" dataField="modelName" dataType="string">
+    </dxi-column>
+    <dxi-column caption="{{'Orders::PlateNo'|abpLocalization}}" dataField="plateNo" dataType="string"></dxi-column>
+    <dxi-column caption="{{'Orders::Total'|abpLocalization}}" dataField="total" dataType="number" format="#,##0">
+    </dxi-column>
+    <dxi-column caption="{{'Orders::Paid'|abpLocalization}}" dataField="amountPaid" dataType="number" format="#,##0">
+    </dxi-column>
+    <dxi-column caption="{{'Orders::Balance'|abpLocalization}}" dataField="balance" dataType="number" format="#,##0">
+    </dxi-column>
+    <dxi-column caption="{{'Orders::Deleted'|abpLocalization}}" dataField="isDeleted" dataType="boolean"
+        [visible]="false" [filterValue]="filterValueIsDeleted">
+    </dxi-column>
+
+    <dxi-column type="buttons" [width]="110" [fixed]="true">
+        <dxi-button hint="{{'Orders::Button:Update'|abpLocalization}}" icon="edit" [onClick]="editClick"
+            [visible]="isDeleteIconVisible">
+        </dxi-button>
+        <dxi-button hint="{{'Orders::Button:View'|abpLocalization}}" icon="search" [onClick]="editClick"
+            [visible]="isUndoIconVisible">
+        </dxi-button>
+        <dxi-button hint="{{'Orders::Button:Download'|abpLocalization}}" icon="download" [onClick]="downloadClick">
+        </dxi-button>
+        <dxi-button hint="{{'Orders::Button:Delete'|abpLocalization}}" icon="trash" name="delete"
+            [visible]="isDeleteIconVisible">
+        </dxi-button>
+        <dxi-button hint="{{'Orders::Button:Undo'|abpLocalization}}" icon="undo" name="Undo" [onClick]="undoClick"
+            [visible]="isUndoIconVisible">
+        </dxi-button>
+    </dxi-column>
+
+    <dxo-export [enabled]="true"></dxo-export>
+</dx-data-grid>
+
+
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.01)" [position]="{ of: '#salesorderGrid' }"
+    [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" [shading]="true"
+    [closeOnOutsideClick]="false">
+</dx-load-panel>
+
+
+
+<dx-popup [width]="900" [height]="500" [showTitle]="true" title="" [dragEnabled]="false" [closeOnOutsideClick]="true"
+    [showCloseButton]="false" [(visible)]="isModalVisible">
+    <dxi-toolbar-item text="Title" location="center">
+        <div *dxTemplate>
+            <h3>
+                <font size="5" face="arial">{{ 'Vms::TaskDetail' | abpLocalization }}</font>
+            </h3>
+        </div>
+    </dxi-toolbar-item>
+
+
+    <div *dxTemplate="let data of 'content'">
+        <app-sales-order-new *ngIf="isModalVisible" [taskMasterId]="taskMasterId">
+        </app-sales-order-new>
+    </div>
+
+
+    <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="after" itemTemplate="deleteTemplate">
+        <div *dxTemplate="let data of 'cancelTemplate'">
+            <dx-button stylingMode="contained" type="danger" text="{{'Vms::Cancel' | abpLocalization}}" [width]="120"
+                (onClick)="onClick_Cancel($event)">
+            </dx-button>
+        </div>
+    </dxi-toolbar-item>
+    <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="after" itemTemplate="cancelTemplate">
+        <div *dxTemplate="let data of 'deleteTemplate'">
+            <dx-button stylingMode="contained" type="success" text="{{'Vms::Save' | abpLocalization}}" [width]="120"
+                (onClick)="saveDetail($event)">
+            </dx-button>
+        </div>
+    </dxi-toolbar-item>
+</dx-popup>
